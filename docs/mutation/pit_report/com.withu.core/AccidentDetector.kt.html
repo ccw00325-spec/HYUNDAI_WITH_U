@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>AccidentDetector.kt</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.withu.core</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/** &#49324;&#44256; &#52628;&#51221; &#54032;&#45800; &#44208;&#44284; */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>sealed class Decision {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** &#9312; &#44553;&#51228;&#46041;: &#54364;&#49884;&#47564; &#45224;&#44592;&#44256; &#47931;&#51648; &#50506;&#45716;&#45796; */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_6'/>
+6
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_6'>3</a>
+<span>
+
+1. getFromKph : replaced float return with 0.0f for com/withu/core/Decision$HardBrake::getFromKph &rarr; KILLED<br/>
+
+2. getToKph : replaced float return with 0.0f for com/withu/core/Decision$HardBrake::getToKph &rarr; KILLED<br/>
+
+3. getT : replaced long return with 0 for com/withu/core/Decision$HardBrake::getT &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    data class HardBrake(val t: Long, val fromKph: Float, val toKph: Float) : Decision()</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** &#9313; &#44553;&#51228;&#46041; &#46244; &#51221;&#52264; */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_8'/>
+8
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_8'>2</a>
+<span>
+
+1. getT : replaced long return with 0 for com/withu/core/Decision$Stopped::getT &rarr; KILLED<br/>
+
+2. getAfterMs : replaced long return with 0 for com/withu/core/Decision$Stopped::getAfterMs &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    data class Stopped(val t: Long, val afterMs: Long) : Decision()</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** &#9314; &#51221;&#52264;&#44032; &#51060;&#50612;&#51652; &#52292; P&#45800; &#8594; &#34;&#51648;&#44552; &#49324;&#44256;&#44032; &#45212; &#49345;&#54889;&#51064;&#44032;&#50836;?&#34; */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_10'/>
+10
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_10'>3</a>
+<span>
+
+1. getParkAfterStopMs : replaced long return with 0 for com/withu/core/Decision$Suspect::getParkAfterStopMs &rarr; KILLED<br/>
+
+2. getEventT : replaced long return with 0 for com/withu/core/Decision$Suspect::getEventT &rarr; KILLED<br/>
+
+3. getFromKph : replaced float return with 0.0f for com/withu/core/Decision$Suspect::getFromKph &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    data class Suspect(val eventT: Long, val fromKph: Float, val parkAfterStopMs: Long) : Decision()</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** &#51656;&#47928;&#54616;&#51648; &#50506;&#44256; &#45149;&#45212; &#44221;&#50864; (&#44592;&#47197;&#51008; 7&#51068; &#48372;&#44288;&#50640; &#44536;&#45824;&#47196; &#45224;&#45716;&#45796;) */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_12'/>
+12
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_12'>1</a>
+<span>
+
+1. getEventT : replaced long return with 0 for com/withu/core/Decision$NoPrompt::getEventT &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    data class NoPrompt(val eventT: Long, val reason: Reason) : Decision()</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** &#50640;&#50612;&#48177; &#51204;&#44060;: &#51656;&#47928; &#50630;&#51060; &#49324;&#44256;&#47196; &#48376;&#45796; (&#49892;&#52264;&#183;&#51648;&#50896; &#52264;&#51333;&#47564;) */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_14'/>
+14
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_14'>1</a>
+<span>
+
+1. getT : replaced long return with 0 for com/withu/core/Decision$Airbag::getT &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    data class Airbag(val t: Long) : Decision()</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    enum class Reason { NO_STOP, RESUMED_BEFORE_PARK, NO_PARK_IN_TIME }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>data class DetectorConfig(</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** 1&#52488; &#46041;&#50504; &#51060;&#47564;&#53372; &#51060;&#49345; &#44048;&#49549;&#54616;&#47732; &#44553;&#51228;&#46041; (km/h) */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_21'/>
+21
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_21'>1</a>
+<span>
+
+1. getDropKph : replaced float return with 0.0f for com/withu/core/DetectorConfig::getDropKph &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val dropKph: Float = 15f,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** &#44553;&#51228;&#46041; &#46244; &#51060; &#49884;&#44036; &#50504;&#50640; &#49436;&#50556; &#51221;&#52264;&#47196; &#48376;&#45796; */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_23'/>
+23
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_23'>1</a>
+<span>
+
+1. getStopWithinMs : replaced long return with 0 for com/withu/core/DetectorConfig::getStopWithinMs &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val stopWithinMs: Long = 10_000,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** &#51221;&#52264; &#46244; &#51060; &#49884;&#44036; &#50504;&#50640; P&#45800;&#51060; &#46104;&#50612;&#50556; &#47931;&#45716;&#45796; (&#51228;&#50504;&#44050;) */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_25'/>
+25
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_25'>1</a>
+<span>
+
+1. getParkWithinMs : replaced long return with 0 for com/withu/core/DetectorConfig::getParkWithinMs &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val parkWithinMs: Long = 180_000,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** &#51060; &#49549;&#46020; &#48120;&#47564;&#51060;&#47732; &#51221;&#52264; */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_27'/>
+27
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_27'>1</a>
+<span>
+
+1. getStopKph : replaced float return with 0.0f for com/withu/core/DetectorConfig::getStopKph &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val stopKph: Float = 0.5f,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** &#51221;&#52264; &#46244; &#51060; &#49549;&#46020;&#47484; &#45336;&#51004;&#47732; &#45796;&#49884; &#52636;&#48156;&#54620; &#44163; */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_29'/>
+29
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_29'>1</a>
+<span>
+
+1. getResumeKph : replaced float return with 0.0f for com/withu/core/DetectorConfig::getResumeKph &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val resumeKph: Float = 5f,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** &#54620; &#54032;&#45800;&#51060; &#45149;&#45212; &#46244; &#45796;&#51020; &#44553;&#51228;&#46041;&#51012; &#48372;&#51648; &#50506;&#45716; &#49884;&#44036; */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_31'/>
+31
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_31'>1</a>
+<span>
+
+1. getCooldownMs : replaced long return with 0 for com/withu/core/DetectorConfig::getCooldownMs &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val cooldownMs: Long = 5_000,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#49324;&#44256; &#52628;&#51221; &#44508;&#52825; (2026-11-12 &#49436;&#48708;&#49828; &#48169;&#54693; &#54869;&#51221;)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *  &#44553;&#51228;&#46041;(1&#52488; &#8722;15km/h &#38; &#48652;&#47112;&#51060;&#53356;) &#8594; 10&#52488; &#50504; &#51221;&#52264; &#8594; &#51221;&#52264;&#44032; &#51060;&#50612;&#51652; &#52292; P&#45800; &#51068; &#46412;&#47564; &#51656;&#47928;&#54620;&#45796;.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *  &#45432;&#46976;&#48520; &#44553;&#51221;&#44144;&#52376;&#47100; D&#45800;&#51004;&#47196; &#49436; &#51080;&#45796;&#44032; &#45796;&#49884; &#52636;&#48156;&#54616;&#47732; &#51656;&#47928;&#54616;&#51648; &#50506;&#45716;&#45796;.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>class AccidentDetector(private val cfg: DetectorConfig = DetectorConfig()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private val recent = ArrayDeque&#60;Sample&#62;()</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private var evtT = -1L</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private var evtFrom = 0f</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private var stoppedAt = -1L</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private var cooldownUntil = Long.MIN_VALUE</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private var airbagFired = false</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_47'/>
+47
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_47'>3</a>
+<span>
+
+1. getArmed : negated conditional &rarr; KILLED<br/>
+
+2. getArmed : replaced boolean return with true for com/withu/core/AccidentDetector::getArmed &rarr; KILLED<br/>
+
+3. getArmed : changed conditional boundary &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val armed: Boolean get() = evtT &#62;= 0</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    fun tick(s: Sample, airbagDeployed: Boolean? = null): List&#60;Decision&#62; {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        val out = mutableListOf&#60;Decision&#62;()</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_51'/>
+51
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_51'>2</a>
+<span>
+
+1. tick : negated conditional &rarr; KILLED<br/>
+
+2. tick : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (airbagDeployed == true &#38;&#38; !airbagFired) { airbagFired = true; out += Decision.Airbag(s.t) }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_52'/>
+52
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_52'>1</a>
+<span>
+
+1. tick : removed call to kotlin/collections/ArrayDeque::addLast &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        recent.addLast(s)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_53'/>
+53
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_53'>5</a>
+<span>
+
+1. tick : changed conditional boundary &rarr; SURVIVED<br/>
+
+2. tick : changed conditional boundary &rarr; KILLED<br/>
+
+3. tick : negated conditional &rarr; KILLED<br/>
+
+4. tick : Replaced long subtraction with addition &rarr; KILLED<br/>
+
+5. tick : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        while (recent.size &#62; 1 &#38;&#38; s.t - recent.first().t &#62; 1_500) recent.removeFirst()</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_54'/>
+54
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_54'>2</a>
+<span>
+
+1. tick : replaced return value with Collections.emptyList for com/withu/core/AccidentDetector::tick &rarr; KILLED<br/>
+
+2. tick : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        val spd = s.spd ?: return out</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_55'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_56'/>
+56
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_56'>2</a>
+<span>
+
+1. tick : changed conditional boundary &rarr; KILLED<br/>
+
+2. tick : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (evtT &#60; 0) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            val prev = speedAgo(s.t, 1_000)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_58'/>
+58
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_58'>7</a>
+<span>
+
+1. tick : negated conditional &rarr; KILLED<br/>
+
+2. tick : changed conditional boundary &rarr; KILLED<br/>
+
+3. tick : negated conditional &rarr; KILLED<br/>
+
+4. tick : Replaced float subtraction with addition &rarr; KILLED<br/>
+
+5. tick : negated conditional &rarr; KILLED<br/>
+
+6. tick : changed conditional boundary &rarr; KILLED<br/>
+
+7. tick : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (s.t &#62;= cooldownUntil &#38;&#38; prev != null &#38;&#38; prev - spd &#62;= cfg.dropKph &#38;&#38; s.brk == true) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_59'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                evtT = s.t; evtFrom = prev; stoppedAt = -1</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_60'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                out += Decision.HardBrake(s.t, prev, spd)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_61'/>
+61
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_61'>1</a>
+<span>
+
+1. tick : replaced return value with Collections.emptyList for com/withu/core/AccidentDetector::tick &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            } else return out</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_62'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_63'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_64'/>
+64
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_64'>1</a>
+<span>
+
+1. tick : Replaced long subtraction with addition &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        val since = s.t - evtT</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_65'/>
+65
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_65'>2</a>
+<span>
+
+1. tick : changed conditional boundary &rarr; SURVIVED<br/>
+
+2. tick : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (stoppedAt &#60; 0) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_66'/>
+66
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_66'>4</a>
+<span>
+
+1. tick : changed conditional boundary &rarr; KILLED<br/>
+
+2. tick : negated conditional &rarr; KILLED<br/>
+
+3. tick : negated conditional &rarr; KILLED<br/>
+
+4. tick : changed conditional boundary &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (spd &#60; cfg.stopKph &#38;&#38; since &#60;= cfg.stopWithinMs) { stoppedAt = s.t; out += Decision.Stopped(s.t, since) }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_67'/>
+67
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_67'>3</a>
+<span>
+
+1. tick : removed call to com/withu/core/AccidentDetector::reset &rarr; KILLED<br/>
+
+2. tick : negated conditional &rarr; KILLED<br/>
+
+3. tick : changed conditional boundary &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            else if (since &#62; cfg.stopWithinMs) { out += Decision.NoPrompt(evtT, Decision.Reason.NO_STOP); reset(s.t) }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_68'/>
+68
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_68'>1</a>
+<span>
+
+1. tick : replaced return value with Collections.emptyList for com/withu/core/AccidentDetector::tick &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return out</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_69'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_70'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        when {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_71'/>
+71
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_71'>3</a>
+<span>
+
+1. tick : removed call to com/withu/core/AccidentDetector::reset &rarr; KILLED<br/>
+
+2. tick : negated conditional &rarr; KILLED<br/>
+
+3. tick : changed conditional boundary &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            spd &#62; cfg.resumeKph -&#62; { out += Decision.NoPrompt(evtT, Decision.Reason.RESUMED_BEFORE_PARK); reset(s.t) }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_72'/>
+72
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_72'>4</a>
+<span>
+
+1. tick : negated conditional &rarr; KILLED<br/>
+
+2. tick : removed call to com/withu/core/AccidentDetector::reset &rarr; KILLED<br/>
+
+3. tick : Replaced long subtraction with addition &rarr; KILLED<br/>
+
+4. tick : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            s.gear == &#39;P&#39; -&#62; { out += Decision.Suspect(evtT, evtFrom, s.t - stoppedAt); reset(s.t) }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_73'/>
+73
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_73'>4</a>
+<span>
+
+1. tick : changed conditional boundary &rarr; KILLED<br/>
+
+2. tick : Replaced long subtraction with addition &rarr; KILLED<br/>
+
+3. tick : negated conditional &rarr; KILLED<br/>
+
+4. tick : removed call to com/withu/core/AccidentDetector::reset &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            s.t - stoppedAt &#62; cfg.parkWithinMs -&#62; { out += Decision.NoPrompt(evtT, Decision.Reason.NO_PARK_IN_TIME); reset(s.t) }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_75'/>
+75
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_75'>1</a>
+<span>
+
+1. tick : replaced return value with Collections.emptyList for com/withu/core/AccidentDetector::tick &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return out</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_76'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_77'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_78'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** now &#44592;&#51456; &#50557; ago &#48128;&#47532;&#52488; &#51204; &#49549;&#46020; (&#44536;&#48372;&#45796; &#50724;&#47000;&#46108; &#49368;&#54540; &#51473; &#44032;&#51109; &#52572;&#44540;) */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_79'/>
+79
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_79'>5</a>
+<span>
+
+1. speedAgo : changed conditional boundary &rarr; KILLED<br/>
+
+2. speedAgo : Replaced long subtraction with addition &rarr; KILLED<br/>
+
+3. speedAgo : negated conditional &rarr; KILLED<br/>
+
+4. speedAgo : replaced Float return value with 0 for com/withu/core/AccidentDetector::speedAgo &rarr; KILLED<br/>
+
+5. speedAgo : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    private fun speedAgo(now: Long, ago: Long): Float? = recent.lastOrNull { now - it.t &#62;= ago }?.spd</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_81'/>
+81
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_81'>1</a>
+<span>
+
+1. reset : Replaced long addition with subtraction &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    private fun reset(now: Long) { evtT = -1; stoppedAt = -1; cooldownUntil = now + cfg.cooldownMs }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1fecfaea_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_82'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_6'>6</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_6'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getFromKph<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.decisionFieldsAreExposed(com.withu.core.AccidentDetectorTest)</span></span> replaced float return with 0.0f for com/withu/core/Decision$HardBrake::getFromKph &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getToKph<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.decisionFieldsAreExposed(com.withu.core.AccidentDetectorTest)</span></span> replaced float return with 0.0f for com/withu/core/Decision$HardBrake::getToKph &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>getT<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.decisionFieldsAreExposed(com.withu.core.AccidentDetectorTest)</span></span> replaced long return with 0 for com/withu/core/Decision$HardBrake::getT &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_8'>8</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_8'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getT<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.parkExactlyAtLimit_stillAsks(com.withu.core.AccidentDetectorTest)</span></span> replaced long return with 0 for com/withu/core/Decision$Stopped::getT &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getAfterMs<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.decisionFieldsAreExposed(com.withu.core.AccidentDetectorTest)</span></span> replaced long return with 0 for com/withu/core/Decision$Stopped::getAfterMs &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_10'>10</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_10'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getParkAfterStopMs<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.parkExactlyAtLimit_stillAsks(com.withu.core.AccidentDetectorTest)</span></span> replaced long return with 0 for com/withu/core/Decision$Suspect::getParkAfterStopMs &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getEventT<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.hardBrakeThenStopThenPark_asks(com.withu.core.AccidentDetectorTest)</span></span> replaced long return with 0 for com/withu/core/Decision$Suspect::getEventT &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>getFromKph<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.hardBrakeThenStopThenPark_asks(com.withu.core.AccidentDetectorTest)</span></span> replaced float return with 0.0f for com/withu/core/Decision$Suspect::getFromKph &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_12'>12</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_12'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEventT<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.decisionFieldsAreExposed(com.withu.core.AccidentDetectorTest)</span></span> replaced long return with 0 for com/withu/core/Decision$NoPrompt::getEventT &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_14'>14</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_14'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getT<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.decisionFieldsAreExposed(com.withu.core.AccidentDetectorTest)</span></span> replaced long return with 0 for com/withu/core/Decision$Airbag::getT &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_21'>21</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_21'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getDropKph<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropBelowThreshold_isNotHardBrake(com.withu.core.AccidentDetectorTest)</span></span> replaced float return with 0.0f for com/withu/core/DetectorConfig::getDropKph &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_23'>23</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_23'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getStopWithinMs<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.eventAtTimeZero_staysArmed_andProceeds(com.withu.core.AccidentDetectorTest)</span></span> replaced long return with 0 for com/withu/core/DetectorConfig::getStopWithinMs &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_25'>25</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_25'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getParkWithinMs<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.noParkDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest)</span></span> replaced long return with 0 for com/withu/core/DetectorConfig::getParkWithinMs &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_27'>27</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_27'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getStopKph<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.eventAtTimeZero_staysArmed_andProceeds(com.withu.core.AccidentDetectorTest)</span></span> replaced float return with 0.0f for com/withu/core/DetectorConfig::getStopKph &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_29'>29</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_29'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getResumeKph<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.resumeExactlyAtThreshold_isStillStopped(com.withu.core.AccidentDetectorTest)</span></span> replaced float return with 0.0f for com/withu/core/DetectorConfig::getResumeKph &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_31'>31</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_31'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getCooldownMs<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.cooldownBlocksImmediateSecondEvent(com.withu.core.AccidentDetectorTest)</span></span> replaced long return with 0 for com/withu/core/DetectorConfig::getCooldownMs &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_47'>47</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_47'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getArmed<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.nullSpeed_isIgnoredButAirbagStillFires(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getArmed<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.nullSpeed_isIgnoredButAirbagStillFires(com.withu.core.AccidentDetectorTest)</span></span> replaced boolean return with true for com/withu/core/AccidentDetector::getArmed &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>getArmed<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.eventAtTimeZero_staysArmed_andProceeds(com.withu.core.AccidentDetectorTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_51'>51</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_51'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.nullSpeed_isIgnoredButAirbagStillFires(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.nullSpeed_isIgnoredButAirbagStillFires(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_52'>52</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_52'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> removed call to kotlin/collections/ArrayDeque::addLast &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_53'>53</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_53'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.sparseSamples_exactly1500msApart_stillCompared(com.withu.core.AccidentDetectorTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>none</span></span> changed conditional boundary &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.withu.core.AccidentDetector,-method=tick,-methodDesc=(Lcom/withu/core/Sample;Ljava/lang/Boolean;)Ljava/util/List;],-indexes=[50],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.withu.core.AccidentDetector,-method=tick,-methodDesc=(Lcom/withu/core/Sample;Ljava/lang/Boolean;)Ljava/util/List;],-indexes=[50],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.withu.core.AccidentDetector,-method=tick,-methodDesc=(Lcom/withu/core/Sample;Ljava/lang/Boolean;)Ljava/util/List;],-indexes=[50],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.withu.core.AccidentDetectorTest.nullSpeed_isIgnoredButAirbagStillFires(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.dropBelowThreshold_isNotHardBrake(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.eventAtTimeZero_staysArmed_andProceeds(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.noStopDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.stopSpeedBoundary(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.sparseSamples_exactly1500msApart_stillCompared(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.hardBrakeExactlyAtCooldownEnd_counts(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.hardBrakeWithoutStop_doesNotAsk(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.noParkDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.resumeExactlyAtThreshold_isStillStopped(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.stopExactlyAtLimit_counts_andJustAfter_doesNot(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.decisionFieldsAreExposed(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.cooldownBlocksImmediateSecondEvent(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.parkTooLate_doesNotAsk(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.parkExactlyAtLimit_stillAsks(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.yellowLight_stopInDriveThenResume_doesNotAsk(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.hardBrakeThenStopThenPark_asks(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.brakeOff_isNotHardBrake(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.airbagWithoutHardBrake_isReturned(com.withu.core.AccidentDetectorTest)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.hardBrakeExactlyAtCooldownEnd_counts(com.withu.core.AccidentDetectorTest)</span></span> Replaced long subtraction with addition &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.sparseSamples_exactly1500msApart_stillCompared(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_54'>54</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_54'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.nullSpeed_isIgnoredButAirbagStillFires(com.withu.core.AccidentDetectorTest)</span></span> replaced return value with Collections.emptyList for com/withu/core/AccidentDetector::tick &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.nullSpeed_isIgnoredButAirbagStillFires(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_56'>56</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_56'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.eventAtTimeZero_staysArmed_andProceeds(com.withu.core.AccidentDetectorTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_58'>58</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_58'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.hardBrakeExactlyAtCooldownEnd_counts(com.withu.core.AccidentDetectorTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropBelowThreshold_isNotHardBrake(com.withu.core.AccidentDetectorTest)</span></span> Replaced float subtraction with addition &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropBelowThreshold_isNotHardBrake(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropBelowThreshold_isNotHardBrake(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_61'>61</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_61'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.airbagWithoutHardBrake_isReturned(com.withu.core.AccidentDetectorTest)</span></span> replaced return value with Collections.emptyList for com/withu/core/AccidentDetector::tick &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_64'>64</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_64'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.noStopDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest)</span></span> Replaced long subtraction with addition &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_65'>65</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_65'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>none</span></span> changed conditional boundary &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.withu.core.AccidentDetector,-method=tick,-methodDesc=(Lcom/withu/core/Sample;Ljava/lang/Boolean;)Ljava/util/List;],-indexes=[172],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.withu.core.AccidentDetector,-method=tick,-methodDesc=(Lcom/withu/core/Sample;Ljava/lang/Boolean;)Ljava/util/List;],-indexes=[172],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.withu.core.AccidentDetector,-method=tick,-methodDesc=(Lcom/withu/core/Sample;Ljava/lang/Boolean;)Ljava/util/List;],-indexes=[172],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.eventAtTimeZero_staysArmed_andProceeds(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.noStopDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.stopSpeedBoundary(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.sparseSamples_exactly1500msApart_stillCompared(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.hardBrakeExactlyAtCooldownEnd_counts(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.hardBrakeWithoutStop_doesNotAsk(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.noParkDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.resumeExactlyAtThreshold_isStillStopped(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.stopExactlyAtLimit_counts_andJustAfter_doesNot(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.decisionFieldsAreExposed(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.cooldownBlocksImmediateSecondEvent(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.parkTooLate_doesNotAsk(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.parkExactlyAtLimit_stillAsks(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.yellowLight_stopInDriveThenResume_doesNotAsk(com.withu.core.AccidentDetectorTest)</li> <li>com.withu.core.AccidentDetectorTest.hardBrakeThenStopThenPark_asks(com.withu.core.AccidentDetectorTest)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_66'>66</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_66'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.stopSpeedBoundary(com.withu.core.AccidentDetectorTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.eventAtTimeZero_staysArmed_andProceeds(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.eventAtTimeZero_staysArmed_andProceeds(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.stopExactlyAtLimit_counts_andJustAfter_doesNot(com.withu.core.AccidentDetectorTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_67'>67</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_67'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.hardBrakeWithoutStop_doesNotAsk(com.withu.core.AccidentDetectorTest)</span></span> removed call to com/withu/core/AccidentDetector::reset &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.noStopDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_68'>68</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_68'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> replaced return value with Collections.emptyList for com/withu/core/AccidentDetector::tick &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_71'>71</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_71'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.hardBrakeExactlyAtCooldownEnd_counts(com.withu.core.AccidentDetectorTest)</span></span> removed call to com/withu/core/AccidentDetector::reset &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.hardBrakeExactlyAtCooldownEnd_counts(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.resumeExactlyAtThreshold_isStillStopped(com.withu.core.AccidentDetectorTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_72'>72</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_72'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.noParkDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.parkExactlyAtLimit_stillAsks(com.withu.core.AccidentDetectorTest)</span></span> removed call to com/withu/core/AccidentDetector::reset &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.parkExactlyAtLimit_stillAsks(com.withu.core.AccidentDetectorTest)</span></span> Replaced long subtraction with addition &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.parkExactlyAtLimit_stillAsks(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_73'>73</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_73'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.noParkDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.noParkDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest)</span></span> Replaced long subtraction with addition &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.noParkDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.parkTooLate_doesNotAsk(com.withu.core.AccidentDetectorTest)</span></span> removed call to com/withu/core/AccidentDetector::reset &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_75'>75</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_75'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>tick<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.noParkDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest)</span></span> replaced return value with Collections.emptyList for com/withu/core/AccidentDetector::tick &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_79'>79</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_79'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>speedAgo<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropBelowThreshold_isNotHardBrake(com.withu.core.AccidentDetectorTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>speedAgo<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> Replaced long subtraction with addition &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>speedAgo<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>speedAgo<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> replaced Float return value with 0 for com/withu/core/AccidentDetector::speedAgo &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>speedAgo<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropBelowThreshold_isNotHardBrake(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_81'>81</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_81'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>reset<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.cooldownBlocksImmediateSecondEvent(com.withu.core.AccidentDetectorTest)</span></span> Replaced long addition with subtraction &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_85'>85</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_85'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>speedAgo<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1fecfaea_87'>87</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1fecfaea_87'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>speedAgo<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+
+<li class='mutator'>EMPTY_RETURNS</li>
+
+<li class='mutator'>FALSE_RETURNS</li>
+
+<li class='mutator'>INCREMENTS</li>
+
+<li class='mutator'>INVERT_NEGS</li>
+
+<li class='mutator'>MATH</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+
+<li class='mutator'>NULL_RETURNS</li>
+
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+
+<li class='mutator'>TRUE_RETURNS</li>
+
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.withu.core.AccidentDetectorTest.noParkDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest) (1 ms)</li><li>com.withu.core.AccidentDetectorTest.resumeExactlyAtThreshold_isStillStopped(com.withu.core.AccidentDetectorTest) (1 ms)</li><li>com.withu.core.AccidentDetectorTest.parkTooLate_doesNotAsk(com.withu.core.AccidentDetectorTest) (3 ms)</li><li>com.withu.core.AccidentDetectorTest.parkExactlyAtLimit_stillAsks(com.withu.core.AccidentDetectorTest) (3 ms)</li><li>com.withu.core.AccidentDetectorTest.yellowLight_stopInDriveThenResume_doesNotAsk(com.withu.core.AccidentDetectorTest) (3 ms)</li><li>com.withu.core.AccidentDetectorTest.hardBrakeThenStopThenPark_asks(com.withu.core.AccidentDetectorTest) (3 ms)</li><li>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest) (0 ms)</li><li>com.withu.core.AccidentDetectorTest.eventAtTimeZero_staysArmed_andProceeds(com.withu.core.AccidentDetectorTest) (0 ms)</li><li>com.withu.core.AccidentDetectorTest.noStopDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest) (0 ms)</li><li>com.withu.core.AccidentDetectorTest.stopSpeedBoundary(com.withu.core.AccidentDetectorTest) (0 ms)</li><li>com.withu.core.AccidentDetectorTest.sparseSamples_exactly1500msApart_stillCompared(com.withu.core.AccidentDetectorTest) (1 ms)</li><li>com.withu.core.AccidentDetectorTest.hardBrakeExactlyAtCooldownEnd_counts(com.withu.core.AccidentDetectorTest) (0 ms)</li><li>com.withu.core.AccidentDetectorTest.hardBrakeWithoutStop_doesNotAsk(com.withu.core.AccidentDetectorTest) (2 ms)</li><li>com.withu.core.AccidentDetectorTest.stopExactlyAtLimit_counts_andJustAfter_doesNot(com.withu.core.AccidentDetectorTest) (1 ms)</li><li>com.withu.core.AccidentDetectorTest.decisionFieldsAreExposed(com.withu.core.AccidentDetectorTest) (2 ms)</li><li>com.withu.core.AccidentDetectorTest.cooldownBlocksImmediateSecondEvent(com.withu.core.AccidentDetectorTest) (1 ms)</li><li>com.withu.core.AccidentDetectorTest.dropBelowThreshold_isNotHardBrake(com.withu.core.AccidentDetectorTest) (2 ms)</li><li>com.withu.core.AccidentDetectorTest.brakeOff_isNotHardBrake(com.withu.core.AccidentDetectorTest) (18 ms)</li><li>com.withu.core.AccidentDetectorTest.airbagWithoutHardBrake_isReturned(com.withu.core.AccidentDetectorTest) (35 ms)</li><li>com.withu.core.AccidentDetectorTest.nullSpeed_isIgnoredButAirbagStillFires(com.withu.core.AccidentDetectorTest) (1 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.17.0
+
+</body>
+</html>

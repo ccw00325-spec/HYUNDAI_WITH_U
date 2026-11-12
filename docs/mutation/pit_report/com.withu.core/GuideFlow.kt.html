@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>GuideFlow.kt</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.withu.core</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_3'/>
+3
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_3'>3</a>
+<span>
+
+1. getSpeech : replaced return value with &#34;&#34; for com/withu/core/GuideStep::getSpeech &rarr; KILLED<br/>
+
+2. getHint : replaced return value with &#34;&#34; for com/withu/core/GuideStep::getHint &rarr; KILLED<br/>
+
+3. getTitle : replaced return value with &#34;&#34; for com/withu/core/GuideStep::getTitle &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>enum class GuideStep(val title: String, val speech: String, val hint: String) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    EVACUATE(&#34;&#50504;&#51204;&#54620; &#44275;&#51004;&#47196; &#45824;&#54588;&#34;, &#34;&#44032;&#46300;&#47112;&#51068; &#48150;&#51060;&#45208; &#51064;&#46020;&#52376;&#47100; &#50504;&#51204;&#54620; &#44275;&#51004;&#47196; &#51060;&#46041;&#54616;&#49464;&#50836;.&#34;, &#34;&#47928;&#51060; &#50676;&#47532;&#47732; &#50504;&#45236;&#47484; &#51104;&#49884; &#47688;&#52628;&#44256;, &#45803;&#55176;&#47732; &#51060;&#50612; &#44049;&#45768;&#45796;&#34;),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    HAZARD(&#34;&#48708;&#49345;&#46321; &#53020;&#44592;&#34;, &#34;&#48708;&#49345;&#46321;&#51012; &#53020; &#51452;&#49464;&#50836;.&#34;, &#34;&#53040;&#51004;&#47732; &#8216;&#45796;&#51020; &#45800;&#44228;&#8217;&#46972;&#44256; &#47568;&#54616;&#44144;&#45208; &#48260;&#53948;&#51012; &#45572;&#47476;&#49464;&#50836;&#34;),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    TRUNK(&#34;&#53944;&#47105;&#53356; &#50676;&#44592;&#34;, &#34;&#53944;&#47105;&#53356;&#47484; &#50676;&#50612; &#46244;&#52264;&#50640; &#49324;&#44256;&#47484; &#50508;&#47140; &#51452;&#49464;&#50836;.&#34;, &#34;&#46244;&#46384;&#47476;&#45716; &#52264;&#44032; &#47680;&#47532;&#49436;&#46020; &#50508;&#50500;&#48372;&#44172; &#54633;&#45768;&#45796;&#34;),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    CHECK(&#34;&#48512;&#49345;&#183;&#54788;&#51109; &#54869;&#51064;&#34;, &#34;&#45796;&#52828; &#49324;&#46988;&#51060; &#51080;&#45716;&#51648; &#54869;&#51064;&#54616;&#44256;, &#52264;&#47049;&#44284; &#51452;&#48320; &#49324;&#51652;&#51012; &#45224;&#44200; &#51452;&#49464;&#50836;.&#34;, &#34;&#49324;&#51652;&#51008; &#55092;&#45824;&#54256;&#51004;&#47196;, &#44592;&#47197;&#51008; &#52264;&#44032; &#51060;&#48120; &#45224;&#44592;&#44256; &#51080;&#50612;&#50836;&#34;),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    REPORT(&#34;&#49888;&#44256; &#44032;&#51060;&#46300;&#34;, &#34;&#49888;&#44256; &#44032;&#51060;&#46300;&#47484; &#50676;&#44172;&#50836;. 112, 119, &#48372;&#54744;&#49324; &#49692;&#49436;&#47196; &#50504;&#45236;&#54633;&#45768;&#45796;.&#34;, &#34;&#47568;&#54624; &#45236;&#50857;&#51012; &#54868;&#47732;&#50640; &#51221;&#47532;&#54644; &#46300;&#47140;&#50836;&#34;),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/** &#46020;&#47196; &#54032;&#45800;: &#44256;&#49549;&#46020;&#47196;&#47732; &#45824;&#54588;&#47484; &#47676;&#51200; &#50504;&#45236;&#54620;&#45796; */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>object RoadContext {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    const val HIGHWAY_SPEED_KPH = 80f</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    fun isHighway(prevSpeedKph: Float?, address: String?): Boolean {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_15'/>
+15
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_15'>4</a>
+<span>
+
+1. isHighway : replaced boolean return with false for com/withu/core/RoadContext::isHighway &rarr; KILLED<br/>
+
+2. isHighway : negated conditional &rarr; KILLED<br/>
+
+3. isHighway : changed conditional boundary &rarr; KILLED<br/>
+
+4. isHighway : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (prevSpeedKph != null &#38;&#38; prevSpeedKph &#62; HIGHWAY_SPEED_KPH) return true</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_16'/>
+16
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_16'>2</a>
+<span>
+
+1. isHighway : negated conditional &rarr; KILLED<br/>
+
+2. isHighway : replaced boolean return with true for com/withu/core/RoadContext::isHighway &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        val a = address ?: return false</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_17'/>
+17
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_17'>4</a>
+<span>
+
+1. isHighway : replaced boolean return with true for com/withu/core/RoadContext::isHighway &rarr; KILLED<br/>
+
+2. isHighway : negated conditional &rarr; KILLED<br/>
+
+3. isHighway : negated conditional &rarr; KILLED<br/>
+
+4. isHighway : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return a.contains(&#34;&#44256;&#49549;&#46020;&#47196;&#34;) || a.contains(&#34;&#51088;&#46041;&#52264;&#51204;&#50857;&#34;) || a.contains(&#34;&#44256;&#49549;&#54868;&#34;)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    fun steps(highway: Boolean): List&#60;GuideStep&#62; =</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_20'/>
+20
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_20'>1</a>
+<span>
+
+1. steps : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (highway) listOf(GuideStep.EVACUATE, GuideStep.HAZARD, GuideStep.TRUNK, GuideStep.REPORT)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_21'/>
+21
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_21'>1</a>
+<span>
+
+1. steps : replaced return value with Collections.emptyList for com/withu/core/RoadContext::steps &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        else listOf(GuideStep.HAZARD, GuideStep.CHECK, GuideStep.EVACUATE, GuideStep.REPORT)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/** &#49324;&#44256; &#51649;&#54980; &#45800;&#44228;&#48324; &#50504;&#45236;. &#45824;&#54588; &#45800;&#44228;&#45716; &#50868;&#51204;&#49437; &#47928; &#50676;&#47548;/&#45803;&#55192;&#50640; &#47582;&#52656; &#47688;&#52628;&#44256; &#51060;&#50612; &#44036;&#45796;. */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>class GuideFlow {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_26'/>
+26
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_26'>1</a>
+<span>
+
+1. getSteps : replaced return value with Collections.emptyList for com/withu/core/GuideFlow::getSteps &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    var steps: List&#60;GuideStep&#62; = emptyList(); private set</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_27'/>
+27
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_27'>1</a>
+<span>
+
+1. getIndex : replaced int return with 0 for com/withu/core/GuideFlow::getIndex &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    var index = -1; private set</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_28'/>
+28
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_28'>2</a>
+<span>
+
+1. getPaused : replaced boolean return with true for com/withu/core/GuideFlow::getPaused &rarr; KILLED<br/>
+
+2. getPaused : replaced boolean return with false for com/withu/core/GuideFlow::getPaused &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    var paused = false; private set</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_29'/>
+29
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_29'>2</a>
+<span>
+
+1. getHighway : replaced boolean return with false for com/withu/core/GuideFlow::getHighway &rarr; KILLED<br/>
+
+2. getHighway : replaced boolean return with true for com/withu/core/GuideFlow::getHighway &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    var highway = false; private set</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private var doorOpen = false</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_32'/>
+32
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_32'>5</a>
+<span>
+
+1. getActive : negated conditional &rarr; KILLED<br/>
+
+2. getActive : changed conditional boundary &rarr; KILLED<br/>
+
+3. getActive : changed conditional boundary &rarr; KILLED<br/>
+
+4. getActive : negated conditional &rarr; KILLED<br/>
+
+5. getActive : replaced boolean return with true for com/withu/core/GuideFlow::getActive &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val active: Boolean get() = index in steps.indices</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_33'/>
+33
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_33'>5</a>
+<span>
+
+1. getDone : replaced boolean return with true for com/withu/core/GuideFlow::getDone &rarr; KILLED<br/>
+
+2. getDone : negated conditional &rarr; KILLED<br/>
+
+3. getDone : negated conditional &rarr; KILLED<br/>
+
+4. getDone : changed conditional boundary &rarr; KILLED<br/>
+
+5. getDone : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val done: Boolean get() = steps.isNotEmpty() &#38;&#38; index &#62;= steps.size</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_34'/>
+34
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_34'>1</a>
+<span>
+
+1. getCurrent : replaced return value with null for com/withu/core/GuideFlow::getCurrent &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val current: GuideStep? get() = steps.getOrNull(index)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    fun start(highway: Boolean): GuideStep {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.highway = highway; steps = RoadContext.steps(highway); index = 0; paused = false; doorOpen = false</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        return steps[0]</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** &#45796;&#51020; &#45800;&#44228;&#47196;. &#47688;&#52644; &#51473;&#51060;&#44144;&#45208; &#45149;&#45228;&#51004;&#47732; &#50500;&#47924;&#44163;&#46020; &#54616;&#51648; &#50506;&#44256; false */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    fun next(): Boolean {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_43'/>
+43
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_43'>3</a>
+<span>
+
+1. next : negated conditional &rarr; KILLED<br/>
+
+2. next : negated conditional &rarr; KILLED<br/>
+
+3. next : replaced boolean return with true for com/withu/core/GuideFlow::next &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (!active || paused) return false</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_44'/>
+44
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_44'>1</a>
+<span>
+
+1. next : Replaced integer addition with subtraction &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        index++</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_45'/>
+45
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_45'>1</a>
+<span>
+
+1. next : replaced boolean return with false for com/withu/core/GuideFlow::next &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return true</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** &#50868;&#51204;&#49437; &#47928; &#49345;&#53468; &#48320;&#54868;. &#48152;&#54872;&#44050;: &#50504;&#45236;&#47484; &#45796;&#49884; &#47568;&#54644;&#50556; &#54616;&#47732; true */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    fun onDoor(open: Boolean): Boolean {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_50'/>
+50
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_50'>2</a>
+<span>
+
+1. onDoor : negated conditional &rarr; KILLED<br/>
+
+2. onDoor : replaced boolean return with true for com/withu/core/GuideFlow::onDoor &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (!active) { doorOpen = open; return false }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        var speak = false</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_52'/>
+52
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_52'>2</a>
+<span>
+
+1. onDoor : negated conditional &rarr; KILLED<br/>
+
+2. onDoor : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (open &#38;&#38; !doorOpen) paused = true</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_53'/>
+53
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_53'>3</a>
+<span>
+
+1. onDoor : negated conditional &rarr; KILLED<br/>
+
+2. onDoor : negated conditional &rarr; KILLED<br/>
+
+3. onDoor : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (!open &#38;&#38; doorOpen &#38;&#38; paused) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            paused = false</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_55'/>
+55
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_55'>2</a>
+<span>
+
+1. onDoor : Replaced integer addition with subtraction &rarr; KILLED<br/>
+
+2. onDoor : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (current == GuideStep.EVACUATE) index++</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_56'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            speak = active</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        doorOpen = open</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_59'/>
+59
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_59'>2</a>
+<span>
+
+1. onDoor : replaced boolean return with false for com/withu/core/GuideFlow::onDoor &rarr; KILLED<br/>
+
+2. onDoor : replaced boolean return with true for com/withu/core/GuideFlow::onDoor &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return speak</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_60'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7f4596d0_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_61'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_3'>3</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_3'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getSpeech<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideStepTexts(com.withu.core.GuideAndReportTest)</span></span> replaced return value with &#34;&#34; for com/withu/core/GuideStep::getSpeech &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getHint<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideStepTexts(com.withu.core.GuideAndReportTest)</span></span> replaced return value with &#34;&#34; for com/withu/core/GuideStep::getHint &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>getTitle<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideStepTexts(com.withu.core.GuideAndReportTest)</span></span> replaced return value with &#34;&#34; for com/withu/core/GuideStep::getTitle &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_15'>15</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_15'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isHighway<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.highwayDetection_speedBoundaryAndAddress(com.withu.core.GuideAndReportTest)</span></span> replaced boolean return with false for com/withu/core/RoadContext::isHighway &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isHighway<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.highwayDetection_speedBoundaryAndAddress(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isHighway<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.highwayDetection_speedBoundaryAndAddress(com.withu.core.GuideAndReportTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>isHighway<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.highwayDetection_speedBoundaryAndAddress(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_16'>16</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_16'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isHighway<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.highwayDetection_speedBoundaryAndAddress(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isHighway<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.highwayDetection_speedBoundaryAndAddress(com.withu.core.GuideAndReportTest)</span></span> replaced boolean return with true for com/withu/core/RoadContext::isHighway &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_17'>17</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_17'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isHighway<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.highwayDetection_speedBoundaryAndAddress(com.withu.core.GuideAndReportTest)</span></span> replaced boolean return with true for com/withu/core/RoadContext::isHighway &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isHighway<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.highwayDetection_speedBoundaryAndAddress(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isHighway<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.highwayDetection_speedBoundaryAndAddress(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>isHighway<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.highwayDetection_speedBoundaryAndAddress(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_20'>20</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_20'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>steps<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.highwayPutsEvacuationFirst_generalRoadChecksFirst(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_21'>21</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_21'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>steps<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.highwayPutsEvacuationFirst_generalRoadChecksFirst(com.withu.core.GuideAndReportTest)</span></span> replaced return value with Collections.emptyList for com/withu/core/RoadContext::steps &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_26'>26</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_26'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getSteps<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideExposesState(com.withu.core.GuideAndReportTest)</span></span> replaced return value with Collections.emptyList for com/withu/core/GuideFlow::getSteps &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_27'>27</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_27'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getIndex<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideExposesState(com.withu.core.GuideAndReportTest)</span></span> replaced int return with 0 for com/withu/core/GuideFlow::getIndex &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_28'>28</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_28'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPaused<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorBeforeStart_isRemembered(com.withu.core.GuideAndReportTest)</span></span> replaced boolean return with true for com/withu/core/GuideFlow::getPaused &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getPaused<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorOpenPauses_closeOnEvacuateMovesOn(com.withu.core.GuideAndReportTest)</span></span> replaced boolean return with false for com/withu/core/GuideFlow::getPaused &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_29'>29</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_29'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getHighway<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideExposesState(com.withu.core.GuideAndReportTest)</span></span> replaced boolean return with false for com/withu/core/GuideFlow::getHighway &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getHighway<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideExposesState(com.withu.core.GuideAndReportTest)</span></span> replaced boolean return with true for com/withu/core/GuideFlow::getHighway &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_32'>32</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_32'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getActive<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorCycleOnOtherStep_resumesSameStep(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getActive<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorCycleOnOtherStep_resumesSameStep(com.withu.core.GuideAndReportTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>getActive<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideAdvances_andStopsAtEnd(com.withu.core.GuideAndReportTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>getActive<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorCycleOnOtherStep_resumesSameStep(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>getActive<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideAdvances_andStopsAtEnd(com.withu.core.GuideAndReportTest)</span></span> replaced boolean return with true for com/withu/core/GuideFlow::getActive &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_33'>33</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_33'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getDone<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideAdvances_andStopsAtEnd(com.withu.core.GuideAndReportTest)</span></span> replaced boolean return with true for com/withu/core/GuideFlow::getDone &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getDone<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideAdvances_andStopsAtEnd(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>getDone<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideAdvances_andStopsAtEnd(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>getDone<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideAdvances_andStopsAtEnd(com.withu.core.GuideAndReportTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>getDone<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideAdvances_andStopsAtEnd(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_34'>34</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_34'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getCurrent<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorCycleOnOtherStep_resumesSameStep(com.withu.core.GuideAndReportTest)</span></span> replaced return value with null for com/withu/core/GuideFlow::getCurrent &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_43'>43</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_43'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>next<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorClosingLastEvacuateFinishesGuideWithoutSpeech(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>next<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorClosingLastEvacuateFinishesGuideWithoutSpeech(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>next<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorOpenPauses_closeOnEvacuateMovesOn(com.withu.core.GuideAndReportTest)</span></span> replaced boolean return with true for com/withu/core/GuideFlow::next &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_44'>44</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_44'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>next<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorClosingLastEvacuateFinishesGuideWithoutSpeech(com.withu.core.GuideAndReportTest)</span></span> Replaced integer addition with subtraction &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_45'>45</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_45'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>next<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.guideAdvances_andStopsAtEnd(com.withu.core.GuideAndReportTest)</span></span> replaced boolean return with false for com/withu/core/GuideFlow::next &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_50'>50</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_50'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>onDoor<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorCycleOnOtherStep_resumesSameStep(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>onDoor<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorBeforeStart_isRemembered(com.withu.core.GuideAndReportTest)</span></span> replaced boolean return with true for com/withu/core/GuideFlow::onDoor &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_52'>52</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_52'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>onDoor<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorCycleOnOtherStep_resumesSameStep(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>onDoor<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorCycleOnOtherStep_resumesSameStep(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_53'>53</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_53'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>onDoor<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorCycleOnOtherStep_resumesSameStep(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>onDoor<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorCycleOnOtherStep_resumesSameStep(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>onDoor<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorCycleOnOtherStep_resumesSameStep(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_55'>55</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_55'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>onDoor<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorOpenPauses_closeOnEvacuateMovesOn(com.withu.core.GuideAndReportTest)</span></span> Replaced integer addition with subtraction &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>onDoor<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorCycleOnOtherStep_resumesSameStep(com.withu.core.GuideAndReportTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7f4596d0_59'>59</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7f4596d0_59'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>onDoor<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorCycleOnOtherStep_resumesSameStep(com.withu.core.GuideAndReportTest)</span></span> replaced boolean return with false for com/withu/core/GuideFlow::onDoor &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>onDoor<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.doorCycleOnOtherStep_resumesSameStep(com.withu.core.GuideAndReportTest)</span></span> replaced boolean return with true for com/withu/core/GuideFlow::onDoor &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+
+<li class='mutator'>EMPTY_RETURNS</li>
+
+<li class='mutator'>FALSE_RETURNS</li>
+
+<li class='mutator'>INCREMENTS</li>
+
+<li class='mutator'>INVERT_NEGS</li>
+
+<li class='mutator'>MATH</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+
+<li class='mutator'>NULL_RETURNS</li>
+
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+
+<li class='mutator'>TRUE_RETURNS</li>
+
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.withu.core.GuideAndReportTest.doorClosingLastEvacuateFinishesGuideWithoutSpeech(com.withu.core.GuideAndReportTest) (1 ms)</li><li>com.withu.core.GuideAndReportTest.guideExposesState(com.withu.core.GuideAndReportTest) (1 ms)</li><li>com.withu.core.GuideAndReportTest.guideAdvances_andStopsAtEnd(com.withu.core.GuideAndReportTest) (1 ms)</li><li>com.withu.core.GuideAndReportTest.doorCycleOnOtherStep_resumesSameStep(com.withu.core.GuideAndReportTest) (1 ms)</li><li>com.withu.core.GuideAndReportTest.doorOpenPauses_closeOnEvacuateMovesOn(com.withu.core.GuideAndReportTest) (1 ms)</li><li>com.withu.core.GuideAndReportTest.doorBeforeStart_isRemembered(com.withu.core.GuideAndReportTest) (1 ms)</li><li>com.withu.core.GuideAndReportTest.highwayDetection_speedBoundaryAndAddress(com.withu.core.GuideAndReportTest) (1 ms)</li><li>com.withu.core.GuideAndReportTest.highwayPutsEvacuationFirst_generalRoadChecksFirst(com.withu.core.GuideAndReportTest) (1 ms)</li><li>com.withu.core.GuideAndReportTest.guideStepTexts(com.withu.core.GuideAndReportTest) (1 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.17.0
+
+</body>
+</html>

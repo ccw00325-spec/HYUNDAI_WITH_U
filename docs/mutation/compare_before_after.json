@@ -1,0 +1,709 @@
+{
+  "tool": "pit",
+  "before": {
+    "Killed": 196,
+    "Survived": 29,
+    "NoCoverage": 6
+  },
+  "after": {
+    "Killed": 226,
+    "Survived": 5
+  },
+  "transitions": [
+    {
+      "identity": [
+        "com.withu.core.AccidentDetector",
+        "getArmed",
+        "()Z",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "7"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.AccidentDetectorTest.eventAtTimeZero_staysArmed_andProceeds(com.withu.core.AccidentDetectorTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.AccidentDetector",
+        "tick",
+        "(Lcom/withu/core/Sample;Ljava/lang/Boolean;)Ljava/util/List;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "106"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.AccidentDetectorTest.hardBrakeExactlyAtCooldownEnd_counts(com.withu.core.AccidentDetectorTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.AccidentDetector",
+        "tick",
+        "(Lcom/withu/core/Sample;Ljava/lang/Boolean;)Ljava/util/List;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "210"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.AccidentDetectorTest.noStopDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.AccidentDetector",
+        "tick",
+        "(Lcom/withu/core/Sample;Ljava/lang/Boolean;)Ljava/util/List;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "312"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.AccidentDetectorTest.noParkDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.AccidentDetector",
+        "tick",
+        "(Lcom/withu/core/Sample;Ljava/lang/Boolean;)Ljava/util/List;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "61"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.AccidentDetectorTest.sparseSamples_exactly1500msApart_stillCompared(com.withu.core.AccidentDetectorTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.AccidentDetector",
+        "tick",
+        "(Lcom/withu/core/Sample;Ljava/lang/Boolean;)Ljava/util/List;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "90"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.AccidentDetectorTest.eventAtTimeZero_staysArmed_andProceeds(com.withu.core.AccidentDetectorTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.AccidentDetector",
+        "tick",
+        "(Lcom/withu/core/Sample;Ljava/lang/Boolean;)Ljava/util/List;",
+        "org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator",
+        [
+          "50"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.AccidentDetectorTest.sparseSamples_exactly1500msApart_stillCompared(com.withu.core.AccidentDetectorTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.AccidentDetector",
+        "tick",
+        "(Lcom/withu/core/Sample;Ljava/lang/Boolean;)Ljava/util/List;",
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator",
+        [
+          "156"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.AccidentDetectorTest.airbagWithoutHardBrake_isReturned(com.withu.core.AccidentDetectorTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.ChunkSealer",
+        "flush",
+        "()Lcom/withu/core/Chunk;",
+        "org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator",
+        [
+          "62"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.EvidenceTest.eachChunkHoldsOnlyItsOwnRows(com.withu.core.EvidenceTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FactExtractor",
+        "extract",
+        "(Ljava/util/List;J)Lcom/withu/core/Facts;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "108"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.maxSpeedPicksLargest(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FactExtractor",
+        "extract",
+        "(Ljava/util/List;J)Lcom/withu/core/Facts;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "405"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.steerAndSpeedWindowEdges(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FactExtractor",
+        "extract",
+        "(Ljava/util/List;J)Lcom/withu/core/Facts;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "409"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.steerAndSpeedWindowEdges(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FactExtractor",
+        "extract",
+        "(Ljava/util/List;J)Lcom/withu/core/Facts;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "570"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.parkAndDoorMustBeStrictlyAfterEvent(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FactExtractor",
+        "extract",
+        "(Ljava/util/List;J)Lcom/withu/core/Facts;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "638"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.parkAndDoorMustBeStrictlyAfterEvent(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FactExtractor",
+        "extract",
+        "(Ljava/util/List;J)Lcom/withu/core/Facts;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "732"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.steerAndSpeedWindowEdges(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FactExtractor",
+        "extract",
+        "(Ljava/util/List;J)Lcom/withu/core/Facts;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "736"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.steerAndSpeedWindowEdges(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FactExtractor",
+        "extract",
+        "(Ljava/util/List;J)Lcom/withu/core/Facts;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "99"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.turnAtSecondSample_isFound(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FactExtractor",
+        "extract",
+        "(Ljava/util/List;J)Lcom/withu/core/Facts;",
+        "org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator",
+        [
+          "463"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.lightsAtEventAreReported(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FactExtractor",
+        "extract",
+        "(Ljava/util/List;J)Lcom/withu/core/Facts;",
+        "org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator",
+        [
+          "732"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.maxSpeedPicksLargest(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FactExtractor",
+        "extract",
+        "(Ljava/util/List;J)Lcom/withu/core/Facts;",
+        "org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator",
+        [
+          "749"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.maxSpeedPicksLargest(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.GuideFlow",
+        "getHighway",
+        "()Z",
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator",
+        [
+          "5"
+        ]
+      ],
+      "before": {
+        "status": "NoCoverage",
+        "rawStatus": "NO_COVERAGE",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.guideExposesState(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.GuideFlow",
+        "getHighway",
+        "()Z",
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator",
+        [
+          "5"
+        ]
+      ],
+      "before": {
+        "status": "NoCoverage",
+        "rawStatus": "NO_COVERAGE",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.guideExposesState(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.GuideFlow",
+        "getIndex",
+        "()I",
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator",
+        [
+          "5"
+        ]
+      ],
+      "before": {
+        "status": "NoCoverage",
+        "rawStatus": "NO_COVERAGE",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.guideExposesState(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.GuideFlow",
+        "getSteps",
+        "()Ljava/util/List;",
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator",
+        [
+          "5"
+        ]
+      ],
+      "before": {
+        "status": "NoCoverage",
+        "rawStatus": "NO_COVERAGE",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.GuideAndReportTest.guideExposesState(com.withu.core.GuideAndReportTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.HashChain",
+        "genesis",
+        "(JJ)Ljava/lang/String;",
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator",
+        [
+          "8"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.EvidenceTest.genesisIsHashOfTripAndStart(com.withu.core.EvidenceTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.Retention",
+        "daysLeft",
+        "(JJ)I",
+        "org.pitest.mutationtest.engine.gregor.mutators.MathMutator",
+        [
+          "5"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.EvidenceTest.daysLeftWithNonZeroNow(com.withu.core.EvidenceTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.Sample",
+        "getLat",
+        "()Ljava/lang/Double;",
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator",
+        [
+          "5"
+        ]
+      ],
+      "before": {
+        "status": "NoCoverage",
+        "rawStatus": "NO_COVERAGE",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.Sample",
+        "getLon",
+        "()Ljava/lang/Double;",
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator",
+        [
+          "5"
+        ]
+      ],
+      "before": {
+        "status": "NoCoverage",
+        "rawStatus": "NO_COVERAGE",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.Sample",
+        "getLow",
+        "()Ljava/lang/Boolean;",
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator",
+        [
+          "5"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.Sample",
+        "getWiper",
+        "()Ljava/lang/Boolean;",
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator",
+        [
+          "5"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)"
+        ]
+      }
+    }
+  ],
+  "missingBefore": [],
+  "missingAfter": [],
+  "onlyBefore": [],
+  "onlyAfter": [],
+  "completeMatch": true
+}

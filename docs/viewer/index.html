@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WiTH U 사고 리포트</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--brand:#1463F3;--navy:#0B1F3A;--warn:#FF5A36;--amber:#F5A524;--teal:#12B5A6;--ok:#0B8577;--okbg:#E6F7F4;--bg:#F4F6FA;--line:#E3E8F0;--sub:#5B6B80;--mute:#8A97A8;--soft:#EAF1FF}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Pretendard,'Malgun Gothic',sans-serif;color:var(--navy);background:var(--bg);word-break:keep-all;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding:24px 16px 60px}
+.bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.logo{font-weight:800;font-size:22px}.logo b{color:var(--brand)}
+.btn{border:0;border-radius:12px;padding:10px 16px;font:700 14px Pretendard;cursor:pointer;background:#E9EEF6;color:var(--navy)}
+.btn.pri{background:var(--brand);color:#fff}
+.sp{flex:1}
+.page{background:#fff;border-radius:20px;padding:28px 30px;box-shadow:0 8px 24px rgba(11,31,58,.06);margin-bottom:16px}
+.head{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:start;border-bottom:3px solid var(--navy);padding-bottom:16px}
+h1{font-size:26px;font-weight:800;letter-spacing:-.5px}
+.meta{color:var(--sub);font-size:13px;margin-top:6px;line-height:1.6}
+.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 12px;font-weight:800;font-size:13px}
+.badge.ok{background:var(--okbg);color:var(--ok)}.badge.bad{background:#FFEDE8;color:var(--warn)}.badge.info{background:var(--soft);color:var(--brand)}.badge.wait{background:#FFF4DE;color:#9A6400}
+h2{font-size:17px;font-weight:800;margin:22px 0 10px;display:flex;align-items:center;gap:8px}
+h2 .n{background:var(--navy);color:#fff;border-radius:6px;font-size:12px;padding:2px 7px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--bg);width:150px;font-weight:700;color:var(--sub)}
+.facts{display:grid;gap:8px}
+.fact{display:grid;grid-template-columns:28px 1fr;gap:6px;align-items:start;padding:10px 12px;border-radius:12px;background:var(--bg);font-size:15px;line-height:1.5}
+.fact .i{font-weight:900}.fact.y .i{color:var(--ok)}.fact.n .i{color:var(--amber)}
+.fact b{font-weight:800}
+.note{font-size:13px;color:var(--sub);margin-top:8px}
+.chart{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:12px;background:#fff}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--sub);margin-top:6px;flex-wrap:wrap}
+.legend i{display:inline-block;width:12px;height:8px;border-radius:2px;margin-right:4px;vertical-align:middle}
+.stmt{background:var(--bg);border-radius:12px;padding:12px 14px;margin-bottom:8px;font-size:15px;line-height:1.6}
+.mono{font-family:Consolas,monospace;font-size:12px;word-break:break-all;color:var(--sub)}
+.disc{background:var(--navy);color:#fff;border-radius:14px;padding:14px 16px;font-size:14px;line-height:1.6;margin-top:16px}
+#qr{width:120px;height:120px}#qr img,#qr canvas{width:120px!important;height:120px!important}
+.pay{border:2px dashed var(--line);border-radius:14px;padding:12px 14px;font-size:14px;margin-top:12px}
+.err{background:#FFEDE8;color:var(--warn);padding:16px;border-radius:12px;font-weight:700}
+@media (max-width:640px){.head{grid-template-columns:1fr}th{width:110px}.page{padding:20px 16px}}
+@media print{
+  @page{size:A4;margin:12mm}
+  body{background:#fff}.wrap{max-width:none;padding:0}.bar,.noprint{display:none!important}
+  .page{box-shadow:none;border-radius:0;padding:0;margin:0}
+  .pb{break-before:page}
+  h2{break-after:avoid}.fact,.stmt,tr{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar noprint">
+    <div class="logo">WiT<b>H</b> U 리포트</div><div class="sp"></div>
+    <button class="btn" id="bCsv">원본 데이터(CSV)</button>
+    <button class="btn" id="bJson">JSON</button>
+    <button class="btn pri" onclick="window.print()">PDF로 저장</button>
+  </div>
+  <div id="app"><div class="page">리포트를 불러오는 중…</div></div>
+</div>
+<script>
+const $ = s => document.querySelector(s);
+const qs = new URLSearchParams(location.search);
+const pad = n => String(n).padStart(2, '0');
+const fmt = t => { const d = new Date(t); return `${d.getFullYear()}.${pad(d.getMonth()+1)}.${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`; };
+const hex = buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+const sha = async s => hex(await crypto.subtle.digest('SHA-256', typeof s === 'string' ? new TextEncoder().encode(s) : s));
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const kindName = k => ({ACCIDENT_CONFIRMED:'운전자 사고 확인',HARD_BRAKE:'급제동 감지',SIREN:'사이렌 버튼',AIRBAG:'에어백 전개',user_time:'사용자 지정 시각'}[k] || k);
+
+function parseCsv(csv) {
+  return csv.split('\n').slice(1).filter(Boolean).map(l => { const p = l.split(',');
+    const b = v => v === '1' ? true : v === '0' ? false : null;
+    return { t:+p[0], spd: p[1] === '' ? null : +p[1], gear:p[2]||null, brk:b(p[3]), turn:p[4]||null, steer:p[5]===''?null:+p[5], low:b(p[6]), wiper:b(p[7]), door:b(p[8]) }; });
+}
+
+// Android Keystore ECDSA 서명(DER) → WebCrypto 형식(r‖s 64바이트)
+function derToRaw(der) {
+  let i = 2; if (der[1] & 0x80) i = 2 + (der[1] & 0x7f);
+  const read = () => { i++; const len = der[i++]; let v = der.slice(i, i + len); i += len; while (v.length > 32 && v[0] === 0) v = v.slice(1); const out = new Uint8Array(32); out.set(v, 32 - v.length); return out; };
+  const r = read(), s = read(); const raw = new Uint8Array(64); raw.set(r, 0); raw.set(s, 32); return raw;
+}
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+
+async function verify(rep) {
+  const chunks = rep.proof.chunks; let key = null;
+  try { key = await crypto.subtle.importKey('spki', b64(rep.proof.pubkey), {name:'ECDSA', namedCurve:'P-256'}, false, ['verify']); } catch (e) {}
+  const res = []; let prev = null;
+  for (const c of chunks) {
+    const h = await sha(c.prev + await sha(c.data));
+    const hashOk = h === c.hash;
+    let sigOk = null;
+    if (key) { try { sigOk = await crypto.subtle.verify({name:'ECDSA', hash:'SHA-256'}, key, derToRaw(b64(c.sig)), new TextEncoder().encode(c.hash)); } catch (e) { sigOk = false; } }
+    // 묶음 안 샘플이 리포트 표본과 같은지
+    res.push({ m0:c.m0, n:c.n, hashOk, linkOk: prev === null || c.trip !== prev.trip || c.prev === prev.hash, sigOk });
+    prev = c;
+  }
+  // 리포트 표본(samples_csv)이 검증된 묶음에서 그대로 나왔는지
+  const lo = rep.window.from, hi = rep.window.to;
+  const fromChunks = chunks.flatMap(c => c.data.split('\n').slice(1).filter(Boolean)).filter(l => { const t = +l.split(',')[0]; return t >= lo && t <= hi; }).sort((a,b)=>+a.split(',')[0]-+b.split(',')[0]);
+  const sampleRows = rep.samples_csv.split('\n').slice(1).filter(Boolean);
+  const samplesMatch = fromChunks.length === sampleRows.length && fromChunks.every((l, i) => l === sampleRows[i]);
+  return { res, all: res.every(r => r.hashOk && r.linkOk && r.sigOk !== false), sigChecked: !!key, samplesMatch };
+}
+
+function chart(rows, T, from, to, w, h, opt = {}) {
+  const P = {l:44, r:12, t:16, b: opt.tracks ? 120 : 34};
+  const X = t => P.l + (t - from) / (to - from) * (w - P.l - P.r);
+  const vmax = Math.max(80, ...rows.map(r => r.spd || 0)); const Y = v => P.t + (1 - v / vmax) * (h - P.t - P.b);
+  let s = `<svg class="chart" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard">`;
+  for (const v of [0, vmax/2, vmax]) s += `<line x1="${P.l}" x2="${w-P.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="#E3E8F0"/><text x="${P.l-6}" y="${Y(v)+4}" font-size="11" text-anchor="end" fill="#8A97A8">${Math.round(v)}</text>`;
+  const pts = rows.filter(r => r.spd !== null && r.t >= from && r.t <= to).map(r => `${X(r.t).toFixed(1)},${Y(r.spd).toFixed(1)}`).join(' ');
+  s += `<polyline points="${pts}" fill="none" stroke="#1463F3" stroke-width="2.5" stroke-linejoin="round"/>`;
+  s += `<line x1="${X(T)}" x2="${X(T)}" y1="${P.t-6}" y2="${h-P.b+(opt.tracks?100:0)}" stroke="#0B1F3A" stroke-width="2"/><text x="${X(T)+5}" y="${P.t+6}" font-size="12" font-weight="800" fill="#0B1F3A">기준 시각</text>`;
+  const ticks = opt.ticks || [];
+  for (const [t, lab] of ticks) s += `<text x="${X(t)}" y="${h-P.b+16}" font-size="11" text-anchor="middle" fill="#8A97A8">${lab}</text>`;
+  if (opt.tracks) {
+    const tr = [['방향지시등', r => r.turn === 'L' || r.turn === 'R', '#F5A524', r => r.turn === 'R' ? '오른쪽' : '왼쪽'], ['브레이크', r => r.brk === true, '#FF5A36', () => '밟음'], ['P단', r => r.gear === 'P', '#12B5A6', () => 'P'], ['운전석 문', r => r.door === true, '#5B6B80', () => '열림']];
+    tr.forEach(([name, on, col, lab], k) => {
+      const y = h - P.b + 28 + k * 22;
+      s += `<text x="${P.l-6}" y="${y+11}" font-size="11" text-anchor="end" fill="#5B6B80" font-weight="700">${name}</text><rect x="${P.l}" y="${y}" width="${w-P.l-P.r}" height="14" rx="7" fill="#F4F6FA"/>`;
+      let start = null, prevR = null;
+      const seg = (a, b, r) => s += `<rect x="${X(a)}" y="${y}" width="${Math.max(3, X(b)-X(a))}" height="14" rx="7" fill="${col}"/>` + (X(b)-X(a) > 40 ? `<text x="${X(a)+6}" y="${y+11}" font-size="10" font-weight="800" fill="#fff">${lab(r)}</text>` : '');
+      for (const r of rows) { if (r.t < from || r.t > to) continue; if (on(r) && start === null) { start = r.t; prevR = r; } if (!on(r) && start !== null) { seg(start, r.t, prevR); start = null; } }
+      if (start !== null) seg(start, to, prevR);
+    });
+  }
+  return s + '</svg>';
+}
+
+function events(rows, T) {
+  const out = []; const keys = [['gear','기어',v=>v||'-'],['brk','브레이크',v=>v===null?'-':v?'밟음':'뗌'],['turn','방향지시등',v=>({L:'왼쪽',R:'오른쪽','0':'꺼짐'}[v]||'-')],['low','전조등',v=>v===null?'-':v?'켬':'끔'],['wiper','와이퍼',v=>v===null?'-':v?'작동':'멈춤'],['door','운전석 문',v=>v===null?'-':v?'열림':'닫힘']];
+  for (let i = 1; i < rows.length; i++) for (const [k, n, f] of keys) if (rows[i][k] !== rows[i-1][k]) out.push([rows[i].t, n, f(rows[i-1][k]), f(rows[i][k]), rows[i].spd]);
+  return out;
+}
+const off = (t, T) => { const d = (t - T) / 1000; return (d >= 0 ? '+' : '−') + Math.abs(d).toFixed(1) + '초'; };
+
+async function render(rep, raw) {
+  const rows = parseCsv(rep.samples_csv); const T = rep.event.t; const f = rep.facts;
+  const v = await verify(rep); const repSha = await sha(raw); const hParam = qs.get('h');
+  const shaOk = !hParam || repSha.startsWith(hParam);
+  const ok = v.all && v.samplesMatch && shaOk;
+  const ts = f.turn_signal || {side:'NONE'};
+  const factRows = [
+    ts.side !== 'NONE' ? ['y', `<b>방향지시등 ${ts.side === 'RIGHT' ? '오른쪽' : '왼쪽'} 켬</b> · 기준 시각 ${ts.on_before_s.toFixed(1)}초 전 · 약 ${ts.distance_before_m}m 전 (${Math.round(ts.speed_at_on_kph ?? 0)}km/h)`] : ['y', '<b>방향지시등을 켜지 않음</b> (기준 시각 전 30초 동안)'],
+    ['y', `<b>기준 시각 속도 ${f.speed_at_event_kph === null ? '-' : Math.round(f.speed_at_event_kph)}km/h</b> · 직전 30초 최고 ${f.max_speed_30s_kph === null ? '-' : Math.round(f.max_speed_30s_kph)}km/h`],
+    f.brake_on_before_s !== null ? ['y', `<b>브레이크 ${f.brake_on_before_s >= 0 ? f.brake_on_before_s.toFixed(1) + '초 전' : Math.abs(f.brake_on_before_s).toFixed(1) + '초 뒤'} 밟음</b>`] : ['y', '<b>브레이크 기록 없음</b> (기준 시각 −10초 ~ +2초)'],
+    ['y', `<b>조향 최대 ${Math.round(f.max_abs_steer_10s_deg)}°</b> (기준 시각 전 10초)`],
+    ['y', `<b>전조등 ${f.low_beam_at_event === null ? '미지원' : f.low_beam_at_event ? '켬' : '끔'} · 와이퍼 ${f.wiper_at_event === null ? '미지원' : f.wiper_at_event ? '작동' : '멈춤'}</b>`],
+    ['y', `<b>사고 뒤 조치</b> · P단 ${f.gear_P_after_s === null ? '기록 없음' : f.gear_P_after_s.toFixed(1) + '초 뒤'} · 운전석 문 ${f.driver_door_open_after_s === null ? '열림 기록 없음' : f.driver_door_open_after_s.toFixed(1) + '초 뒤 열림'}`],
+    ['n', `<b>차량 기록으로 확인할 수 없는 것</b> · ${rep.unsupported.join(', ')} → 블랙박스 영상·현장 사진과 함께 보세요`],
+  ];
+  const ev = events(rows, T);
+  const pay = rep.payer.type === 'INSURER' ? `<span class="badge ok">보험사 부담</span> ${esc(rep.payer.name)} · ${esc(rep.payer.note)}` : `<span class="badge wait">개인 결제 ${rep.payer.price_won.toLocaleString()}원</span> ${esc(rep.payer.note)} · <b>시연판은 결제 없이 전체를 보여 줍니다</b>`;
+  const chunks = rep.proof.chunks;
+  $('#app').innerHTML = `
+  <div class="page">
+    <div class="head">
+      <div>
+        <h1>차량 운행기록 사고 리포트</h1>
+        <div class="meta">리포트 번호 <b>${esc(rep.rid)}</b> · 발급 ${fmt(rep.issued_at)} · ${esc(rep.app.name)} ${esc(rep.app.version)} (${esc(rep.app.platform)})</div>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+          <span class="badge ${ok ? 'ok' : 'bad'}">${ok ? '✓ 원본 확인 — 위·변조 없음' : '✗ 검증 실패 — 원본과 다름'}</span>
+          <span class="badge info">앞뒤 5분 · 10Hz · ${rep.window.samples.toLocaleString()}개 신호</span>
+          <span class="badge info">${chunks.length}개 1분 묶음 서명 검증</span>
+        </div>
+      </div>
+      <div id="qr" title="이 리포트 웹 주소"></div>
+    </div>
+
+    <h2><span class="n">A</span> 사고 기본 정보</h2>
+    <table>
+      <tr><th>기준 시각</th><td><b>${fmt(T)}</b> · ${esc(kindName(rep.event.anchor))}${rep.event.user_time !== T ? ` (운전자가 고른 시각 ${fmt(rep.event.user_time)}에서 보정)` : ''}</td></tr>
+      <tr><th>장소</th><td>${esc(rep.location.address || '주소 미확인')}${rep.location.lat ? ` · 좌표 ${(+rep.location.lat).toFixed(5)}, ${(+rep.location.lon).toFixed(5)}` : ''}</td></tr>
+      <tr><th>차량</th><td>${esc(rep.vehicle.color)} ${esc(rep.vehicle.model)} · ${esc(rep.vehicle.plate)}</td></tr>
+      <tr><th>기록 범위</th><td>${fmt(rep.window.from)} ~ ${fmt(rep.window.to)} · 기록률 ${Math.round(rep.window.coverage * 100)}%</td></tr>
+      <tr><th>비용</th><td>${pay}</td></tr>
+    </table>
+
+    <h2><span class="n">B</span> 핵심 사실 — 차량이 기록한 그대로</h2>
+    <div class="facts">${factRows.map(([c, t]) => `<div class="fact ${c}"><span class="i">${c === 'y' ? '✔' : '△'}</span><span>${t}</span></div>`).join('')}</div>
+    <div class="note">※ 이 리포트는 과실 비율을 판단하지 않습니다. 차량 조작 기록을 사실 그대로 보여 줍니다.</div>
+
+    <h2><span class="n">C</span> 사고 직전·직후 (−30초 ~ +10초)</h2>
+    ${chart(rows, T, T - 30000, T + 10000, 920, 330, {tracks:true, ticks:[[T-30000,'−30초'],[T-20000,'−20초'],[T-10000,'−10초'],[T,'0'],[T+10000,'+10초']]})}
+    <div class="legend"><span><i style="background:#1463F3"></i>속도(km/h)</span><span><i style="background:#F5A524"></i>방향지시등</span><span><i style="background:#FF5A36"></i>브레이크</span><span><i style="background:#12B5A6"></i>P단</span><span><i style="background:#5B6B80"></i>운전석 문</span></div>
+    <h2 style="margin-top:14px"><span class="n">C-2</span> 앞뒤 5분 전체 속도</h2>
+    ${chart(rows, T, rep.window.from, rep.window.to, 920, 170, {ticks:[[rep.window.from,'−5분'],[T-150000,'−2.5분'],[T,'0'],[T+150000,'+2.5분'],[rep.window.to,'+5분']]})}
+  </div>
+
+  <div class="page pb">
+    <h2><span class="n">D</span> 조작 변화 기록 (기준 시각 ±60초)</h2>
+    <table><tr><th style="width:90px">시점</th><th style="width:120px">신호</th><th>변화</th><th style="width:90px">속도</th></tr>
+    ${ev.filter(e => Math.abs(e[0] - T) <= 60000).map(e => `<tr><td>${off(e[0], T)}</td><td>${e[1]}</td><td>${e[2]} → <b>${e[3]}</b></td><td>${e[4] === null ? '-' : Math.round(e[4]) + 'km/h'}</td></tr>`).join('') || '<tr><td colspan="4">변화 없음</td></tr>'}
+    </table>
+    <div class="note">앞뒤 5분 전체 변화 ${ev.length}건은 원본 데이터(CSV)에 모두 들어 있습니다.</div>
+
+    <h2><span class="n">E</span> 운전자 진술 (사고 직후 녹음)</h2>
+    ${rep.statements.length ? rep.statements.map(s => `<div class="stmt"><div class="meta" style="margin:0 0 4px">${fmt(s.t)} 녹음 · ${s.duration_s}초 · 음성 SHA-256 <span class="mono">${s.audio_sha256.slice(0,16)}…</span></div>“${esc(s.opening)} … ”<br><b>${esc(s.transcript || '(받아쓰기 없음 — 음성 원본 보관)')}</b></div>`).join('') : '<div class="stmt">진술 녹음 없음</div>'}
+
+    <h2><span class="n">F</span> 원본 확인 (무결성 검증)</h2>
+    <table>
+      <tr><th>방식</th><td>${esc(rep.proof.alg)}</td></tr>
+      <tr><th>해시 사슬</th><td>${v.res.every(r => r.hashOk && r.linkOk) ? '✓' : '✗'} ${chunks.length}개 묶음 모두 다시 계산해 일치 여부 확인 (${v.res.filter(r => !(r.hashOk && r.linkOk)).length}개 불일치)</td></tr>
+      <tr><th>차량 서명</th><td>${v.sigChecked ? (v.res.every(r => r.sigOk) ? '✓ 모든 묶음의 서명이 차량 키와 일치' : '✗ 서명 불일치 묶음 있음') : '이 브라우저에서 서명 확인 불가'} · 공개키 지문 <span class="mono">${(await sha(rep.proof.pubkey)).slice(0, 24)}</span></td></tr>
+      <tr><th>표본 일치</th><td>${v.samplesMatch ? '✓ 리포트의 신호 값이 서명된 묶음에서 그대로 나온 것과 같음' : '✗ 리포트 값과 묶음 값이 다름'}</td></tr>
+      <tr><th>리포트 확인값</th><td><span class="mono">${repSha}</span> ${hParam ? (shaOk ? '· QR 값과 일치' : '· <b style="color:#FF5A36">QR 값과 다름</b>') : ''}</td></tr>
+    </table>
+
+    <h2><span class="n">G</span> 데이터 출처와 한계</h2>
+    <table>
+      <tr><th>수집 경로</th><td>Pleos Connect Vehicle SDK(브레이크·기어·방향지시등·조향·전조등·와이퍼·도어), AAOS Car API(속도), FusedLocation(위치), NaviHelper(주소)</td></tr>
+      <tr><th>기록 방식</th><td>10Hz로 상시 기록 → 1분마다 묶어 앞 묶음 확인값과 이어 붙이고 차량 안 키로 서명 → 7일 보관, 사고 확인·리포트 발급 시 1년 보존</td></tr>
+      <tr><th>기록하지 않는 것</th><td>${rep.unsupported.join(', ')}, 영상</td></tr>
+    </table>
+    <div class="disc">${esc(rep.notice)} 블랙박스 영상·현장 사진과 함께 제출하면 가장 정확합니다.</div>
+  </div>`;
+  if (window.QRCode) new QRCode($('#qr'), { text: location.href, width: 240, height: 240, correctLevel: QRCode.CorrectLevel.M });
+  document.title = `WiTH U 사고 리포트 ${rep.rid}`;
+  $('#bCsv').onclick = () => dl(`${rep.rid}.csv`, rep.samples_csv, 'text/csv');
+  $('#bJson').onclick = () => dl(`${rep.rid}.json`, raw, 'application/json');
+  document.body.dataset.verified = ok ? 'ok' : 'fail';
+}
+function dl(name, text, type) { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], {type})); a.download = name; a.click(); }
+
+(async () => {
+  const r = qs.get('r'), src = qs.get('src') || (r ? `reports/${r}.json` : null);
+  if (!src) { $('#app').innerHTML = '<div class="page err">리포트 번호가 없습니다. 차량 화면의 QR로 열어 주세요.</div>'; return; }
+  try {
+    const res = await fetch(src); if (!res.ok) throw new Error(res.status);
+    const raw = await res.text(); await render(JSON.parse(raw), raw);
+  } catch (e) {
+    $('#app').innerHTML = `<div class="page err">리포트 ${esc(r || src)}를 찾지 못했습니다. (시연 저장소에는 시험 리포트만 올라가 있습니다. 출시 단계에서는 리포트 서버가 이 주소로 제공합니다.)</div>`;
+  }
+})();
+</script>
+</body>
+</html>

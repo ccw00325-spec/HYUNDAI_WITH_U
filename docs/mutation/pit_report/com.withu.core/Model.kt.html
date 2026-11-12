@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>Model.kt</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.withu.core</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * 10Hz &#52264;&#47049; &#49888;&#54840; &#54620; &#51460;.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * gear: &#39;P&#39;,&#39;D&#39;,&#39;R&#39;,&#39;N&#39; &#46608;&#45716; null(&#48120;&#49688;&#49888;) &#183; turn: &#39;L&#39;,&#39;R&#39;,&#39;0&#39; &#46608;&#45716; null &#183; &#48520;&#47532;&#50616;&#51008; null = &#48120;&#51648;&#50896;/&#48120;&#49688;&#49888;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>data class Sample(</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_8'/>
+8
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_8'>1</a>
+<span>
+
+1. getT : replaced long return with 0 for com/withu/core/Sample::getT &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val t: Long,</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_9'/>
+9
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_9'>1</a>
+<span>
+
+1. getSpd : replaced Float return value with 0 for com/withu/core/Sample::getSpd &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val spd: Float? = null,</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_10'/>
+10
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_10'>1</a>
+<span>
+
+1. getGear : replaced Character return value with 0 for com/withu/core/Sample::getGear &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val gear: Char? = null,</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_11'/>
+11
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_11'>2</a>
+<span>
+
+1. getBrk : replaced Boolean return with False for com/withu/core/Sample::getBrk &rarr; KILLED<br/>
+
+2. getBrk : replaced Boolean return with True for com/withu/core/Sample::getBrk &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val brk: Boolean? = null,</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_12'/>
+12
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_12'>1</a>
+<span>
+
+1. getTurn : replaced Character return value with 0 for com/withu/core/Sample::getTurn &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val turn: Char? = null,</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_13'/>
+13
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_13'>1</a>
+<span>
+
+1. getSteer : replaced Float return value with 0 for com/withu/core/Sample::getSteer &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val steer: Float? = null,</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_14'/>
+14
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_14'>2</a>
+<span>
+
+1. getLow : replaced Boolean return with True for com/withu/core/Sample::getLow &rarr; KILLED<br/>
+
+2. getLow : replaced Boolean return with False for com/withu/core/Sample::getLow &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val low: Boolean? = null,</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_15'/>
+15
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_15'>2</a>
+<span>
+
+1. getWiper : replaced Boolean return with False for com/withu/core/Sample::getWiper &rarr; KILLED<br/>
+
+2. getWiper : replaced Boolean return with True for com/withu/core/Sample::getWiper &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val wiper: Boolean? = null,</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_16'/>
+16
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_16'>2</a>
+<span>
+
+1. getDoor : replaced Boolean return with False for com/withu/core/Sample::getDoor &rarr; KILLED<br/>
+
+2. getDoor : replaced Boolean return with True for com/withu/core/Sample::getDoor &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val door: Boolean? = null,</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_17'/>
+17
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_17'>1</a>
+<span>
+
+1. getLat : replaced Double return value with 0 for com/withu/core/Sample::getLat &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val lat: Double? = null,</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_18'/>
+18
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_18'>1</a>
+<span>
+
+1. getLon : replaced Double return value with 0 for com/withu/core/Sample::getLon &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    val lon: Double? = null,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    fun csv(): String {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_21'/>
+21
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_21'>4</a>
+<span>
+
+1. csv$b : replaced return value with &#34;&#34; for com/withu/core/Sample::csv$b &rarr; KILLED<br/>
+
+2. csv$b : negated conditional &rarr; KILLED<br/>
+
+3. csv$b : negated conditional &rarr; KILLED<br/>
+
+4. csv$b : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        fun b(v: Boolean?) = when (v) { null -&#62; &#34;&#34;; true -&#62; &#34;1&#34;; false -&#62; &#34;0&#34; }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_22'/>
+22
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_22'>3</a>
+<span>
+
+1. csv$f1 : removed call to kotlin/jvm/internal/Intrinsics::checkNotNullExpressionValue &rarr; SURVIVED<br/>
+
+2. csv$f1 : negated conditional &rarr; KILLED<br/>
+
+3. csv$f1 : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        fun f1(v: Float?) = v?.let { String.format(java.util.Locale.ROOT, &#34;%.1f&#34;, it) } ?: &#34;&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_23'/>
+23
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_23'>3</a>
+<span>
+
+1. csv$f6 : removed call to kotlin/jvm/internal/Intrinsics::checkNotNullExpressionValue &rarr; SURVIVED<br/>
+
+2. csv$f6 : negated conditional &rarr; KILLED<br/>
+
+3. csv$f6 : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        fun f6(v: Double?) = v?.let { String.format(java.util.Locale.ROOT, &#34;%.6f&#34;, it) } ?: &#34;&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_24'/>
+24
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_24'>5</a>
+<span>
+
+1. csv : negated conditional &rarr; KILLED<br/>
+
+2. csv : negated conditional &rarr; KILLED<br/>
+
+3. csv : negated conditional &rarr; KILLED<br/>
+
+4. csv : replaced return value with &#34;&#34; for com/withu/core/Sample::csv &rarr; KILLED<br/>
+
+5. csv : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return listOf(t.toString(), f1(spd), gear?.toString() ?: &#34;&#34;, b(brk), turn?.toString() ?: &#34;&#34;, f1(steer),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            b(low), b(wiper), b(door), f6(lat), f6(lon)).joinToString(&#34;,&#34;)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    companion object {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        const val HEADER = &#34;t,spd,gear,brk,turn,steer,low,wiper,door,lat,lon&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        /** CSV &#54620; &#51460;&#51012; &#51069;&#45716;&#45796;. &#49884;&#44033;&#51060; &#50630;&#44144;&#45208; &#52856;&#51060; &#47784;&#51088;&#46972;&#47732; null */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        fun parse(line: String): Sample? {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            val p = line.split(&#34;,&#34;)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_34'/>
+34
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_34'>2</a>
+<span>
+
+1. parse : negated conditional &rarr; KILLED<br/>
+
+2. parse : changed conditional boundary &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (p.size &#60; 11) return null</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_35'/>
+35
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_35'>1</a>
+<span>
+
+1. parse : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            val t = p[0].toLongOrNull() ?: return null</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_36'/>
+36
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_36'>4</a>
+<span>
+
+1. parse$b : negated conditional &rarr; KILLED<br/>
+
+2. parse$b : replaced Boolean return with True for com/withu/core/Sample$Companion::parse$b &rarr; KILLED<br/>
+
+3. parse$b : negated conditional &rarr; KILLED<br/>
+
+4. parse$b : replaced Boolean return with False for com/withu/core/Sample$Companion::parse$b &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            fun b(s: String) = when (s) { &#34;1&#34; -&#62; true; &#34;0&#34; -&#62; false; else -&#62; null }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_37'/>
+37
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_37'>1</a>
+<span>
+
+1. parse : replaced return value with null for com/withu/core/Sample$Companion::parse &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return Sample(t, p[1].toFloatOrNull(), p[2].firstOrNull(), b(p[3]), p[4].firstOrNull(), p[5].toFloatOrNull(),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                b(p[6]), b(p[7]), b(p[8]), p[9].toDoubleOrNull(), p[10].toDoubleOrNull())</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_41'/>
+41
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_41'>6</a>
+<span>
+
+1. parseAll$lambda$0 : replaced boolean return with true for com/withu/core/Sample$Companion::parseAll$lambda$0 &rarr; SURVIVED<br/>
+
+2. parseAll$lambda$0 : negated conditional &rarr; KILLED<br/>
+
+3. parseAll : replaced return value with Collections.emptyList for com/withu/core/Sample$Companion::parseAll &rarr; KILLED<br/>
+
+4. parseAll$lambda$0 : negated conditional &rarr; KILLED<br/>
+
+5. parseAll$lambda$0 : negated conditional &rarr; KILLED<br/>
+
+6. parseAll$lambda$1 : replaced return value with null for com/withu/core/Sample$Companion::parseAll$lambda$1 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        fun parseAll(csv: String): List&#60;Sample&#62; = csv.lineSequence().filter { it.isNotBlank() &#38;&#38; !it.startsWith(&#34;t,&#34;) }.mapNotNull { parse(it) }.toList()</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>object Gear {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** Pleos Vehicle SDK&#51032; VehicleGear &#51060;&#47492;&#51012; &#54620; &#44544;&#51088;&#47196; */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_47'/>
+47
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_47'>5</a>
+<span>
+
+1. fromSdk : negated conditional &rarr; KILLED<br/>
+
+2. fromSdk : negated conditional &rarr; KILLED<br/>
+
+3. fromSdk : negated conditional &rarr; KILLED<br/>
+
+4. fromSdk : negated conditional &rarr; KILLED<br/>
+
+5. fromSdk : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    fun fromSdk(name: String?): Char? = when (name) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        &#34;GEAR_PARK&#34; -&#62; &#39;P&#39;; &#34;GEAR_DRIVE&#34; -&#62; &#39;D&#39;; &#34;GEAR_REVERSE&#34; -&#62; &#39;R&#39;; &#34;GEAR_NEUTRAL&#34; -&#62; &#39;N&#39;; null -&#62; null; else -&#62; &#39;?&#39;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_49'/>
+49
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_49'>1</a>
+<span>
+
+1. fromSdk : replaced Character return value with 0 for com/withu/core/Gear::fromSdk &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>object Turn {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_53'/>
+53
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_53'>5</a>
+<span>
+
+1. fromSdk : negated conditional &rarr; SURVIVED<br/>
+
+2. fromSdk : negated conditional &rarr; KILLED<br/>
+
+3. fromSdk : replaced Character return value with 0 for com/withu/core/Turn::fromSdk &rarr; KILLED<br/>
+
+4. fromSdk : negated conditional &rarr; KILLED<br/>
+
+5. fromSdk : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>    fun fromSdk(name: String?): Char? = when (name) { &#34;LEFT&#34; -&#62; &#39;L&#39;; &#34;RIGHT&#34; -&#62; &#39;R&#39;; &#34;OFF&#34; -&#62; &#39;0&#39;; null -&#62; null; else -&#62; &#39;0&#39; }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3a8cea24_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_8'>8</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_8'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getT<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> replaced long return with 0 for com/withu/core/Sample::getT &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_9'>9</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_9'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getSpd<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> replaced Float return value with 0 for com/withu/core/Sample::getSpd &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_10'>10</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_10'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getGear<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.parkExactlyAtLimit_stillAsks(com.withu.core.AccidentDetectorTest)</span></span> replaced Character return value with 0 for com/withu/core/Sample::getGear &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_11'>11</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_11'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getBrk<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest)</span></span> replaced Boolean return with False for com/withu/core/Sample::getBrk &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getBrk<br/><b>Killed by : </b>com.withu.core.AccidentDetectorTest.brakeOff_isNotHardBrake(com.withu.core.AccidentDetectorTest)</span></span> replaced Boolean return with True for com/withu/core/Sample::getBrk &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_12'>12</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_12'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getTurn<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.turnAtSecondSample_isFound(com.withu.core.GuideAndReportTest)</span></span> replaced Character return value with 0 for com/withu/core/Sample::getTurn &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_13'>13</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_13'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getSteer<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.factsFromScenario(com.withu.core.GuideAndReportTest)</span></span> replaced Float return value with 0 for com/withu/core/Sample::getSteer &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_14'>14</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_14'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getLow<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> replaced Boolean return with True for com/withu/core/Sample::getLow &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getLow<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> replaced Boolean return with False for com/withu/core/Sample::getLow &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_15'>15</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_15'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getWiper<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> replaced Boolean return with False for com/withu/core/Sample::getWiper &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getWiper<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> replaced Boolean return with True for com/withu/core/Sample::getWiper &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_16'>16</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_16'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getDoor<br/><b>Killed by : </b>com.withu.core.GuideAndReportTest.factsFromScenario(com.withu.core.GuideAndReportTest)</span></span> replaced Boolean return with False for com/withu/core/Sample::getDoor &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getDoor<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> replaced Boolean return with True for com/withu/core/Sample::getDoor &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_17'>17</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_17'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getLat<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> replaced Double return value with 0 for com/withu/core/Sample::getLat &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_18'>18</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_18'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getLon<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> replaced Double return value with 0 for com/withu/core/Sample::getLon &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_21'>21</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_21'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>csv$b<br/><b>Killed by : </b>com.withu.core.EvidenceTest.csvRoundTrip_keepsNullsAndValues(com.withu.core.EvidenceTest)</span></span> replaced return value with &#34;&#34; for com/withu/core/Sample::csv$b &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>csv$b<br/><b>Killed by : </b>com.withu.core.EvidenceTest.flushOnEmpty_returnsNull_andPartialFlushKeepsChain(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>csv$b<br/><b>Killed by : </b>com.withu.core.EvidenceTest.validChunkReportsSigOkTrue(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>csv$b<br/><b>Killed by : </b>com.withu.core.EvidenceTest.validChunkReportsSigOkTrue(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_22'>22</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_22'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>csv$f1<br/><b>Killed by : </b>none</span></span> removed call to kotlin/jvm/internal/Intrinsics::checkNotNullExpressionValue &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.withu.core.Sample,-method=csv$f1,-methodDesc=(Ljava/lang/Float;)Ljava/lang/String;],-indexes=[40],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.withu.core.Sample,-method=csv$f1,-methodDesc=(Ljava/lang/Float;)Ljava/lang/String;],-indexes=[40],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.withu.core.Sample,-method=csv$f1,-methodDesc=(Ljava/lang/Float;)Ljava/lang/String;],-indexes=[40],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.withu.core.EvidenceTest.flushOnEmpty_returnsNull_andPartialFlushKeepsChain(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.validChunkReportsSigOkTrue(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.tamperedData_breaksHashOfThatChunkOnly(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.sealerCutsOneChunkPerMinute_andChainsThem(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.missingChunk_breaksLinkOfNextChunk(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.differentTrip_doesNotRequireLink(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.csvRoundTrip_keepsNullsAndValues(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.eachChunkHoldsOnlyItsOwnRows(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.badSignature_isReported(com.withu.core.EvidenceTest)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>csv$f1<br/><b>Killed by : </b>com.withu.core.EvidenceTest.flushOnEmpty_returnsNull_andPartialFlushKeepsChain(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>csv$f1<br/><b>Killed by : </b>com.withu.core.EvidenceTest.tamperedData_breaksHashOfThatChunkOnly(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_23'>23</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_23'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>csv$f6<br/><b>Killed by : </b>com.withu.core.EvidenceTest.flushOnEmpty_returnsNull_andPartialFlushKeepsChain(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>csv$f6<br/><b>Killed by : </b>none</span></span> removed call to kotlin/jvm/internal/Intrinsics::checkNotNullExpressionValue &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.withu.core.Sample,-method=csv$f6,-methodDesc=(Ljava/lang/Double;)Ljava/lang/String;],-indexes=[40],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.withu.core.Sample,-method=csv$f6,-methodDesc=(Ljava/lang/Double;)Ljava/lang/String;],-indexes=[40],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.withu.core.Sample,-method=csv$f6,-methodDesc=(Ljava/lang/Double;)Ljava/lang/String;],-indexes=[40],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.withu.core.EvidenceTest.validChunkReportsSigOkTrue(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.tamperedData_breaksHashOfThatChunkOnly(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.sealerCutsOneChunkPerMinute_andChainsThem(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.missingChunk_breaksLinkOfNextChunk(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.differentTrip_doesNotRequireLink(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.csvRoundTrip_keepsNullsAndValues(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.eachChunkHoldsOnlyItsOwnRows(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.badSignature_isReported(com.withu.core.EvidenceTest)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>csv$f6<br/><b>Killed by : </b>com.withu.core.EvidenceTest.csvRoundTrip_keepsNullsAndValues(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_24'>24</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_24'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>csv<br/><b>Killed by : </b>com.withu.core.EvidenceTest.csvRoundTrip_keepsNullsAndValues(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>csv<br/><b>Killed by : </b>com.withu.core.EvidenceTest.flushOnEmpty_returnsNull_andPartialFlushKeepsChain(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>csv<br/><b>Killed by : </b>com.withu.core.EvidenceTest.csvRoundTrip_keepsNullsAndValues(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>csv<br/><b>Killed by : </b>com.withu.core.EvidenceTest.tamperedData_breaksHashOfThatChunkOnly(com.withu.core.EvidenceTest)</span></span> replaced return value with &#34;&#34; for com/withu/core/Sample::csv &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>csv<br/><b>Killed by : </b>com.withu.core.EvidenceTest.flushOnEmpty_returnsNull_andPartialFlushKeepsChain(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_34'>34</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_34'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_35'>35</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_35'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_36'>36</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_36'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse$b<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parse$b<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> replaced Boolean return with True for com/withu/core/Sample$Companion::parse$b &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parse$b<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>parse$b<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> replaced Boolean return with False for com/withu/core/Sample$Companion::parse$b &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_37'>37</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_37'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest)</span></span> replaced return value with null for com/withu/core/Sample$Companion::parse &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_41'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseAll$lambda$0<br/><b>Killed by : </b>com.withu.core.EvidenceTest.csvRoundTrip_keepsNullsAndValues(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseAll$lambda$0<br/><b>Killed by : </b>none</span></span> replaced boolean return with true for com/withu/core/Sample$Companion::parseAll$lambda$0 &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.withu.core.Sample$Companion,-method=parseAll$lambda$0,-methodDesc=(Ljava/lang/String;)Z],-indexes=[34],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.withu.core.Sample$Companion,-method=parseAll$lambda$0,-methodDesc=(Ljava/lang/String;)Z],-indexes=[34],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.withu.core.Sample$Companion,-method=parseAll$lambda$0,-methodDesc=(Ljava/lang/String;)Z],-indexes=[34],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.withu.core.EvidenceTest.csvRoundTrip_keepsNullsAndValues(com.withu.core.EvidenceTest)</li> <li>com.withu.core.EvidenceTest.eachChunkHoldsOnlyItsOwnRows(com.withu.core.EvidenceTest)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parseAll<br/><b>Killed by : </b>com.withu.core.EvidenceTest.csvRoundTrip_keepsNullsAndValues(com.withu.core.EvidenceTest)</span></span> replaced return value with Collections.emptyList for com/withu/core/Sample$Companion::parseAll &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>parseAll$lambda$0<br/><b>Killed by : </b>com.withu.core.EvidenceTest.csvRoundTrip_keepsNullsAndValues(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>parseAll$lambda$0<br/><b>Killed by : </b>com.withu.core.EvidenceTest.csvRoundTrip_keepsNullsAndValues(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>parseAll$lambda$1<br/><b>Killed by : </b>com.withu.core.EvidenceTest.csvRoundTrip_keepsNullsAndValues(com.withu.core.EvidenceTest)</span></span> replaced return value with null for com/withu/core/Sample$Companion::parseAll$lambda$1 &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_47'>47</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_47'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>fromSdk<br/><b>Killed by : </b>com.withu.core.EvidenceTest.sdkNameMapping(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>fromSdk<br/><b>Killed by : </b>com.withu.core.EvidenceTest.sdkNameMapping(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>fromSdk<br/><b>Killed by : </b>com.withu.core.EvidenceTest.sdkNameMapping(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>fromSdk<br/><b>Killed by : </b>com.withu.core.EvidenceTest.sdkNameMapping(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>fromSdk<br/><b>Killed by : </b>com.withu.core.EvidenceTest.sdkNameMapping(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_49'>49</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_49'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>fromSdk<br/><b>Killed by : </b>com.withu.core.EvidenceTest.sdkNameMapping(com.withu.core.EvidenceTest)</span></span> replaced Character return value with 0 for com/withu/core/Gear::fromSdk &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3a8cea24_53'>53</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3a8cea24_53'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>fromSdk<br/><b>Killed by : </b>com.withu.core.EvidenceTest.sdkNameMapping(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>fromSdk<br/><b>Killed by : </b>com.withu.core.EvidenceTest.sdkNameMapping(com.withu.core.EvidenceTest)</span></span> replaced Character return value with 0 for com/withu/core/Turn::fromSdk &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>fromSdk<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.withu.core.Turn,-method=fromSdk,-methodDesc=(Ljava/lang/String;)Ljava/lang/Character;],-indexes=[29],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.withu.core.Turn,-method=fromSdk,-methodDesc=(Ljava/lang/String;)Ljava/lang/Character;],-indexes=[29],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.withu.core.Turn,-method=fromSdk,-methodDesc=(Ljava/lang/String;)Ljava/lang/Character;],-indexes=[29],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.withu.core.EvidenceTest.sdkNameMapping(com.withu.core.EvidenceTest)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>fromSdk<br/><b>Killed by : </b>com.withu.core.EvidenceTest.sdkNameMapping(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>fromSdk<br/><b>Killed by : </b>com.withu.core.EvidenceTest.sdkNameMapping(com.withu.core.EvidenceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+
+<li class='mutator'>EMPTY_RETURNS</li>
+
+<li class='mutator'>FALSE_RETURNS</li>
+
+<li class='mutator'>INCREMENTS</li>
+
+<li class='mutator'>INVERT_NEGS</li>
+
+<li class='mutator'>MATH</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+
+<li class='mutator'>NULL_RETURNS</li>
+
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+
+<li class='mutator'>TRUE_RETURNS</li>
+
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.withu.core.EvidenceTest.parsedFieldsAreReadable(com.withu.core.EvidenceTest) (1 ms)</li><li>com.withu.core.GuideAndReportTest.lightsAtEventAreReported(com.withu.core.GuideAndReportTest) (1 ms)</li><li>com.withu.core.GuideAndReportTest.parkAndDoorMustBeStrictlyAfterEvent(com.withu.core.GuideAndReportTest) (1 ms)</li><li>com.withu.core.GuideAndReportTest.maxSpeedPicksLargest(com.withu.core.GuideAndReportTest) (1 ms)</li><li>com.withu.core.GuideAndReportTest.turnAtSecondSample_isFound(com.withu.core.GuideAndReportTest) (1 ms)</li><li>com.withu.core.GuideAndReportTest.factsFromScenario(com.withu.core.GuideAndReportTest) (7 ms)</li><li>com.withu.core.GuideAndReportTest.brakeWindowEdges(com.withu.core.GuideAndReportTest) (11 ms)</li><li>com.withu.core.GuideAndReportTest.factsWithoutSignal_andTurnTooOld(com.withu.core.GuideAndReportTest) (14 ms)</li><li>com.withu.core.GuideAndReportTest.steerAndSpeedWindowEdges(com.withu.core.GuideAndReportTest) (29 ms)</li><li>com.withu.core.EvidenceTest.csvRoundTrip_keepsNullsAndValues(com.withu.core.EvidenceTest) (54 ms)</li><li>com.withu.core.EvidenceTest.eachChunkHoldsOnlyItsOwnRows(com.withu.core.EvidenceTest) (62 ms)</li><li>com.withu.core.AccidentDetectorTest.nullSpeed_isIgnoredButAirbagStillFires(com.withu.core.AccidentDetectorTest) (1 ms)</li><li>com.withu.core.AccidentDetectorTest.dropBelowThreshold_isNotHardBrake(com.withu.core.AccidentDetectorTest) (2 ms)</li><li>com.withu.core.AccidentDetectorTest.dropExactlyThreshold_isHardBrake(com.withu.core.AccidentDetectorTest) (0 ms)</li><li>com.withu.core.AccidentDetectorTest.eventAtTimeZero_staysArmed_andProceeds(com.withu.core.AccidentDetectorTest) (0 ms)</li><li>com.withu.core.AccidentDetectorTest.noStopDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest) (0 ms)</li><li>com.withu.core.AccidentDetectorTest.stopSpeedBoundary(com.withu.core.AccidentDetectorTest) (0 ms)</li><li>com.withu.core.AccidentDetectorTest.sparseSamples_exactly1500msApart_stillCompared(com.withu.core.AccidentDetectorTest) (1 ms)</li><li>com.withu.core.AccidentDetectorTest.hardBrakeExactlyAtCooldownEnd_counts(com.withu.core.AccidentDetectorTest) (0 ms)</li><li>com.withu.core.AccidentDetectorTest.noParkDecision_onlyAfterLimit(com.withu.core.AccidentDetectorTest) (1 ms)</li><li>com.withu.core.AccidentDetectorTest.hardBrakeWithoutStop_doesNotAsk(com.withu.core.AccidentDetectorTest) (2 ms)</li><li>com.withu.core.AccidentDetectorTest.resumeExactlyAtThreshold_isStillStopped(com.withu.core.AccidentDetectorTest) (1 ms)</li><li>com.withu.core.AccidentDetectorTest.stopExactlyAtLimit_counts_andJustAfter_doesNot(com.withu.core.AccidentDetectorTest) (1 ms)</li><li>com.withu.core.AccidentDetectorTest.cooldownBlocksImmediateSecondEvent(com.withu.core.AccidentDetectorTest) (1 ms)</li><li>com.withu.core.AccidentDetectorTest.decisionFieldsAreExposed(com.withu.core.AccidentDetectorTest) (2 ms)</li><li>com.withu.core.AccidentDetectorTest.parkTooLate_doesNotAsk(com.withu.core.AccidentDetectorTest) (3 ms)</li><li>com.withu.core.AccidentDetectorTest.yellowLight_stopInDriveThenResume_doesNotAsk(com.withu.core.AccidentDetectorTest) (3 ms)</li><li>com.withu.core.AccidentDetectorTest.parkExactlyAtLimit_stillAsks(com.withu.core.AccidentDetectorTest) (3 ms)</li><li>com.withu.core.AccidentDetectorTest.hardBrakeThenStopThenPark_asks(com.withu.core.AccidentDetectorTest) (3 ms)</li><li>com.withu.core.AccidentDetectorTest.brakeOff_isNotHardBrake(com.withu.core.AccidentDetectorTest) (18 ms)</li><li>com.withu.core.AccidentDetectorTest.airbagWithoutHardBrake_isReturned(com.withu.core.AccidentDetectorTest) (35 ms)</li><li>com.withu.core.EvidenceTest.validChunkReportsSigOkTrue(com.withu.core.EvidenceTest) (7 ms)</li><li>com.withu.core.EvidenceTest.tamperedData_breaksHashOfThatChunkOnly(com.withu.core.EvidenceTest) (21 ms)</li><li>com.withu.core.EvidenceTest.sealerCutsOneChunkPerMinute_andChainsThem(com.withu.core.EvidenceTest) (20 ms)</li><li>com.withu.core.EvidenceTest.missingChunk_breaksLinkOfNextChunk(com.withu.core.EvidenceTest) (40 ms)</li><li>com.withu.core.EvidenceTest.differentTrip_doesNotRequireLink(com.withu.core.EvidenceTest) (41 ms)</li><li>com.withu.core.EvidenceTest.badSignature_isReported(com.withu.core.EvidenceTest) (93 ms)</li><li>com.withu.core.EvidenceTest.flushOnEmpty_returnsNull_andPartialFlushKeepsChain(com.withu.core.EvidenceTest) (3 ms)</li><li>com.withu.core.EvidenceTest.sdkNameMapping(com.withu.core.EvidenceTest) (1 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.17.0
+
+</body>
+</html>
