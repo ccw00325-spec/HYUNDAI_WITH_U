@@ -123,7 +123,7 @@ private fun TopBar(route: Route, act: MainActivity) {
         Row(horizontalArrangement = Arrangement.spacedBy(14.dp), verticalAlignment = Alignment.CenterVertically) {
             when {
                 pending != null -> Chip("사고 확인 대기", ChipKind.REC, dot = true)
-                accident != null && guide.index >= 0 && !guide.done && (route == Route.GUIDE || route == Route.REPORT112) -> Chip("사고 대응 모드", ChipKind.REC, dot = true)
+                accident != null && guide.index >= 0 && !guide.done && (route == Route.GUIDE || route == Route.REPORT112 || route == Route.STATEMENT) -> Chip("사고 대응 모드", ChipKind.REC, dot = true)
                 alive -> Chip("기록 중 · 7일 보관", ChipKind.OK, dot = true)
                 else -> Chip("기록 준비 중", ChipKind.PLAIN)
             }
@@ -151,7 +151,7 @@ private fun Onboard(act: MainActivity, wide: Boolean) {
     val rows = listOf(
         Triple(Ico.BRAKE, "무엇을 기록하나요", "속도, 브레이크, 방향지시등, 기어, 조향각, 전조등, 와이퍼, 운전석 문, 위치. 영상은 남기지 않아요"),
         Triple(Ico.ARCHIVE, "얼마나 보관하나요", "모든 운행은 7일 뒤 자동으로 지워요. 사고로 확인했거나 리포트를 발급한 운행만 1년간 보존해요"),
-        Triple(Ico.SHIELD, "언제 밖으로 나가나요", "차 안에만 암호화해 두고, 리포트를 발급할 때 그 앞뒤 10분만 휴대폰으로 넘겨요"),
+        Triple(Ico.SHIELD, "언제 밖으로 나가나요", "차 안에만 암호화해 두고, 리포트를 발급할 때만 그 시각 앞뒤 5분(모두 10분) 기록을 휴대폰으로 넘겨요"),
     )
     Row(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = if (wide) 80.dp else 34.dp, vertical = 40.dp), horizontalArrangement = Arrangement.spacedBy(60.dp), verticalAlignment = Alignment.CenterVertically) {
         if (wide) Yudi(Mood.HAPPY, 300.dp)
@@ -191,7 +191,7 @@ private fun Home(wide: Boolean) {
                 IconBox(Ico.SIREN, Color.White, C.warn, 110.dp, round = true)
                 Column {
                     H1("사고가 났어요", 56.sp, Color.White)
-                    D("누르면 사고인지 한 번 묻고, 지금 위치에 맞춰 대응과 신고를 안내해요", Color.White.copy(alpha = .9f))
+                    D("누르면 사고인지 한 번 묻고, 지금 위치에 맞춰 대응과 신고를 안내해요 · 주행 중에는 유디 버블을 길게 누르세요", Color.White.copy(alpha = .9f))
                 }
             }
         }
@@ -244,6 +244,12 @@ private fun Home(wide: Boolean) {
 
 @Composable private fun Stat(k: String, v: String, unit: String, modifier: Modifier, color: Color = C.navy) = Column(modifier) {
     K(k); Row(verticalAlignment = Alignment.Bottom) { T(v, 56.sp, color, FontWeight.ExtraBold); T(unit, 28.sp, C.sub, FontWeight.Bold, Modifier.padding(start = 6.dp, bottom = 8.dp)) }
+}
+
+/** 발급한 리포트 다시 열기 (파일이 깨졌어도 화면이 죽지 않게) */
+private fun openReport(act: MainActivity, rid: String) {
+    val s = svc() ?: return
+    try { ReportService.show(act, s.store, rid) } catch (e: Exception) { com.withu.app.L("ERROR reopen $rid ${e.javaClass.simpleName}: ${e.message}"); AppState.toast.value = "리포트 파일을 열지 못했어요" }
 }
 
 private fun kindName(k: String) = when (k) { "HARD_BRAKE" -> "급제동"; "SIREN" -> "사이렌"; "ACCIDENT_CONFIRMED" -> "사고 확인"; "DISMISSED" -> "사고 아님 응답"; "AIRBAG" -> "에어백 전개"; else -> k }
@@ -336,7 +342,12 @@ private fun Report112(act: MainActivity, wide: Boolean) {
     val lines = listOf(
         "위치" to ((addr ?: acc?.address ?: "주소 확인 중") + (Sig.lat?.let { "\n좌표 %.4f, %.4f".format(it, Sig.lon) } ?: "")),
         "시각" to "${md.format(Date(t))} ${hms.format(Date(t))}경",
-        "상황" to (if (acc?.why == "siren") "교통사고가 났습니다 (직접 신고)" else "시속 ${fmtKph(acc?.fromKph)}km로 가다 급제동 후 사고가 났습니다"),
+        "상황" to when {
+            acc == null -> "교통사고가 났습니다"
+            acc?.why == "siren" -> "교통사고가 났습니다 (직접 신고)"
+            (acc?.fromKph ?: 0f) < 1f -> "교통사고가 났습니다"
+            else -> "시속 ${fmtKph(acc?.fromKph)}km로 가다 급제동 후 사고가 났습니다"
+        },
         "부상" to "다친 사람이 있는지 확인해 말해 주세요",
         "내 차" to "${s.carColor} ${s.carModel} · ${s.plate}",
         "현재" to (if (done.isBlank()) "안전 조치 중입니다" else "${done}까지 마쳤습니다"),
@@ -418,8 +429,8 @@ private fun ReportMake(act: MainActivity, wide: Boolean) {
     var plan by remember { mutableStateOf<ReportService.Plan?>(null) }
     LaunchedEffect(t, AppState.tick.value / 5000) {
         val s = svc() ?: return@LaunchedEffect
-        s.flushNow(); delay(150)
-        val p = ReportService.plan(s.store, s.settings, t); plan = p; preview = s.previewWindow(p.anchor)
+        try { val p = ReportService.plan(s.store, s.settings, t, unsealed = s.pendingSamples()); plan = p; preview = s.previewWindow(p.anchor) }
+        catch (e: Exception) { com.withu.app.L("ERROR report plan ${e.javaClass.simpleName}: ${e.message}") }
     }
     val days = (0..6).map { d -> Calendar.getInstance(SEOUL).apply { add(Calendar.DAY_OF_YEAR, -d); set(Calendar.HOUR_OF_DAY, 0); set(Calendar.MINUTE, 0); set(Calendar.SECOND, 0); set(Calendar.MILLISECOND, 0) }.timeInMillis }
     val dayOfT = days.firstOrNull { t >= it } ?: days.last()
@@ -442,9 +453,10 @@ private fun ReportMake(act: MainActivity, wide: Boolean) {
         WCard {
             H2("2. 사고 시각")
             T(hms.format(Date(t)), 84.sp, C.navy, FontWeight.ExtraBold, Modifier.padding(top = 6.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                listOf("−1시간" to -3_600_000L, "−1분" to -60_000L, "−10초" to -10_000L, "+10초" to 10_000L, "+1분" to 60_000L, "+1시간" to 3_600_000L).forEach { (l, d) ->
-                    Btn(l, BtnKind.SEC, Modifier.weight(1f), 72.dp, 22.sp) { t += d }
+            // 좁은 버튼에서 ‘−1시간’이 두 줄로 꺾이지 않게 앞으로·뒤로를 두 줄로 나눈다
+            listOf(listOf("−1시간" to -3_600_000L, "−1분" to -60_000L, "−10초" to -10_000L), listOf("+10초" to 10_000L, "+1분" to 60_000L, "+1시간" to 3_600_000L)).forEach { row ->
+                Row(Modifier.padding(top = 10.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    row.forEach { (l, d) -> Btn(l, BtnKind.SEC, Modifier.weight(1f), 72.dp, 24.sp) { t += d } }
                 }
             }
             val dayEvents = events.filter { it.t in dayOfT until dayOfT + Retention.DAY && it.kind != "DISMISSED" }
@@ -489,7 +501,7 @@ private fun ReportMake(act: MainActivity, wide: Boolean) {
             val c = p?.check
             Btn(if (c is IssueCheck.Duplicate) "발급한 리포트 보기" else "리포트 발급", BtnKind.PRI, Modifier.fillMaxWidth().padding(top = 22.dp), enabled = c == IssueCheck.Ok || c is IssueCheck.Duplicate) {
                 val s = svc() ?: return@Btn
-                if (c is IssueCheck.Duplicate) ReportService.show(act, s.store, c.rid) else s.issueReport(t)
+                if (c is IssueCheck.Duplicate) openReport(act, c.rid) else s.issueReport(t)
             }
             K("발급하면 이 운행 기록은 1년간 보존돼요 · 과실 비율은 판단하지 않아요", size = 21.sp, modifier = Modifier.padding(top = 12.dp))
         }
@@ -582,7 +594,7 @@ private fun Vault(act: MainActivity, wide: Boolean) {
             H2("발급한 리포트")
             if (reports.isEmpty()) D("아직 발급한 리포트가 없어요.", modifier = Modifier.padding(top = 16.dp))
             reports.take(5).forEach { r ->
-                Row(Modifier.fillMaxWidth().padding(top = 16.dp).clip(RoundedCornerShape(18.dp)).background(C.bg).clickable { svc()?.let { ReportService.show(act, it.store, r.rid) } }.padding(horizontal = 22.dp, vertical = 18.dp), verticalAlignment = Alignment.CenterVertically) {
+                Row(Modifier.fillMaxWidth().padding(top = 16.dp).clip(RoundedCornerShape(18.dp)).background(C.bg).clickable { openReport(act, r.rid) }.padding(horizontal = 22.dp, vertical = 18.dp), verticalAlignment = Alignment.CenterVertically) {
                     Column(Modifier.weight(1f)) { T(r.rid, 24.sp, weight = FontWeight.ExtraBold); K("${ymdhms.format(Date(r.anchor))} · ${if (r.payer == "INSURER") "보험사 부담" else "개인 결제"}", size = 21.sp) }
                     Tag(if (r.chainOk) "검증됨" else "불일치", if (r.chainOk) C.okBg else C.recBg, if (r.chainOk) C.okFg else C.warn)
                 }

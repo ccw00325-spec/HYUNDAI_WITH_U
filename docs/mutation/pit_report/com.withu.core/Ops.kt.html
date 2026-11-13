@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>Ops.kt</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.withu.core</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#49324;&#51060;&#47116; &#48260;&#53948; &#44592;&#51456; &#49884;&#44033;.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#44553;&#51228;&#46041; &#46244; 3&#48516; &#50504;&#50640; &#45580;&#47104;&#44256; &#44536; &#46244;&#47196; &#45796;&#49884; &#45804;&#47532;&#51648; &#50506;&#50520;&#45796;&#47732;(&#44057;&#51008; &#51221;&#52264;), &#44553;&#51228;&#46041; &#49884;&#44033;&#44284; &#51649;&#51204; &#49549;&#46020;&#47484; &#49324;&#44256; &#44592;&#51456;&#51004;&#47196; &#50420;&#45796;.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#44536;&#47000;&#50556; &#45734;&#44172; &#45580;&#47084;&#46020; &#44256;&#49549;&#46020;&#47196; &#54032;&#45800;(&#51649;&#51204; 80km/h &#52488;&#44284;)&#51060; &#47582;&#44172; &#46108;&#45796;.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>object SirenAnchor {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    const val SAME_STOP_MS = 180_000L</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** &#44553;&#51228;&#46041; &#51649;&#54980; &#51060; &#49884;&#44036; &#50504;&#51032; &#8216;&#50880;&#51649;&#51076;&#8217;&#51008; &#44048;&#49549; &#51473; &#49549;&#46020;&#47196; &#48372;&#44256; &#51116;&#52636;&#48156;&#47196; &#52824;&#51648; &#50506;&#45716;&#45796; */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    const val MOVING_GRACE_MS = 15_000L</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_13'/>
+13
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_13'>4</a>
+<span>
+
+1. getFromKph : replaced float return with 0.0f for com/withu/core/SirenAnchor$Result::getFromKph &rarr; KILLED<br/>
+
+2. getSameStop : replaced boolean return with false for com/withu/core/SirenAnchor$Result::getSameStop &rarr; KILLED<br/>
+
+3. getSameStop : replaced boolean return with true for com/withu/core/SirenAnchor$Result::getSameStop &rarr; KILLED<br/>
+
+4. getT : replaced long return with 0 for com/withu/core/SirenAnchor$Result::getT &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    data class Result(val t: Long, val fromKph: Float, val sameStop: Boolean)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param lastBrakeAt &#47560;&#51648;&#47561; &#44553;&#51228;&#46041; &#49884;&#44033;(&#50630;&#51004;&#47732; 0 &#51060;&#54616;)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param lastMovingAt &#47560;&#51648;&#47561;&#51004;&#47196; 5km/h&#47484; &#45336;&#51008; &#49884;&#44033;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    fun resolve(now: Long, speedNowKph: Float?, lastBrakeAt: Long, lastBrakeFromKph: Float, lastMovingAt: Long): Result {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_20'/>
+20
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_20'>8</a>
+<span>
+
+1. resolve : changed conditional boundary &rarr; KILLED<br/>
+
+2. resolve : changed conditional boundary &rarr; KILLED<br/>
+
+3. resolve : changed conditional boundary &rarr; KILLED<br/>
+
+4. resolve : Replaced long subtraction with addition &rarr; KILLED<br/>
+
+5. resolve : negated conditional &rarr; KILLED<br/>
+
+6. resolve : negated conditional &rarr; KILLED<br/>
+
+7. resolve : Replaced long subtraction with addition &rarr; KILLED<br/>
+
+8. resolve : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        val sameStop = lastBrakeAt &#62; 0 &#38;&#38; now - lastBrakeAt &#60; SAME_STOP_MS &#38;&#38; lastMovingAt - lastBrakeAt &#60; MOVING_GRACE_MS</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_21'/>
+21
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_21'>1</a>
+<span>
+
+1. resolve : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        val speed = speedNowKph ?: 0f</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_22'/>
+22
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_22'>1</a>
+<span>
+
+1. resolve : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return if (sameStop) Result(lastBrakeAt, maxOf(speed, lastBrakeFromKph), true) else Result(now, speed, false)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#47196;&#44536; &#44060;&#51064;&#51221;&#48372; &#44032;&#47548; (Pleos &#50545; &#48372;&#50504; &#44032;&#51060;&#46300;: &#47196;&#44536;&#50640; &#44060;&#51064;&#51221;&#48372; &#44552;&#51648;).</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * release &#48716;&#46300;&#45716; &#44592;&#48376;&#51004;&#47196; &#50948;&#52824;&#183;&#51452;&#49548;&#183;&#51652;&#49696; &#47928;&#51109;&#51012; &#44032;&#47532;&#44256;, &#49884;&#54744;&#54624; &#46412;&#47564; adb &#51204;&#50857; &#47749;&#47161;&#51004;&#47196; &#51104;&#49884; &#54400; &#49688; &#51080;&#45796;.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>object LogPrivacy {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_31'/>
+31
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_31'>2</a>
+<span>
+
+1. getRedact : replaced boolean return with false for com/withu/core/LogPrivacy::getRedact &rarr; KILLED<br/>
+
+2. getRedact : replaced boolean return with true for com/withu/core/LogPrivacy::getRedact &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    @Volatile var redact: Boolean = true</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    const val MASK = &#34;[&#44032;&#47548;]&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    fun loc(lat: Double?, lon: Double?): String = when {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_35'/>
+35
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_35'>2</a>
+<span>
+
+1. loc : negated conditional &rarr; KILLED<br/>
+
+2. loc : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        lat == null || lon == null -&#62; &#34;-&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_36'/>
+36
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_36'>1</a>
+<span>
+
+1. loc : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        redact -&#62; MASK</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_37'/>
+37
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_37'>1</a>
+<span>
+
+1. loc : removed call to kotlin/jvm/internal/Intrinsics::checkNotNullExpressionValue &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        else -&#62; String.format(java.util.Locale.ROOT, &#34;%.5f,%.5f&#34;, lat, lon)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_38'/>
+38
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_38'>1</a>
+<span>
+
+1. loc : replaced return value with &#34;&#34; for com/withu/core/LogPrivacy::loc &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    fun text(s: String?): String = when {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_41'/>
+41
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_41'>1</a>
+<span>
+
+1. text : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        s == null -&#62; &#34;-&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_42'/>
+42
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_42'>1</a>
+<span>
+
+1. text : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        redact -&#62; &#34;$MASK(${s.length}&#51088;)&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        else -&#62; s</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_44'/>
+44
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_44'>1</a>
+<span>
+
+1. text : replaced return value with &#34;&#34; for com/withu/core/LogPrivacy::text &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/** &#49892;&#54665; &#51473; &#48372;&#44288; &#51221;&#47532; &#51452;&#44592;. &#49436;&#48708;&#49828;&#44032; &#47728;&#52832;&#50473; &#51060;&#50612;&#51256;&#46020; 7&#51068; &#51648;&#45212; &#50868;&#54665;&#51060; &#45224;&#51648; &#50506;&#44172; &#54620;&#45796;. */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>object SweepSchedule {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    const val INTERVAL_MS = 3_600_000L</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_50'/>
+50
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_50'>4</a>
+<span>
+
+1. due : replaced boolean return with true for com/withu/core/SweepSchedule::due &rarr; KILLED<br/>
+
+2. due : negated conditional &rarr; KILLED<br/>
+
+3. due : changed conditional boundary &rarr; KILLED<br/>
+
+4. due : Replaced long subtraction with addition &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    fun due(lastSweep: Long, now: Long): Boolean = now - lastSweep &#62;= INTERVAL_MS</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@43245559_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@43245559_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@43245559_13'>13</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@43245559_13'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getFromKph<br/><b>Killed by : </b>com.withu.core.OpsTest.siren_sameStopKeepsFasterCurrentSpeed_andNullSpeedCountsAsZero(com.withu.core.OpsTest)</span></span> replaced float return with 0.0f for com/withu/core/SirenAnchor$Result::getFromKph &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getSameStop<br/><b>Killed by : </b>com.withu.core.OpsTest.siren_justBeforeThreeMinutes_isStillSameStop(com.withu.core.OpsTest)</span></span> replaced boolean return with false for com/withu/core/SirenAnchor$Result::getSameStop &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>getSameStop<br/><b>Killed by : </b>com.withu.core.OpsTest.siren_exactlyThreeMinutesAfterBrake_isNoLongerSameStop(com.withu.core.OpsTest)</span></span> replaced boolean return with true for com/withu/core/SirenAnchor$Result::getSameStop &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>getT<br/><b>Killed by : </b>com.withu.core.OpsTest.siren_exactlyThreeMinutesAfterBrake_isNoLongerSameStop(com.withu.core.OpsTest)</span></span> replaced long return with 0 for com/withu/core/SirenAnchor$Result::getT &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@43245559_20'>20</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@43245559_20'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>resolve<br/><b>Killed by : </b>com.withu.core.OpsTest.siren_exactlyThreeMinutesAfterBrake_isNoLongerSameStop(com.withu.core.OpsTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>resolve<br/><b>Killed by : </b>com.withu.core.OpsTest.siren_afterDrivingAgain_isNotSameStop(com.withu.core.OpsTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>resolve<br/><b>Killed by : </b>com.withu.core.OpsTest.siren_noBrakeRecordedYet_isNeverSameStop_evenRightAfterBoot(com.withu.core.OpsTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>resolve<br/><b>Killed by : </b>com.withu.core.OpsTest.siren_justBeforeThreeMinutes_isStillSameStop(com.withu.core.OpsTest)</span></span> Replaced long subtraction with addition &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>resolve<br/><b>Killed by : </b>com.withu.core.OpsTest.siren_justBeforeThreeMinutes_isStillSameStop(com.withu.core.OpsTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>resolve<br/><b>Killed by : </b>com.withu.core.OpsTest.siren_justBeforeThreeMinutes_isStillSameStop(com.withu.core.OpsTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>resolve<br/><b>Killed by : </b>com.withu.core.OpsTest.siren_justBeforeThreeMinutes_isStillSameStop(com.withu.core.OpsTest)</span></span> Replaced long subtraction with addition &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>resolve<br/><b>Killed by : </b>com.withu.core.OpsTest.siren_justBeforeThreeMinutes_isStillSameStop(com.withu.core.OpsTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@43245559_21'>21</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@43245559_21'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>resolve<br/><b>Killed by : </b>com.withu.core.OpsTest.siren_withoutAnyHardBrake_usesNowAndCurrentSpeed(com.withu.core.OpsTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@43245559_22'>22</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@43245559_22'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>resolve<br/><b>Killed by : </b>com.withu.core.OpsTest.siren_justBeforeThreeMinutes_isStillSameStop(com.withu.core.OpsTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@43245559_31'>31</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@43245559_31'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getRedact<br/><b>Killed by : </b>com.withu.core.OpsTest.logPrivacy_isOnByDefault_andToggleIsReadable(com.withu.core.OpsTest)</span></span> replaced boolean return with false for com/withu/core/LogPrivacy::getRedact &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getRedact<br/><b>Killed by : </b>com.withu.core.OpsTest.logPrivacy_isOnByDefault_andToggleIsReadable(com.withu.core.OpsTest)</span></span> replaced boolean return with true for com/withu/core/LogPrivacy::getRedact &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@43245559_35'>35</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@43245559_35'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>loc<br/><b>Killed by : </b>com.withu.core.OpsTest.logPrivacy_showsValues_whenVerboseForTesting(com.withu.core.OpsTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>loc<br/><b>Killed by : </b>com.withu.core.OpsTest.logPrivacy_showsValues_whenVerboseForTesting(com.withu.core.OpsTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@43245559_36'>36</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@43245559_36'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>loc<br/><b>Killed by : </b>com.withu.core.OpsTest.logPrivacy_showsValues_whenVerboseForTesting(com.withu.core.OpsTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@43245559_37'>37</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@43245559_37'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>loc<br/><b>Killed by : </b>none</span></span> removed call to kotlin/jvm/internal/Intrinsics::checkNotNullExpressionValue &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.withu.core.LogPrivacy,-method=loc,-methodDesc=(Ljava/lang/Double;Ljava/lang/Double;)Ljava/lang/String;],-indexes=[52],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.withu.core.LogPrivacy,-method=loc,-methodDesc=(Ljava/lang/Double;Ljava/lang/Double;)Ljava/lang/String;],-indexes=[52],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.withu.core.LogPrivacy,-method=loc,-methodDesc=(Ljava/lang/Double;Ljava/lang/Double;)Ljava/lang/String;],-indexes=[52],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.withu.core.OpsTest.logPrivacy_showsValues_whenVerboseForTesting(com.withu.core.OpsTest)</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@43245559_38'>38</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@43245559_38'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>loc<br/><b>Killed by : </b>com.withu.core.OpsTest.logPrivacy_showsValues_whenVerboseForTesting(com.withu.core.OpsTest)</span></span> replaced return value with &#34;&#34; for com/withu/core/LogPrivacy::loc &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@43245559_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@43245559_41'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>text<br/><b>Killed by : </b>com.withu.core.OpsTest.logPrivacy_showsValues_whenVerboseForTesting(com.withu.core.OpsTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@43245559_42'>42</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@43245559_42'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>text<br/><b>Killed by : </b>com.withu.core.OpsTest.logPrivacy_showsValues_whenVerboseForTesting(com.withu.core.OpsTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@43245559_44'>44</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@43245559_44'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>text<br/><b>Killed by : </b>com.withu.core.OpsTest.logPrivacy_showsValues_whenVerboseForTesting(com.withu.core.OpsTest)</span></span> replaced return value with &#34;&#34; for com/withu/core/LogPrivacy::text &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@43245559_50'>50</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@43245559_50'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>due<br/><b>Killed by : </b>com.withu.core.OpsTest.sweep_dueExactlyAfterOneHour_notBefore(com.withu.core.OpsTest)</span></span> replaced boolean return with true for com/withu/core/SweepSchedule::due &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>due<br/><b>Killed by : </b>com.withu.core.OpsTest.sweep_dueExactlyAfterOneHour_notBefore(com.withu.core.OpsTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>due<br/><b>Killed by : </b>com.withu.core.OpsTest.sweep_dueExactlyAfterOneHour_notBefore(com.withu.core.OpsTest)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>due<br/><b>Killed by : </b>com.withu.core.OpsTest.sweep_dueExactlyAfterOneHour_notBefore(com.withu.core.OpsTest)</span></span> Replaced long subtraction with addition &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+
+<li class='mutator'>EMPTY_RETURNS</li>
+
+<li class='mutator'>FALSE_RETURNS</li>
+
+<li class='mutator'>INCREMENTS</li>
+
+<li class='mutator'>INVERT_NEGS</li>
+
+<li class='mutator'>MATH</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+
+<li class='mutator'>NULL_RETURNS</li>
+
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+
+<li class='mutator'>TRUE_RETURNS</li>
+
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.withu.core.OpsTest.sweep_dueExactlyAfterOneHour_notBefore(com.withu.core.OpsTest) (0 ms)</li><li>com.withu.core.OpsTest.logPrivacy_showsValues_whenVerboseForTesting(com.withu.core.OpsTest) (1 ms)</li><li>com.withu.core.OpsTest.logPrivacy_missingValuesAreDash_inBothModes(com.withu.core.OpsTest) (1 ms)</li><li>com.withu.core.OpsTest.logPrivacy_redactsLocationAndText_byDefault(com.withu.core.OpsTest) (5 ms)</li><li>com.withu.core.OpsTest.siren_exactlyThreeMinutesAfterBrake_isNoLongerSameStop(com.withu.core.OpsTest) (0 ms)</li><li>com.withu.core.OpsTest.siren_sameStopKeepsFasterCurrentSpeed_andNullSpeedCountsAsZero(com.withu.core.OpsTest) (1 ms)</li><li>com.withu.core.OpsTest.siren_sameStopWithinThreeMinutes_usesBrakeTimeAndPreBrakeSpeed(com.withu.core.OpsTest) (2 ms)</li><li>com.withu.core.OpsTest.siren_justBeforeThreeMinutes_isStillSameStop(com.withu.core.OpsTest) (0 ms)</li><li>com.withu.core.OpsTest.siren_afterDrivingAgain_isNotSameStop(com.withu.core.OpsTest) (0 ms)</li><li>com.withu.core.OpsTest.siren_noBrakeRecordedYet_isNeverSameStop_evenRightAfterBoot(com.withu.core.OpsTest) (9 ms)</li><li>com.withu.core.OpsTest.logPrivacy_isOnByDefault_andToggleIsReadable(com.withu.core.OpsTest) (5 ms)</li><li>com.withu.core.OpsTest.siren_withoutAnyHardBrake_usesNowAndCurrentSpeed(com.withu.core.OpsTest) (1 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.17.0
+
+</body>
+</html>

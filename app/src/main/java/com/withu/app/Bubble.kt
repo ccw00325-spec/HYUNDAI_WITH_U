@@ -19,6 +19,7 @@ import android.widget.ImageView
 /**
  * 유디 버블: 앱 화면이 없을 때 다른 앱 위에 떠 있는 흰 동그라미.
  * 누르면 WiTH U 홈(사이렌 버튼)으로, 사고 확인 대기 중이면 확인 카드로 돌아온다. 끌어서 옮길 수 있다.
+ * 길게(0.8초) 누르면 사이렌: 주행 중(D단)에는 Pleos가 앱 화면을 가려 홈의 사이렌 버튼을 누를 수 없지만, 버블은 다른 앱 위에 남아 있어 언제든 알릴 수 있다.
  * state: rec(초록 점) / alert(주황 테두리)
  */
 class Bubble(private val ctx: Context) {
@@ -62,21 +63,25 @@ class Bubble(private val ctx: Context) {
         lp = WindowManager.LayoutParams(150, 150, WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, PixelFormat.TRANSLUCENT)
             .apply { gravity = Gravity.TOP or Gravity.START; x = 2300; y = 520 }
-        var dx0 = 0f; var dy0 = 0f; var sx = 0; var sy = 0; var moved = false
+        var dx0 = 0f; var dy0 = 0f; var sx = 0; var sy = 0; var moved = false; var longFired = false
+        val longPress = Runnable { if (!moved) { longFired = true; ring?.setStroke(10, Color.rgb(255, 90, 54)); L("BUBBLE long-press -> siren"); RecorderService.inst?.siren("bubble_long_press") } }
         root!!.setOnTouchListener { v, e ->
             when (e.action) {
-                MotionEvent.ACTION_DOWN -> { dx0 = e.rawX; dy0 = e.rawY; sx = lp!!.x; sy = lp!!.y; moved = false; true }
+                MotionEvent.ACTION_DOWN -> { dx0 = e.rawX; dy0 = e.rawY; sx = lp!!.x; sy = lp!!.y; moved = false; longFired = false; ui.postDelayed(longPress, LONG_PRESS_MS); true }
                 MotionEvent.ACTION_MOVE -> {
                     val dx = e.rawX - dx0; val dy = e.rawY - dy0
-                    if (kotlin.math.abs(dx) + kotlin.math.abs(dy) > 12) moved = true
+                    if (kotlin.math.abs(dx) + kotlin.math.abs(dy) > 12) { moved = true; ui.removeCallbacks(longPress) }
                     if (moved) { lp!!.x = sx + dx.toInt(); lp!!.y = sy + dy.toInt(); wm.updateViewLayout(v, lp) }
                     true
                 }
-                MotionEvent.ACTION_UP -> { if (moved) L("BUBBLE dragged to ${lp!!.x},${lp!!.y}") else tap(); true }
+                MotionEvent.ACTION_UP -> { ui.removeCallbacks(longPress); if (moved) L("BUBBLE dragged to ${lp!!.x},${lp!!.y}") else if (!longFired) tap(); true }
+                MotionEvent.ACTION_CANCEL -> { ui.removeCallbacks(longPress); true }
                 else -> false
             }
         }
     }
+
+    companion object { const val LONG_PRESS_MS = 800L }
 
     private fun tap() {
         L("BUBBLE tapped state=$state")

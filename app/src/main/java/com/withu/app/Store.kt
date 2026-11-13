@@ -197,6 +197,11 @@ class Store(private val ctx: Context) {
             while (c.moveToNext()) out += EventRow(c.getLong(0), c.getString(1), c.getInt(2) == 1, c.getFloat(3)) }
         return out
     }
+    /** 가장 최근에 확인한 사고 (프로세스가 다시 떠도 신고 가이드·진술 첫 문장이 이어지도록) */
+    fun lastConfirmed(since: Long): Accident? =
+        db().rawQuery("SELECT t,from_kph,address FROM event WHERE kind='ACCIDENT_CONFIRMED' AND t>=? ORDER BY t DESC LIMIT 1", arrayOf(since.toString())).use { c ->
+            if (!c.moveToFirst()) null else { val from = c.getFloat(1); val addr = c.getString(2); Accident(c.getLong(0), from, "restored", addr, com.withu.core.RoadContext.isHighway(from, addr)) }
+        }
     fun eventMarks(around: Long, win: Long): List<EventMark> = events(around - win).filter { it.t <= around + win }.map { EventMark(it.t, it.kind, it.confirmed) }
     fun insertStatement(r: StatementRow): Long {
         db().execSQL("INSERT INTO statement(event_t,t,opening,transcript,audio,audio_sha,duration_s) VALUES(?,?,?,?,?,?,?)", arrayOf(r.eventT, r.t, r.opening, r.transcript, r.audio, r.sha, r.durationS))

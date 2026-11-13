@@ -37,6 +37,9 @@ th{background:var(--bg);width:150px;font-weight:700;color:var(--sub)}
 .legend i{display:inline-block;width:12px;height:8px;border-radius:2px;margin-right:4px;vertical-align:middle}
 .stmt{background:var(--bg);border-radius:12px;padding:12px 14px;margin-bottom:8px;font-size:15px;line-height:1.6}
 .mono{font-family:Consolas,monospace;font-size:12px;word-break:break-all;color:var(--sub)}
+.lock{border:2px dashed #F5A524;background:#FFF9EE;border-radius:16px;padding:22px;margin-top:18px;text-align:center}
+.lock h3{margin:0 0 6px;font-size:20px}.lock p{margin:4px 0 14px;color:var(--sub)}
+body.locked .paid{display:none!important}
 .disc{background:var(--navy);color:#fff;border-radius:14px;padding:14px 16px;font-size:14px;line-height:1.6;margin-top:16px}
 #qr{width:120px;height:120px}#qr img,#qr canvas{width:120px!important;height:120px!important}
 .pay{border:2px dashed var(--line);border-radius:14px;padding:12px 14px;font-size:14px;margin-top:12px}
@@ -46,7 +49,7 @@ th{background:var(--bg);width:150px;font-weight:700;color:var(--sub)}
   @page{size:A4;margin:12mm}
   body{background:#fff}.wrap{max-width:none;padding:0}.bar,.noprint{display:none!important}
   .page{box-shadow:none;border-radius:0;padding:0;margin:0}
-  .pb{break-before:page}
+  .pb{break-before:auto}.chart{break-inside:avoid}
   h2{break-after:avoid}.fact,.stmt,tr{break-inside:avoid}
 }
 </style>
@@ -154,7 +157,7 @@ async function render(rep, raw) {
     ['n', `<b>차량 기록으로 확인할 수 없는 것</b> · ${rep.unsupported.join(', ')} → 블랙박스 영상·현장 사진과 함께 보세요`],
   ];
   const ev = events(rows, T);
-  const pay = rep.payer.type === 'INSURER' ? `<span class="badge ok">보험사 부담</span> ${esc(rep.payer.name)} · ${esc(rep.payer.note)}` : `<span class="badge wait">개인 결제 ${rep.payer.price_won.toLocaleString()}원</span> ${esc(rep.payer.note)} · <b>시연판은 결제 없이 전체를 보여 줍니다</b>`;
+  const pay = rep.payer.type === 'INSURER' ? `<span class="badge ok">보험사 부담</span> ${esc(rep.payer.name)} · ${esc(rep.payer.note)}` : `<span class="badge wait">개인 결제 ${rep.payer.price_won.toLocaleString()}원</span> ${esc(rep.payer.note)} · 요약(A·B)은 무료, 전체는 결제 뒤 열람`;
   const chunks = rep.proof.chunks;
   $('#app').innerHTML = `
   <div class="page">
@@ -184,6 +187,8 @@ async function render(rep, raw) {
     <div class="facts">${factRows.map(([c, t]) => `<div class="fact ${c}"><span class="i">${c === 'y' ? '✔' : '△'}</span><span>${t}</span></div>`).join('')}</div>
     <div class="note">※ 이 리포트는 과실 비율을 판단하지 않습니다. 차량 조작 기록을 사실 그대로 보여 줍니다.</div>
 
+    <div class="lock noprint" id="lock"><h3>요약은 무료로 보실 수 있어요</h3><p>그래프·조작 변화 기록·진술·원본 확인(C~G)은 건당 결제 뒤 열립니다 · 개인 <b>${rep.payer.price_won ? rep.payer.price_won.toLocaleString() : '-'}원</b><br>결제 연동은 출시 단계 범위라, 시연판에서는 아래 버튼으로 바로 엽니다.</p><button class="btn pri" id="bPay">결제하고 전체 보기 (시연: 바로 열기)</button></div>
+    <div class="paid">
     <h2><span class="n">C</span> 사고 직전·직후 (−30초 ~ +10초)</h2>
     ${chart(rows, T, T - 30000, T + 10000, 920, 330, {tracks:true, ticks:[[T-30000,'−30초'],[T-20000,'−20초'],[T-10000,'−10초'],[T,'0'],[T+10000,'+10초']]})}
     <div class="legend"><span><i style="background:#1463F3"></i>속도(km/h)</span><span><i style="background:#F5A524"></i>방향지시등</span><span><i style="background:#FF5A36"></i>브레이크</span><span><i style="background:#12B5A6"></i>P단</span><span><i style="background:#5B6B80"></i>운전석 문</span></div>
@@ -191,7 +196,8 @@ async function render(rep, raw) {
     ${chart(rows, T, rep.window.from, rep.window.to, 920, 170, {ticks:[[rep.window.from,'−5분'],[T-150000,'−2.5분'],[T,'0'],[T+150000,'+2.5분'],[rep.window.to,'+5분']]})}
   </div>
 
-  <div class="page pb">
+  </div>
+  <div class="page pb paid">
     <h2><span class="n">D</span> 조작 변화 기록 (기준 시각 ±60초)</h2>
     <table><tr><th style="width:90px">시점</th><th style="width:120px">신호</th><th>변화</th><th style="width:90px">속도</th></tr>
     ${ev.filter(e => Math.abs(e[0] - T) <= 60000).map(e => `<tr><td>${off(e[0], T)}</td><td>${e[1]}</td><td>${e[2]} → <b>${e[3]}</b></td><td>${e[4] === null ? '-' : Math.round(e[4]) + 'km/h'}</td></tr>`).join('') || '<tr><td colspan="4">변화 없음</td></tr>'}
@@ -223,6 +229,12 @@ async function render(rep, raw) {
   $('#bCsv').onclick = () => dl(`${rep.rid}.csv`, rep.samples_csv, 'text/csv');
   $('#bJson').onclick = () => dl(`${rep.rid}.json`, raw, 'application/json');
   document.body.dataset.verified = ok ? 'ok' : 'fail';
+  const personal = rep.payer.type === 'PERSONAL';
+  let paid = !personal || qs.get('paid') === '1';
+  try { paid = paid || sessionStorage.getItem('paid:' + rep.rid) === '1'; } catch (e) {}
+  const setLock = () => { document.body.classList.toggle('locked', !paid); $('#lock').style.display = paid ? 'none' : ''; $('#bCsv').disabled = !paid; $('#bJson').disabled = !paid; };
+  $('#bPay').onclick = () => { paid = true; try { sessionStorage.setItem('paid:' + rep.rid, '1'); } catch (e) {} setLock(); };
+  setLock();
 }
 function dl(name, text, type) { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], {type})); a.download = name; a.click(); }
 

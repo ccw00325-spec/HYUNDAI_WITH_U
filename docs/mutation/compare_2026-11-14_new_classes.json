@@ -1,0 +1,111 @@
+{
+  "tool": "pit",
+  "before": {
+    "Survived": 3,
+    "Killed": 19,
+    "NoCoverage": 2
+  },
+  "after": {
+    "Killed": 23,
+    "Survived": 1
+  },
+  "transitions": [
+    {
+      "identity": [
+        "com.withu.core.LogPrivacy",
+        "getRedact",
+        "()Z",
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator",
+        [
+          "4"
+        ]
+      ],
+      "before": {
+        "status": "NoCoverage",
+        "rawStatus": "NO_COVERAGE",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.OpsTest.logPrivacy_isOnByDefault_andToggleIsReadable(com.withu.core.OpsTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.LogPrivacy",
+        "getRedact",
+        "()Z",
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator",
+        [
+          "4"
+        ]
+      ],
+      "before": {
+        "status": "NoCoverage",
+        "rawStatus": "NO_COVERAGE",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.OpsTest.logPrivacy_isOnByDefault_andToggleIsReadable(com.withu.core.OpsTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.SirenAnchor",
+        "resolve",
+        "(JLjava/lang/Float;JFJ)Lcom/withu/core/SirenAnchor$Result;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "6"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.OpsTest.siren_noBrakeRecordedYet_isNeverSameStop_evenRightAfterBoot(com.withu.core.OpsTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.SweepSchedule",
+        "due",
+        "(JJ)Z",
+        "org.pitest.mutationtest.engine.gregor.mutators.MathMutator",
+        [
+          "5"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.OpsTest.sweep_dueExactlyAfterOneHour_notBefore(com.withu.core.OpsTest)"
+        ]
+      }
+    }
+  ],
+  "missingBefore": [],
+  "missingAfter": [],
+  "onlyBefore": [],
+  "onlyAfter": [],
+  "completeMatch": true
+}

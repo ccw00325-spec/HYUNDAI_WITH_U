@@ -19,6 +19,21 @@ class EvidenceTest {
         return out
     }
 
+    @Test fun pendingShowsUnsealedSamples_withoutSealing() {
+        val out = mutableListOf<Chunk>()
+        val s = ChunkSealer(7, 0, fakeSign) { out += it }
+        assertTrue(s.pending().isEmpty())
+        for (t in 0L until 1_000L step 100) s.add(Sample(t, 30f, 'D', true, 'R', 1f, null, null, false, null, null))
+        val p = s.pending()
+        assertEquals(10, p.size); assertEquals(0L, p.first().t); assertEquals(900L, p.last().t)
+        assertEquals(30f, p[3].spd); assertEquals('R', p[3].turn)
+        assertTrue("미리보기만으로는 봉인하지 않는다", out.isEmpty())
+        s.add(Sample(60_000, 0f))                 // 다음 분 → 이전 분 봉인
+        assertEquals(1, out.size); assertEquals(10, out[0].n)
+        assertEquals(listOf(60_000L), s.pending().map { it.t })
+        s.flush(); assertTrue(s.pending().isEmpty())
+    }
+
     @Test fun sealerCutsOneChunkPerMinute_andChainsThem() {
         val c = sealMinutes(3)
         assertEquals(3, c.size)

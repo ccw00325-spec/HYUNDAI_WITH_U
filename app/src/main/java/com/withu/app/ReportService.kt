@@ -25,9 +25,11 @@ import java.io.File
 object ReportService {
     data class Plan(val anchor: Long, val anchorKind: String?, val check: IssueCheck, val samples: Int, val coverage: Double, val payer: Payer)
 
-    fun plan(store: Store, settings: Settings, userT: Long, now: Long = System.currentTimeMillis()): Plan {
+    /** @param unsealed 아직 봉인하지 않은 이번 분의 샘플(미리보기 화면용). 발급할 때는 먼저 봉인하므로 비워 둔다 */
+    fun plan(store: Store, settings: Settings, userT: Long, now: Long = System.currentTimeMillis(), unsealed: List<Sample> = emptyList()): Plan {
         val (anchor, mark) = ReportWindow.anchor(userT, store.eventMarks(userT, ReportWindow.SNAP_MS))
-        val rows = store.chunksBetween(anchor - ReportWindow.HALF_MS, anchor + ReportWindow.HALF_MS).sumOf { c -> Sample.parseAll(c.data).count { it.t in ReportWindow.range(anchor) } }
+        val rows = store.chunksBetween(anchor - ReportWindow.HALF_MS, anchor + ReportWindow.HALF_MS).sumOf { c -> Sample.parseAll(c.data).count { it.t in ReportWindow.range(anchor) } } +
+            unsealed.count { it.t in ReportWindow.range(anchor) }
         val check = Issue.check(anchor, now, rows, store.reportAt(anchor)?.rid)
         return Plan(anchor, mark?.kind, check, rows, Issue.coverage(rows), Billing.payer(settings.insurer, Settings.PARTNERS))
     }

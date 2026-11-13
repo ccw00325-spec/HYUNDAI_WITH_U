@@ -41,7 +41,7 @@ class ChunkSealer(private val trip: Long, start: Long, private val sign: (String
     private val buf = StringBuilder()
     private var first = -1L; private var last = -1L; private var n = 0; private var minute = Long.MIN_VALUE
 
-    fun add(s: Sample) {
+    @Synchronized fun add(s: Sample) {
         val m = Math.floorDiv(s.t, 60_000L)
         if (n > 0 && m != minute) flush()
         minute = m
@@ -49,8 +49,11 @@ class ChunkSealer(private val trip: Long, start: Long, private val sign: (String
         buf.append(s.csv()).append('\n'); last = s.t; n++
     }
 
+    /** 아직 봉인하지 않은 이번 분의 샘플 (미리보기용 · 봉인하지 않으므로 1분 묶음이 쪼개지지 않는다) */
+    @Synchronized fun pending(): List<Sample> = Sample.parseAll(buf.toString())
+
     /** 모인 샘플을 묶음으로 봉인. 비어 있으면 null */
-    fun flush(): Chunk? {
+    @Synchronized fun flush(): Chunk? {
         if (n == 0) return null
         val data = Sample.HEADER + "\n" + buf
         val h = HashChain.seal(prev, data)
@@ -60,7 +63,7 @@ class ChunkSealer(private val trip: Long, start: Long, private val sign: (String
     }
 }
 
-/** 보관 정책: 일반 운행 7일, 사고 확인·리포트 발급 1년, 사용자가 최대 3년까지 연장 */
+/** 보관 정책: 일반 운행 7일, 사고 확인·리포트 발급 1년 (고정 기간은 1일~3년 범위로만 받는다) */
 object Retention {
     const val DAY = 86_400_000L
     const val KEEP_DAYS = 7

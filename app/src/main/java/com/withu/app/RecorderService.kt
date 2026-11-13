@@ -52,6 +52,9 @@ import com.withu.core.Decision
 import com.withu.core.DetectorConfig
 import com.withu.core.GuideFlow
 import com.withu.core.Hash
+import com.withu.core.LogPrivacy
+import com.withu.core.SirenAnchor
+import com.withu.core.SweepSchedule
 import com.withu.core.RoadContext
 import com.withu.core.Sample
 import com.withu.core.StatementPrompt
@@ -68,7 +71,11 @@ import kotlin.math.sqrt
  * 차량 신호 수집 → 1분 묶음 봉인·서명 → 사고 추정 → 대응 안내(TTS) → 진술 녹음 → 리포트 발급을 모두 맡고, 화면은 AppState를 보여 주기만 한다.
  */
 class RecorderService : Service() {
-    companion object { @Volatile var inst: RecorderService? = null }
+    companion object {
+        @Volatile var inst: RecorderService? = null
+        /** 이 시간 안에 확인한 사고는 프로세스가 다시 떠도 이어서 보여 준다 */
+        const val RESTORE_WINDOW_MS = 3_600_000L
+    }
 
     private lateinit var h: Handler
     private val ui = Handler(Looper.getMainLooper())
@@ -87,8 +94,14 @@ class RecorderService : Service() {
     var bubble: Bubble? = null; private set
     private var ticks = 0L
     private var lastSpeedForGuide = 0f
+    private var lastSweep = 0L
 
     override fun onBind(i: Intent?): IBinder? = null
+
+    /** 기록 스레드에서 난 예외가 서비스 전체를 죽이지 않게 막고 로그만 남긴다 */
+    private inline fun safe(what: String, block: () -> Unit) {
+        try { block() } catch (e: Exception) { L("ERROR $what ${e.javaClass.simpleName}: ${e.message}") }
+    }
 
     override fun onStartCommand(i: Intent?, flags: Int, startId: Int): Int {
         L("SVC onStartCommand from=${i?.getStringExtra("from") ?: if (i == null) "system-restart" else "activity"}")
@@ -97,6 +110,7 @@ class RecorderService : Service() {
 
     override fun onCreate() {
         super.onCreate(); inst = this
+        LogPrivacy.redact = !BuildConfig.DEBUG
         settings = Settings(this)
         val nm = getSystemService(NotificationManager::class.java)
         nm.createNotificationChannel(NotificationChannel("rec", "주행 기록", NotificationManager.IMPORTANCE_LOW))
@@ -105,16 +119,21 @@ class RecorderService : Service() {
         ui.postDelayed({ if (!MainActivity.visible) bubble?.show("service started without screen") }, 2000)
         val ht = HandlerThread("withu-rec").apply { start() }; h = Handler(ht.looper)
         store = Store(this)
-        h.post {
+        h.post { safe("trip start") {
             val now = System.currentTimeMillis()
-            tripId = store.newTrip(now); store.closeDangling(tripId); store.sweep(now)
+            tripId = store.newTrip(now); store.closeDangling(tripId); store.sweep(now); lastSweep = now
             sealer = ChunkSealer(tripId, now, store::sign) { c -> store.insertChunk(c); L("CHUNK trip=${c.trip} n=${c.n} hash=${c.hash.take(8)} prev=${c.prev.take(8)} signed") }
             L("TRIP start id=$tripId (keep 7d unless accident/report)")
+            if (AppState.accident.value == null) store.lastConfirmed(now - RESTORE_WINDOW_MS)?.let { AppState.accident.value = it; L("ACCIDENT restored from DB t=${it.t} highway=${it.highway}") }
             refresh()
-        }
+        } }
         setupVehicle(); setupCar(); setupFused(); setupNavi(); setupTts(); setupStt()
         h.postDelayed(object : Runnable {
             override fun run() {
+                try { step() } catch (e: Exception) { L("ERROR tick ${e.javaClass.simpleName}: ${e.message}") }
+                h.postDelayed(this, 100)
+            }
+            fun step() {
                 val now = System.currentTimeMillis()
                 val s = Sample(now, Sig.speedKph, Sig.gear, Sig.brake, Sig.turn, Sig.steer, Sig.lowBeam, Sig.wiper, Sig.driverDoor, Sig.lat, Sig.lon)
                 sealer?.add(s)
@@ -122,8 +141,8 @@ class RecorderService : Service() {
                 for (d in detector.tick(s, Sig.airbag)) onDecision(d)
                 ticks++
                 if (ticks % 10 == 0L) AppState.tick.value = now
-                if (ticks % 100 == 0L) { L("TICK spd=${Sig.speedKph} gear=${Sig.gear} brk=${Sig.brake} turn=${Sig.turn} door=${Sig.driverDoor} loc=${Sig.lat},${Sig.lon}"); refresh() }
-                h.postDelayed(this, 100)
+                if (ticks % 100 == 0L) { L("TICK spd=${Sig.speedKph} gear=${Sig.gear} brk=${Sig.brake} turn=${Sig.turn} door=${Sig.driverDoor} loc=${LogPrivacy.loc(Sig.lat, Sig.lon)}"); refresh() }
+                if (SweepSchedule.due(lastSweep, now)) { lastSweep = now; safe("periodic sweep") { store.sweep(now); refresh() } }
             }
         }, 500)
         AppState.serviceAlive.value = true
@@ -182,22 +201,25 @@ class RecorderService : Service() {
         }
     }
 
-    fun siren(src: String) = h.post {
+    fun siren(src: String) = h.post { safe("siren") { sirenInner(src) } }
+    private fun sirenInner(src: String) {
         val now = System.currentTimeMillis()
         L("SIREN pressed src=$src gear=${Sig.gear} spd=${Sig.speedKph}")
         store.insertEvent(tripId, now, "SIREN", Sig.speedKph ?: 0f, false, null)
         // 급제동 뒤 3분 안이고 그 뒤로 다시 달리지 않았다면, 급제동 직전 속도를 사고 속도로 본다 (고속도로 판단에 사용)
-        val sameStop = now - lastBrakeAt < 180_000 && lastMovingAt - lastBrakeAt < 15_000
-        ask(Pending(if (sameStop) lastBrakeAt else now, maxOf(Sig.speedKph ?: 0f, if (sameStop) lastBrakeFrom else 0f), "siren"))
+        val a = SirenAnchor.resolve(now, Sig.speedKph, lastBrakeAt, lastBrakeFrom, lastMovingAt)
+        L("SIREN anchor sameStop=${a.sameStop} t=${a.t} from=${a.fromKph}kph")
+        ask(Pending(a.t, a.fromKph, "siren"))
     }
     @Volatile private var lastBrakeAt = 0L
     @Volatile private var lastBrakeFrom = 0f
     @Volatile private var lastMovingAt = 0L
 
-    fun answer(yes: Boolean) = h.post {
+    fun answer(yes: Boolean) = h.post { safe("answer") { answerInner(yes) } }
+    private fun answerInner(yes: Boolean) {
         val p = AppState.pending.value ?: Pending(System.currentTimeMillis(), Sig.speedKph ?: 0f, "manual")
         AppState.pending.value = null; bubble?.setState("rec")
-        if (!yes) { store.insertEvent(tripId, p.t, "DISMISSED", p.fromKph, false, null); L("ANSWER no -> not pinned, stays 7 days"); ui.post { AppState.home() }; refresh(); return@post }
+        if (!yes) { store.insertEvent(tripId, p.t, "DISMISSED", p.fromKph, false, null); L("ANSWER no -> not pinned, stays 7 days"); ui.post { AppState.home() }; refresh(); return }
         confirm(p)
     }
 
@@ -207,17 +229,17 @@ class RecorderService : Service() {
         store.insertEvent(tripId, p.t, "ACCIDENT_CONFIRMED", p.fromKph, true, AppState.address.value)
         store.pin(tripId, now, "accident_confirmed")
         store.pinTripsBetween(p.t - 300_000, now, now, "accident_confirmed")
-        h.postDelayed({
+        h.postDelayed({ safe("guide start") {
             val addr = AppState.address.value
             val hw = RoadContext.isHighway(p.fromKph, addr)
             AppState.accident.value = Accident(p.t, p.fromKph, p.why, addr, hw)
             val first = guide.start(hw); pushGuide()
             say(if (hw) "고속도로 사고로 보여요. 먼저 안전한 곳으로 대피하세요." else "일반 도로 사고로 보여요. 순서대로 안내할게요.")
             say(first.speech)
-            L("ACCIDENT confirmed why=${p.why} from=${p.fromKph}kph highway=$hw address=$addr -> trip pinned 365d, guide=${guide.steps}")
+            L("ACCIDENT confirmed why=${p.why} from=${p.fromKph}kph highway=$hw address=${LogPrivacy.text(addr)} -> trip pinned 365d, guide=${guide.steps}")
             ui.post { AppState.back.clear(); AppState.route.value = Route.GUIDE }
             refresh()
-        }, 700)
+        } }, 700)
     }
 
     // ---------------- 대응 안내 ----------------
@@ -262,7 +284,7 @@ class RecorderService : Service() {
                 @Suppress("MissingPermission")
                 val ar = AudioRecord(MediaRecorder.AudioSource.MIC, rate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, maxOf(min, 6400))
                 RandomAccessFile(f, "rw").use { raf ->
-                    raf.write(ByteArray(44)); ar.startRecording(); L("REC start mic -> ${f.name} opening='$opening'")
+                    raf.write(ByteArray(44)); ar.startRecording(); L("REC start mic -> ${f.name} opening=${LogPrivacy.text(opening)}")
                     val buf = ByteArray(3200); val t0 = System.currentTimeMillis()
                     while (recording && System.currentTimeMillis() - t0 < maxSec * 1000L) {
                         val n = ar.read(buf, 0, buf.size); if (n <= 0) continue
@@ -290,11 +312,17 @@ class RecorderService : Service() {
         raf.write(le32(rate.toLong())); raf.write(le32(rate * 2L)); raf.write(le16(2)); raf.write(le16(16)); raf.write("data".toByteArray()); raf.write(le32(dataLen))
     }
 
-    private fun finishStatement(f: File, evT: Long, opening: String, durS: Int) = h.post {
+    private fun finishStatement(f: File, evT: Long, opening: String, durS: Int) = h.post { safe("statement save") { finishStatementInner(f, evT, opening, durS) } }
+    private fun finishStatementInner(f: File, evT: Long, opening: String, durS: Int) {
+        if (!f.exists() || f.length() <= 44) {
+            AppState.rec.value = RecState(false, 0, 0f); AppState.toast.value = "녹음을 저장하지 못했어요. 마이크를 확인해 주세요"
+            L("REC nothing recorded file=${f.name} exists=${f.exists()}"); f.delete(); startFg(false); return
+        }
         val sha = Hash.sha256(f.readBytes())
         curStatementId = store.insertStatement(StatementRow(0, evT, System.currentTimeMillis(), opening, "", f.absolutePath, sha, durS))
         AppState.rec.value = RecState(false, durS, 0f, transcribing = true)
         L("REC done file=${f.name} bytes=${f.length()} dur=${durS}s sha256=$sha")
+        startFg(false)
         h.postDelayed({ if (AppState.rec.value.transcribing) { AppState.rec.value = AppState.rec.value.copy(transcribing = false); L("STT no final result within 15s (transcript empty, audio kept)") } }, 15_000)
         refresh()
     }
@@ -318,7 +346,7 @@ class RecorderService : Service() {
     }
 
     private fun onSttFinal(text: String) = h.post {
-        L("STT final='$text'")
+        L("STT final=${LogPrivacy.text(text)}")
         if (curStatementId > 0 && AppState.rec.value.transcribing) {
             store.setTranscript(curStatementId, text); AppState.rec.value = AppState.rec.value.copy(transcribing = false)
             L("STATEMENT transcript saved id=$curStatementId chars=${text.length}"); refresh()
@@ -335,18 +363,23 @@ class RecorderService : Service() {
 
     // ---------------- 리포트 ----------------
     fun issueReport(userT: Long, onDone: (String) -> Unit = {}) = h.post {
-        sealer?.flush()
-        val r = ReportService.issue(this, store, settings, userT, AppState.address.value)
-        onDone(r); refresh()
+        try {
+            sealer?.flush()
+            val r = ReportService.issue(this, store, settings, userT, AppState.address.value)
+            onDone(r)
+        } catch (e: Exception) { L("ERROR report ${e.javaClass.simpleName}: ${e.message}"); AppState.toast.value = "리포트를 만들지 못했어요. 잠시 뒤 다시 눌러 주세요"; onDone("ERROR") }
+        refresh()
     }
+    /** 봉인 전 샘플까지 합쳐 보여 준다. 미리보기 때문에 묶음을 강제로 봉인하지 않는다(1분 묶음 유지). */
+    fun pendingSamples(): List<Sample> = try { sealer?.pending() ?: emptyList() } catch (e: Exception) { emptyList() }
     fun previewWindow(anchor: Long): List<Sample> = try {
-        store.chunksBetween(anchor - 300_000, anchor + 300_000).flatMap { Sample.parseAll(it.data) }.filter { it.t in (anchor - 300_000)..(anchor + 300_000) }
+        (store.chunksBetween(anchor - 300_000, anchor + 300_000).flatMap { Sample.parseAll(it.data) } + pendingSamples()).filter { it.t in (anchor - 300_000)..(anchor + 300_000) }
     } catch (e: Exception) { emptyList() }
     fun flushNow() = h.post { sealer?.flush() }
 
     // ---------------- TTS / STT ----------------
     private var ttsReady = false
-    fun say(text: String) { L("SAY '$text' ready=$ttsReady"); try { tts?.speak(text, true) } catch (e: Exception) { L("TTS speak FAILED $e") } }
+    fun say(text: String) { L("SAY ${LogPrivacy.text(text)} ready=$ttsReady"); try { tts?.speak(text, true) } catch (e: Exception) { L("TTS speak FAILED $e") } }
     private fun setupTts() {
         try {
             tts = ai.pleos.playground.tts.TextToSpeech(this, ai.pleos.playground.tts.constant.Mode.ON_DEVICE)
@@ -445,7 +478,7 @@ class RecorderService : Service() {
             navi = NaviHelper(this)
             navi!!.initialize({ L("NAVI initialized"); try { navi?.getCurrentLocationInfo() } catch (_: Exception) {} }, { t -> L("NAVI init FAILED ${t.message}") })
             navi!!.addListener(object : NaviHelperEventListener {
-                override fun onCurrentLocationInfo(info: CurrentLocationInfo) { AppState.address.value = info.address; L("NAVI address=${info.address}") }
+                override fun onCurrentLocationInfo(info: CurrentLocationInfo) { AppState.address.value = info.address; L("NAVI address=${LogPrivacy.text(info.address)}") }
                 override fun onBookmarkInfo(list: List<ai.pleos.playground.navi.data.BookmarkInfo>) {}
                 override fun onRouteStarted(p0: ai.pleos.playground.navi.data.RouteStartInfo) {}
                 override fun onRoutingCompleted() {}
@@ -497,6 +530,7 @@ class RecorderService : Service() {
             "route" -> ui.post { AppState.go(Route.valueOf(arg ?: "HOME")) }
             "state" -> L("STATE route=${AppState.route.value} pending=${AppState.pending.value} accident=${AppState.accident.value} guide=${AppState.guide.value} bubble=${bubble?.shown} visible=${MainActivity.visible}")
             "say" -> say(arg ?: "테스트 음성입니다.")
+            "verbose" -> { LogPrivacy.redact = arg != "on"; L("LOG privacy redact=${LogPrivacy.redact}") }
         }
     }
 }
