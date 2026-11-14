@@ -27,7 +27,7 @@
 
     <application
         android:label="WiTH U"
-        android:icon="@drawable/yudi_happy"
+        android:icon="@drawable/wedi_happy"
         android:allowBackup="false"
         android:supportsRtl="false">
         <activity

@@ -16,8 +16,8 @@ android {
         applicationId = "com.withu.app"
         minSdk = 28
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.1.0"
         ndk { abiFilters += listOf("x86_64", "arm64-v8a") }
     }
     signingConfigs {

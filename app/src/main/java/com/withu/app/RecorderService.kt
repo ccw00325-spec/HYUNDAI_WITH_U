@@ -135,7 +135,7 @@ class RecorderService : Service() {
             }
             fun step() {
                 val now = System.currentTimeMillis()
-                val s = Sample(now, Sig.speedKph, Sig.gear, Sig.brake, Sig.turn, Sig.steer, Sig.lowBeam, Sig.wiper, Sig.driverDoor, Sig.lat, Sig.lon)
+                val s = Sample(now, Sig.speedKph, Sig.gear, Sig.brake, Sig.turn, Sig.steer, Sig.lowBeam, Sig.wiper, Sig.driverDoor, Sig.lat, Sig.lon, Sig.speedLimit)
                 sealer?.add(s)
                 Sig.speedKph?.let { if (it > 1f) lastSpeedForGuide = it; if (it > 5f) lastMovingAt = now }
                 for (d in detector.tick(s, Sig.airbag)) onDecision(d)
@@ -484,6 +484,8 @@ class RecorderService : Service() {
                 override fun onRoutingCompleted() {}
                 override fun onDestinationChanged() {}
                 override fun onError(p0: NaviErrorCode) { L("NAVI error $p0") }
+                // 과속 수정요소의 근거: 현재 도로 제한속도 (0 이하는 정보 없음)
+                override fun onCurrentRoadSpeedLimit(p0: Int) { val v = p0.takeIf { it in 1..200 }; if (v != Sig.speedLimit) L("NAVI speedLimit=$v"); Sig.speedLimit = v }
             })
         } catch (e: Exception) { L("NAVI setup FAILED $e") }
     }

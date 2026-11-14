@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
-:root{--brand:#1463F3;--navy:#0B1F3A;--warn:#FF5A36;--amber:#F5A524;--teal:#12B5A6;--ok:#0B8577;--okbg:#E6F7F4;--bg:#F4F6FA;--line:#E3E8F0;--sub:#5B6B80;--mute:#8A97A8;--soft:#EAF1FF}
+:root{--brand:#1463F3;--navy:#0B1F3A;--warn:#FF5A36;--amber:#F5A524;--teal:#12B5A6;--ok:#0B8577;--okbg:#E6F7F4;--badbg:#FFEDE8;--bg:#F4F6FA;--line:#E3E8F0;--sub:#5B6B80;--mute:#8A97A8;--soft:#EAF1FF}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Pretendard,'Malgun Gothic',sans-serif;color:var(--navy);background:var(--bg);word-break:keep-all;-webkit-font-smoothing:antialiased}
 .wrap{max-width:980px;margin:0 auto;padding:24px 16px 60px}
@@ -20,18 +20,39 @@ body{font-family:Pretendard,'Malgun Gothic',sans-serif;color:var(--navy);backgro
 .head{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:start;border-bottom:3px solid var(--navy);padding-bottom:16px}
 h1{font-size:26px;font-weight:800;letter-spacing:-.5px}
 .meta{color:var(--sub);font-size:13px;margin-top:6px;line-height:1.6}
-.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 12px;font-weight:800;font-size:13px}
-.badge.ok{background:var(--okbg);color:var(--ok)}.badge.bad{background:#FFEDE8;color:var(--warn)}.badge.info{background:var(--soft);color:var(--brand)}.badge.wait{background:#FFF4DE;color:#9A6400}
-h2{font-size:17px;font-weight:800;margin:22px 0 10px;display:flex;align-items:center;gap:8px}
+.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 12px;font-weight:800;font-size:13px;white-space:nowrap}
+.badge.ok{background:var(--okbg);color:var(--ok)}.badge.bad{background:var(--badbg);color:var(--warn)}.badge.info{background:var(--soft);color:var(--brand)}.badge.wait{background:#FFF4DE;color:#9A6400}.badge.mute{background:var(--bg);color:var(--sub)}
+h2{font-size:17px;font-weight:800;margin:22px 0 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 h2 .n{background:var(--navy);color:#fff;border-radius:6px;font-size:12px;padding:2px 7px}
+h2 small{font-size:12px;color:var(--sub);font-weight:600}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
 th{background:var(--bg);width:150px;font-weight:700;color:var(--sub)}
-.facts{display:grid;gap:8px}
-.fact{display:grid;grid-template-columns:28px 1fr;gap:6px;align-items:start;padding:10px 12px;border-radius:12px;background:var(--bg);font-size:15px;line-height:1.5}
-.fact .i{font-weight:900}.fact.y .i{color:var(--ok)}.fact.n .i{color:var(--amber)}
-.fact b{font-weight:800}
-.note{font-size:13px;color:var(--sub);margin-top:8px}
+/* 담당자 요약 */
+.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.stat{border-radius:14px;padding:12px 14px}
+.stat b{display:block;font-size:30px;font-weight:900;line-height:1.1}
+.stat span{font-size:13px;font-weight:700}
+.stat.ok{background:var(--okbg);color:var(--ok)}.stat.bad{background:var(--badbg);color:var(--warn)}.stat.mute{background:var(--bg);color:var(--sub)}
+.lead{margin-top:10px;border:2px solid var(--ok);border-radius:14px;padding:12px 16px}
+.lead h3{font-size:14px;color:var(--ok);margin-bottom:6px}
+.lead li{list-style:none;font-size:15px;line-height:1.55;padding-left:22px;position:relative}
+.lead li:before{content:'✔';position:absolute;left:0;color:var(--ok);font-weight:900}
+.lead li em{font-style:normal;color:var(--sub);font-size:13px}
+/* 수정요소 사실표 */
+table.ff th{width:auto;font-size:13px}
+table.ff td{font-size:14px;line-height:1.45}
+table.ff td.k{font-weight:800;width:170px}
+table.ff td.k small{display:block;font-weight:500;color:var(--mute);font-size:11px;margin-top:2px}
+table.ff td.lv{width:92px;white-space:nowrap}
+table.ff td.ln{width:128px}
+table.ff tr.for td.v{background:#F3FBF9}
+table.ff tr.against td.v{background:#FFF6F3}
+table.ff tr.na td.v,table.ff tr.unknown td.v{color:var(--sub)}
+.tag{display:inline-block;border-radius:8px;padding:2px 8px;font-size:12px;font-weight:800}
+.tag.CONFIRMED{background:var(--navy);color:#fff}.tag.PARTIAL{background:var(--soft);color:var(--brand)}.tag.UNKNOWN{background:var(--bg);color:var(--sub)}.tag.NA{background:var(--bg);color:var(--mute)}
+.tag.FOR_DRIVER{background:var(--okbg);color:var(--ok)}.tag.AGAINST_DRIVER{background:var(--badbg);color:var(--warn)}.tag.NEUTRAL{background:var(--bg);color:var(--sub)}
+.note{font-size:12.5px;color:var(--sub);margin-top:8px;line-height:1.6}
 .chart{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:12px;background:#fff}
 .legend{display:flex;gap:14px;font-size:12px;color:var(--sub);margin-top:6px;flex-wrap:wrap}
 .legend i{display:inline-block;width:12px;height:8px;border-radius:2px;margin-right:4px;vertical-align:middle}
@@ -42,15 +63,28 @@ th{background:var(--bg);width:150px;font-weight:700;color:var(--sub)}
 body.locked .paid{display:none!important}
 .disc{background:var(--navy);color:#fff;border-radius:14px;padding:14px 16px;font-size:14px;line-height:1.6;margin-top:16px}
 #qr{width:120px;height:120px}#qr img,#qr canvas{width:120px!important;height:120px!important}
-.pay{border:2px dashed var(--line);border-radius:14px;padding:12px 14px;font-size:14px;margin-top:12px}
-.err{background:#FFEDE8;color:var(--warn);padding:16px;border-radius:12px;font-weight:700}
-@media (max-width:640px){.head{grid-template-columns:1fr}th{width:110px}.page{padding:20px 16px}}
+.err{background:var(--badbg);color:var(--warn);padding:16px;border-radius:12px;font-weight:700}
+@media (max-width:640px){
+  .head{grid-template-columns:1fr}th{width:110px}.page{padding:20px 16px}
+  .sum{gap:6px}.stat{padding:10px}.stat b{font-size:24px}.stat span{font-size:11px}
+  table.ff thead{display:none}
+  table.ff,table.ff tbody,table.ff tr,table.ff td{display:block;width:100%!important;border:0}
+  table.ff tr{border:1px solid var(--line);border-radius:12px;margin-bottom:8px;padding:10px 12px;overflow:hidden}
+  table.ff td{padding:2px 0}table.ff td.lv,table.ff td.ln{display:inline-block;width:auto!important;margin-right:6px}
+  table.ff tr.for td.v,table.ff tr.against td.v{background:none}
+  table.ff tr.for{border-left:5px solid var(--ok)}table.ff tr.against{border-left:5px solid var(--warn)}
+}
 @media print{
-  @page{size:A4;margin:12mm}
+  @page{size:A4;margin:11mm}
   body{background:#fff}.wrap{max-width:none;padding:0}.bar,.noprint{display:none!important}
   .page{box-shadow:none;border-radius:0;padding:0;margin:0}
-  .pb{break-before:auto}.chart{break-inside:avoid}
-  h2{break-after:avoid}.fact,.stmt,tr{break-inside:avoid}
+  .pb{break-before:page}.chart{break-inside:avoid}
+  h2{break-after:avoid}.stmt,tr,.lead,.sum{break-inside:avoid}
+  h1{font-size:21px}.meta{font-size:11px}.head{padding-bottom:10px}#qr,#qr img,#qr canvas{width:96px!important;height:96px!important}
+  .sum{margin-top:10px;gap:8px}.stat{padding:8px 10px}.stat b{font-size:22px}.stat span{font-size:11px}
+  .lead{padding:8px 12px;margin-top:8px}.lead h3{font-size:12px;margin-bottom:3px}.lead li{font-size:12px;line-height:1.45}.lead li em{font-size:11px}
+  h2{font-size:14px;margin:12px 0 6px}th,td{padding:5px 8px;font-size:11.5px}th{width:110px}
+  table.ff td{font-size:11.5px}table.ff td.k{width:150px}table.ff td.k small{font-size:9.5px}.tag{font-size:10.5px}.note{font-size:10.5px}
 }
 </style>
 </head>
@@ -72,12 +106,120 @@ const fmt = t => { const d = new Date(t); return `${d.getFullYear()}.${pad(d.get
 const hex = buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
 const sha = async s => hex(await crypto.subtle.digest('SHA-256', typeof s === 'string' ? new TextEncoder().encode(s) : s));
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const kindName = k => ({ACCIDENT_CONFIRMED:'운전자 사고 확인',HARD_BRAKE:'급제동 감지',SIREN:'사이렌 버튼',AIRBAG:'에어백 전개',user_time:'사용자 지정 시각'}[k] || k);
+const kindName = k => ({ACCIDENT_CONFIRMED:'운전자 사고 확인(직전 급제동 시각)',HARD_BRAKE:'급제동 감지',SIREN:'사이렌 버튼',AIRBAG:'에어백 전개',user_time:'사용자 지정 시각'}[k] || k);
 
 function parseCsv(csv) {
   return csv.split('\n').slice(1).filter(Boolean).map(l => { const p = l.split(',');
-    const b = v => v === '1' ? true : v === '0' ? false : null;
-    return { t:+p[0], spd: p[1] === '' ? null : +p[1], gear:p[2]||null, brk:b(p[3]), turn:p[4]||null, steer:p[5]===''?null:+p[5], low:b(p[6]), wiper:b(p[7]), door:b(p[8]) }; });
+    const b = v => v === '1' ? true : v === '0' ? false : null; const n = v => (v === '' || v === undefined) ? null : +v;
+    return { t:+p[0], spd:n(p[1]), gear:p[2]||null, brk:b(p[3]), turn:p[4]||null, steer:n(p[5]), low:b(p[6]), wiper:b(p[7]), door:b(p[8]), lat:n(p[9]), lon:n(p[10]), lim:n(p[11]) }; });
+}
+
+/* ---------- 수정요소 사실표 (core FaultFactSheet.kt와 같은 계산 · 서명된 원본 신호에서 브라우저가 다시 만든다) ---------- */
+const FF = { LOOKBACK:30000, STEER_DEG:5, MIN_ROAD:30, MIN_HWY:100, CALM_S:2.0, ABRUPT_S:1.0, AVG_MS:5000, OVER:10, STOP:0.5 };
+const LV = {CONFIRMED:'확인됨', PARTIAL:'부분 확인', UNKNOWN:'확인 불가', NA:'해당 없음'};
+const LN = {FOR_DRIVER:'운전자 주장 뒷받침', AGAINST_DRIVER:'불리할 수 있음', NEUTRAL:'판단 재료'};
+const r1 = v => (Math.round(v * 10 + 1e-9) / 10).toFixed(1);
+const sideKo = c => c === 'R' ? '오른쪽' : '왼쪽';
+const isHighway = (spd, addr) => (spd !== null && spd > 80) || (!!addr && /고속도로|자동차전용|고속화/.test(addr));
+function sunEl(t, lat, lon) {
+  const rad = Math.PI / 180, n = t / 86400000 + 2440587.5 - 2451545.0;
+  const L = ((280.460 + 0.9856474 * n) % 360 + 360) % 360, g = (((357.528 + 0.9856003 * n) % 360 + 360) % 360) * rad;
+  const lam = (L + 1.915 * Math.sin(g) + 0.020 * Math.sin(2 * g)) * rad, eps = (23.439 - 0.0000004 * n) * rad;
+  const ra = Math.atan2(Math.cos(eps) * Math.sin(lam), Math.cos(lam)), dec = Math.asin(Math.sin(eps) * Math.sin(lam));
+  const gmst = ((18.697374558 + 24.06570982441908 * n) % 24 + 24) % 24, ha = (gmst * 15 + lon) * rad - ra, la = lat * rad;
+  return Math.asin(Math.sin(la) * Math.sin(dec) + Math.cos(la) * Math.cos(dec) * Math.cos(ha)) / rad;
+}
+function maneuver(s, t) {
+  let cur = null, last = null, prevT = -Infinity;
+  for (const r of s) {
+    if (r.t < t - FF.LOOKBACK || r.t > t + 1000) continue;
+    const on = Math.abs(r.steer ?? 0) >= FF.STEER_DEG;
+    if (on) { cur = (!cur || r.t - prevT > 300) ? {start:r.t, end:r.t, peak:Math.abs(r.steer)} : {...cur, end:r.t, peak:Math.max(cur.peak, Math.abs(r.steer))}; prevT = r.t; }
+    else if (cur) { last = {...cur, end:r.t}; cur = null; }
+  }
+  const m = cur || last; return m && m.start <= t ? m : null;
+}
+function distM(s, from, to) { let d = 0; for (let i = 0; i < s.length - 1; i++) { const a = s[i], b = s[i+1]; if (a.t < from || b.t > to) continue; d += (a.spd ?? 0) / 3.6 * ((b.t - a.t) / 1000); } return Math.round(d); }
+function maxDecel(s, from, to) {
+  let best = null, j = 0;
+  for (let i = 0; i < s.length; i++) { const b = s[i]; if (b.t < from || b.t > to || b.spd === null) continue;
+    while (j < i && s[j].t < b.t - 1000) j++; const a = s[j]; if (a.spd === null || b.t - a.t < 500) continue;
+    const d = (a.spd - b.spd) / 3.6 / ((b.t - a.t) / 1000); if (best === null || d > best) best = d; }
+  return best;
+}
+function factSheet(rows, t, address) {
+  const s = [...rows].sort((a, b) => a.t - b.t);
+  const at = [...s].reverse().find(r => r.t <= t) || null;
+  const sp30 = s.filter(r => r.t >= t - 30000 && r.t <= t && r.spd !== null).map(r => r.spd);
+  const hw = isHighway(sp30.length ? Math.max(...sp30) : null, address);
+  const man = maneuver(s, t);
+  const row = (key, factor, signal, level = 'UNKNOWN', lean = 'NEUTRAL', text = '', markT = null) => ({key, factor, signal, level, lean, text, markT});
+  const out = [];
+  // 1 진로변경 신호
+  { const b = ['signal', '진로변경 신호 불이행·지연', 'TurnSignal 점등 시각 ↔ 조향 시작 시각'];
+    if (!s.some(r => r.turn !== null)) out.push(row(...b, 'UNKNOWN', 'NEUTRAL', '방향지시등 신호 미수신'));
+    else {
+      const ref = man ? man.start : t;
+      const ons = []; for (let i = 1; i < s.length; i++) { const c = s[i].turn; if ((c === 'L' || c === 'R') && s[i-1].turn !== c && s[i].t >= ref - FF.LOOKBACK && s[i].t <= t) ons.push(s[i]); }
+      const pick = [...ons].reverse().find(o => o.t <= ref) || ons[0] || null;
+      const min = hw ? FF.MIN_HWY : FF.MIN_ROAD, road = hw ? '고속도로' : '일반도로';
+      if (!man) {
+        if (!s.some(r => r.steer !== null)) out.push(row(...b, 'PARTIAL', 'NEUTRAL', '조향 신호 미수신 · ' + (pick ? `기준 시각 ${r1((t - pick.t) / 1000)}초 전 ${sideKo(pick.turn)} 점등` : '방향지시등 꺼짐')));
+        else out.push(row(...b, 'NA', 'NEUTRAL', '기준 시각 전 30초 조향 변화 없음(진로변경 아님)' + (pick ? ` · ${sideKo(pick.turn)} 점등 ${r1((t - pick.t) / 1000)}초 전` : ''), pick ? pick.t : null));
+      } else if (!pick) out.push(row(...b, 'CONFIRMED', 'AGAINST_DRIVER', '조향 중 방향지시등 꺼짐 — 신호 없이 진로변경', man.start));
+      else { const lead = (man.start - pick.t) / 1000;
+        if (lead < 0) out.push(row(...b, 'CONFIRMED', 'AGAINST_DRIVER', `조향 시작 ${r1(-lead)}초 뒤 ${sideKo(pick.turn)} 점등 — 지연`, pick.t));
+        else { const d = distM(s, pick.t, man.start);
+          out.push(row(...b, 'CONFIRMED', d >= min ? 'FOR_DRIVER' : 'AGAINST_DRIVER', `조향 시작 ${r1(lead)}초 전(약 ${d}m 앞) ${sideKo(pick.turn)} 점등 — ${road} 법정 ${min}m ${d >= min ? '이상' : '미만'}`, pick.t)); } }
+    } }
+  // 2 급진로변경
+  { const b = ['abrupt_lane', '급진로변경', '조향 시작~끝 시간 (차선 인식 신호는 없음)'];
+    if (!s.some(r => r.steer !== null)) out.push(row(...b, 'UNKNOWN', 'NEUTRAL', '조향 신호 미수신'));
+    else if (!man) out.push(row(...b, 'NA', 'NEUTRAL', `기준 시각 전 30초 조향 ${FF.STEER_DEG}° 이상 없음`));
+    else { const dur = (man.end - man.start) / 1000; const lean = dur >= FF.CALM_S ? 'FOR_DRIVER' : dur < FF.ABRUPT_S ? 'AGAINST_DRIVER' : 'NEUTRAL';
+      out.push(row(...b, 'PARTIAL', lean, `조향 ${r1(dur)}초 유지(최대 ${Math.round(man.peak)}°, ${{FOR_DRIVER:'완만',AGAINST_DRIVER:'급조향',NEUTRAL:'보통'}[lean]}) · 차선 위치는 확인 불가`, man.start)); } }
+  // 3 과속
+  { const b = ['speed', '과속 (현저·중대 과실)', 'AAOS 속도 · 내비 제한속도 · 위치'];
+    const v = s.filter(r => r.t >= t - FF.AVG_MS && r.t <= t && r.spd !== null).map(r => r.spd);
+    if (!v.length) out.push(row(...b, 'UNKNOWN', 'NEUTRAL', '속도 신호 미수신'));
+    else { const avg = v.reduce((a, c) => a + c, 0) / v.length, mx = Math.max(...v);
+      const limR = [...s].reverse().find(r => r.t >= t - 60000 && r.t <= t && r.lim !== null); const lim = limR ? limR.lim : null;
+      if (lim === null) out.push(row(...b, 'PARTIAL', 'NEUTRAL', `기준 시각 전 5초 평균 ${Math.round(avg)}km/h · 최고 ${Math.round(mx)}km/h · 제한속도 미수신(현장 표지와 대조)`));
+      else { const over = avg - lim; const lean = over <= 0 ? 'FOR_DRIVER' : over >= FF.OVER ? 'AGAINST_DRIVER' : 'NEUTRAL';
+        out.push(row(...b, 'CONFIRMED', lean, `기준 시각 전 5초 평균 ${Math.round(avg)}km/h · ${over <= 0 ? `제한 ${lim}km/h 이내` : `제한 ${lim}km/h보다 ${Math.round(over)}km/h 빠름`}`)); } } }
+  // 4 급정거·앞차 급제동
+  { const b = ['hard_brake', '급정거 · 앞차 급제동', 'Brake · 감속도(속도 변화)'];
+    if (!s.some(r => r.brk !== null)) out.push(row(...b, 'UNKNOWN', 'NEUTRAL', '브레이크 신호 미수신'));
+    else { const w = s.filter(r => r.t >= t - 10000 && r.t <= t + 2000);
+      const i = w.findIndex((r, k) => r.brk === true && (k === 0 || w[k-1].brk !== true)); const on = i >= 0 ? w[i] : null;
+      const dec = maxDecel(s, t - 5000, t + 3000); const dt = dec !== null && dec > 0.5 ? ` · 최대 감속 ${r1(dec)}m/s²(${(Math.round(dec / 9.81 * 100 + 1e-9) / 100).toFixed(2)}g)` : '';
+      if (!on) out.push(row(...b, 'CONFIRMED', 'NEUTRAL', '기준 시각 −10초~+2초 제동 기록 없음' + dt));
+      else { const d = (t - on.t) / 1000; out.push(row(...b, 'CONFIRMED', 'NEUTRAL', (d >= 0 ? `기준 시각 ${r1(d)}초 전 제동 시작` : `기준 시각 ${r1(-d)}초 뒤 제동 시작`) + dt, on.t)); } } }
+  // 5 정지 중 피추돌
+  { const b = ['stopped_hit', '정지 중 피추돌', 'Gear · 속도 0 유지 시간'];
+    if (!at || at.spd === null) out.push(row(...b, 'UNKNOWN', 'NEUTRAL', '속도 신호 미수신'));
+    else if (at.spd > FF.STOP) out.push(row(...b, 'NA', 'NEUTRAL', `기준 시각에 주행 중(${Math.round(at.spd)}km/h)`));
+    else { const mv = [...s].reverse().find(r => r.t <= t && (r.spd ?? 0) > FF.STOP);
+      const sinceR = mv ? s.find(r => r.t > mv.t) : s[0]; const since = sinceR ? sinceR.t : t; const dur = (t - since) / 1000; const gear = at.gear ? ` · ${at.gear}단` : '';
+      const head = mv ? `기준 시각 ${r1(dur)}초 전부터 정지` : `기록 시작(${r1(dur)}초 전)부터 정지`;
+      out.push(dur >= 1 ? row(...b, 'CONFIRMED', 'FOR_DRIVER', head + gear, since) : row(...b, 'CONFIRMED', 'NEUTRAL', `기준 시각 직전(${r1(dur)}초)에 멈춤${gear}`, since)); } }
+  // 6 정차 중 문 개방
+  { const b = ['door_open', '정차 중 문 개방', 'Door(운전석) 상태 · 속도'];
+    if (!at || at.door === null) out.push(row(...b, 'UNKNOWN', 'NEUTRAL', '운전석 문 신호 미수신'));
+    else { const aft = s.find(r => r.t > t && r.door === true); const after = aft ? ` · 사고 ${r1((aft.t - t) / 1000)}초 뒤 열림(하차)` : '';
+      if ((at.spd ?? 0) > FF.STOP) out.push(row(...b, 'NA', 'NEUTRAL', '주행 중 · 운전석 문 닫힘' + (at.door ? '' : after)));
+      else if (at.door) { const cl = [...s].reverse().find(r => r.t <= t && r.door !== true); const op = cl ? s.find(r => r.t > cl.t) : null;
+        out.push(row(...b, 'CONFIRMED', 'AGAINST_DRIVER', '정차 중 운전석 문 열림' + (op ? `(기준 시각 ${r1((t - op.t) / 1000)}초 전부터)` : ''))); }
+      else out.push(row(...b, 'CONFIRMED', 'FOR_DRIVER', '정차 중 운전석 문 닫혀 있음' + after)); } }
+  // 7 야간 전조등
+  { const b = ['night_light', '야간 전조등 미점등', 'Vehicle SDK LowBeam · 시각·위치로 일몰 계산'];
+    if (!at || at.low === null) out.push(row(...b, 'UNKNOWN', 'NEUTRAL', '전조등 신호 미수신'));
+    else { const la = [...s].reverse().find(r => r.t <= t && r.lat !== null), lo = [...s].reverse().find(r => r.t <= t && r.lon !== null); const st = at.low ? '전조등 켬' : '전조등 꺼짐';
+      if (!la || !lo) out.push(row(...b, 'PARTIAL', 'NEUTRAL', `${st} · 위치가 없어 야간 여부 미확인`));
+      else { const el = sunEl(t, la.lat, lo.lon);
+        if (el > -0.833) out.push(row(...b, 'NA', 'NEUTRAL', `주간(태양 고도 ${Math.round(el)}°) · ${st}`));
+        else out.push(row(...b, 'CONFIRMED', at.low ? 'FOR_DRIVER' : 'AGAINST_DRIVER', `일몰 후(태양 고도 ${Math.round(el)}°) · ${st}`)); } } }
+  return out;
 }
 
 // Android Keystore ECDSA 서명(DER) → WebCrypto 형식(r‖s 64바이트)
@@ -97,7 +239,6 @@ async function verify(rep) {
     const hashOk = h === c.hash;
     let sigOk = null;
     if (key) { try { sigOk = await crypto.subtle.verify({name:'ECDSA', hash:'SHA-256'}, key, derToRaw(b64(c.sig)), new TextEncoder().encode(c.hash)); } catch (e) { sigOk = false; } }
-    // 묶음 안 샘플이 리포트 표본과 같은지
     res.push({ m0:c.m0, n:c.n, hashOk, linkOk: prev === null || c.trip !== prev.trip || c.prev === prev.hash, sigOk });
     prev = c;
   }
@@ -110,55 +251,57 @@ async function verify(rep) {
 }
 
 function chart(rows, T, from, to, w, h, opt = {}) {
-  const P = {l:44, r:12, t:16, b: opt.tracks ? 120 : 34};
+  const tracks = opt.tracks ? [['방향지시등', r => r.turn === 'L' || r.turn === 'R', '#F5A524', r => r.turn === 'R' ? '오른쪽' : '왼쪽'], ['조향', r => Math.abs(r.steer ?? 0) >= FF.STEER_DEG, '#0B1F3A', r => Math.round(Math.abs(r.steer)) + '°'], ['브레이크', r => r.brk === true, '#FF5A36', () => '밟음'], ['P단', r => r.gear === 'P', '#12B5A6', () => 'P'], ['운전석 문', r => r.door === true, '#5B6B80', () => '열림']] : [];
+  const P = {l:64, r:12, t:34, b: tracks.length ? 34 + tracks.length * 22 + 8 : 34};
   const X = t => P.l + (t - from) / (to - from) * (w - P.l - P.r);
   const vmax = Math.max(80, ...rows.map(r => r.spd || 0)); const Y = v => P.t + (1 - v / vmax) * (h - P.t - P.b);
   let s = `<svg class="chart" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard">`;
   for (const v of [0, vmax/2, vmax]) s += `<line x1="${P.l}" x2="${w-P.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="#E3E8F0"/><text x="${P.l-6}" y="${Y(v)+4}" font-size="11" text-anchor="end" fill="#8A97A8">${Math.round(v)}</text>`;
   const pts = rows.filter(r => r.spd !== null && r.t >= from && r.t <= to).map(r => `${X(r.t).toFixed(1)},${Y(r.spd).toFixed(1)}`).join(' ');
   s += `<polyline points="${pts}" fill="none" stroke="#1463F3" stroke-width="2.5" stroke-linejoin="round"/>`;
-  s += `<line x1="${X(T)}" x2="${X(T)}" y1="${P.t-6}" y2="${h-P.b+(opt.tracks?100:0)}" stroke="#0B1F3A" stroke-width="2"/><text x="${X(T)+5}" y="${P.t+6}" font-size="12" font-weight="800" fill="#0B1F3A">기준 시각</text>`;
-  const ticks = opt.ticks || [];
-  for (const [t, lab] of ticks) s += `<text x="${X(t)}" y="${h-P.b+16}" font-size="11" text-anchor="middle" fill="#8A97A8">${lab}</text>`;
-  if (opt.tracks) {
-    const tr = [['방향지시등', r => r.turn === 'L' || r.turn === 'R', '#F5A524', r => r.turn === 'R' ? '오른쪽' : '왼쪽'], ['브레이크', r => r.brk === true, '#FF5A36', () => '밟음'], ['P단', r => r.gear === 'P', '#12B5A6', () => 'P'], ['운전석 문', r => r.door === true, '#5B6B80', () => '열림']];
-    tr.forEach(([name, on, col, lab], k) => {
-      const y = h - P.b + 28 + k * 22;
-      s += `<text x="${P.l-6}" y="${y+11}" font-size="11" text-anchor="end" fill="#5B6B80" font-weight="700">${name}</text><rect x="${P.l}" y="${y}" width="${w-P.l-P.r}" height="14" rx="7" fill="#F4F6FA"/>`;
-      let start = null, prevR = null;
-      const seg = (a, b, r) => s += `<rect x="${X(a)}" y="${y}" width="${Math.max(3, X(b)-X(a))}" height="14" rx="7" fill="${col}"/>` + (X(b)-X(a) > 40 ? `<text x="${X(a)+6}" y="${y+11}" font-size="10" font-weight="800" fill="#fff">${lab(r)}</text>` : '');
-      for (const r of rows) { if (r.t < from || r.t > to) continue; if (on(r) && start === null) { start = r.t; prevR = r; } if (!on(r) && start !== null) { seg(start, r.t, prevR); start = null; } }
-      if (start !== null) seg(start, to, prevR);
-    });
-  }
+  const bottom = h - 8;
+  // 사실표 근거 시각 표시 (점등·조향 시작·제동)
+  (opt.marks || []).filter(m => m.t >= from && m.t <= to).forEach((m, k) => {
+    s += `<line x1="${X(m.t)}" x2="${X(m.t)}" y1="${P.t-4}" y2="${bottom}" stroke="${m.c}" stroke-width="1.5" stroke-dasharray="4 3"/><text x="${X(m.t)-4}" y="${P.t-18 + (k % 2) * 12}" font-size="10.5" font-weight="800" text-anchor="end" fill="${m.c}">${m.label}</text>`;
+  });
+  s += `<line x1="${X(T)}" x2="${X(T)}" y1="${P.t-8}" y2="${bottom}" stroke="#0B1F3A" stroke-width="2"/><text x="${X(T)+5}" y="${P.t-16}" font-size="12" font-weight="800" fill="#0B1F3A">기준 시각</text>`;
+  for (const [t, lab] of (opt.ticks || [])) s += `<text x="${X(t)}" y="${h-P.b+16}" font-size="11" text-anchor="middle" fill="#8A97A8">${lab}</text>`;
+  tracks.forEach(([name, on, col, lab], k) => {
+    const y = h - P.b + 26 + k * 22;
+    s += `<text x="${P.l-6}" y="${y+11}" font-size="11" text-anchor="end" fill="#5B6B80" font-weight="700">${name}</text><rect x="${P.l}" y="${y}" width="${w-P.l-P.r}" height="14" rx="7" fill="#F4F6FA"/>`;
+    let start = null, prevR = null;
+    const seg = (a, b, r) => s += `<rect x="${X(a)}" y="${y}" width="${Math.max(3, X(b)-X(a))}" height="14" rx="7" fill="${col}"/>` + (X(b)-X(a) > 40 ? `<text x="${X(a)+6}" y="${y+11}" font-size="10" font-weight="800" fill="#fff">${lab(r)}</text>` : '');
+    for (const r of rows) { if (r.t < from || r.t > to) continue; if (on(r) && start === null) { start = r.t; prevR = r; } if (!on(r) && start !== null) { seg(start, r.t, prevR); start = null; } }
+    if (start !== null) seg(start, to, prevR);
+  });
   return s + '</svg>';
 }
 
-function events(rows, T) {
-  const out = []; const keys = [['gear','기어',v=>v||'-'],['brk','브레이크',v=>v===null?'-':v?'밟음':'뗌'],['turn','방향지시등',v=>({L:'왼쪽',R:'오른쪽','0':'꺼짐'}[v]||'-')],['low','전조등',v=>v===null?'-':v?'켬':'끔'],['wiper','와이퍼',v=>v===null?'-':v?'작동':'멈춤'],['door','운전석 문',v=>v===null?'-':v?'열림':'닫힘']];
+function events(rows) {
+  const out = []; const keys = [['gear','기어',v=>v||'-'],['brk','브레이크',v=>v===null?'-':v?'밟음':'뗌'],['turn','방향지시등',v=>({L:'왼쪽',R:'오른쪽','0':'꺼짐'}[v]||'-')],['low','전조등',v=>v===null?'-':v?'켬':'끔'],['wiper','와이퍼',v=>v===null?'-':v?'작동':'멈춤'],['door','운전석 문',v=>v===null?'-':v?'열림':'닫힘'],['lim','제한속도',v=>v===null?'-':v+'km/h']];
   for (let i = 1; i < rows.length; i++) for (const [k, n, f] of keys) if (rows[i][k] !== rows[i-1][k]) out.push([rows[i].t, n, f(rows[i-1][k]), f(rows[i][k]), rows[i].spd]);
-  return out;
+  // 조향: 5° 경계를 넘을 때만
+  for (let i = 1; i < rows.length; i++) { const a = Math.abs(rows[i-1].steer ?? 0) >= FF.STEER_DEG, b = Math.abs(rows[i].steer ?? 0) >= FF.STEER_DEG; if (a !== b) out.push([rows[i].t, '조향', a ? Math.round(Math.abs(rows[i-1].steer)) + '°' : '직진', b ? Math.round(Math.abs(rows[i].steer)) + '°' : '직진', rows[i].spd]); }
+  return out.sort((x, y) => x[0] - y[0]);
 }
 const off = (t, T) => { const d = (t - T) / 1000; return (d >= 0 ? '+' : '−') + Math.abs(d).toFixed(1) + '초'; };
 
 async function render(rep, raw) {
-  const rows = parseCsv(rep.samples_csv); const T = rep.event.t; const f = rep.facts;
+  const rows = parseCsv(rep.samples_csv); const T = rep.event.t;
   const v = await verify(rep); const repSha = await sha(raw); const hParam = qs.get('h');
   const shaOk = !hParam || repSha.startsWith(hParam);
   const ok = v.all && v.samplesMatch && shaOk;
-  const ts = f.turn_signal || {side:'NONE'};
-  const factRows = [
-    ts.side !== 'NONE' ? ['y', `<b>방향지시등 ${ts.side === 'RIGHT' ? '오른쪽' : '왼쪽'} 켬</b> · 기준 시각 ${ts.on_before_s.toFixed(1)}초 전 · 약 ${ts.distance_before_m}m 전 (${Math.round(ts.speed_at_on_kph ?? 0)}km/h)`] : ['y', '<b>방향지시등을 켜지 않음</b> (기준 시각 전 30초 동안)'],
-    ['y', `<b>기준 시각 속도 ${f.speed_at_event_kph === null ? '-' : Math.round(f.speed_at_event_kph)}km/h</b> · 직전 30초 최고 ${f.max_speed_30s_kph === null ? '-' : Math.round(f.max_speed_30s_kph)}km/h`],
-    f.brake_on_before_s !== null ? ['y', `<b>브레이크 ${f.brake_on_before_s >= 0 ? f.brake_on_before_s.toFixed(1) + '초 전' : Math.abs(f.brake_on_before_s).toFixed(1) + '초 뒤'} 밟음</b>`] : ['y', '<b>브레이크 기록 없음</b> (기준 시각 −10초 ~ +2초)'],
-    ['y', `<b>조향 최대 ${Math.round(f.max_abs_steer_10s_deg)}°</b> (기준 시각 전 10초)`],
-    ['y', `<b>전조등 ${f.low_beam_at_event === null ? '미지원' : f.low_beam_at_event ? '켬' : '끔'} · 와이퍼 ${f.wiper_at_event === null ? '미지원' : f.wiper_at_event ? '작동' : '멈춤'}</b>`],
-    ['y', `<b>사고 뒤 조치</b> · P단 ${f.gear_P_after_s === null ? '기록 없음' : f.gear_P_after_s.toFixed(1) + '초 뒤'} · 운전석 문 ${f.driver_door_open_after_s === null ? '열림 기록 없음' : f.driver_door_open_after_s.toFixed(1) + '초 뒤 열림'}`],
-    ['n', `<b>차량 기록으로 확인할 수 없는 것</b> · ${rep.unsupported.join(', ')} → 블랙박스 영상·현장 사진과 함께 보세요`],
-  ];
-  const ev = events(rows, T);
-  const pay = rep.payer.type === 'INSURER' ? `<span class="badge ok">보험사 부담</span> ${esc(rep.payer.name)} · ${esc(rep.payer.note)}` : `<span class="badge wait">개인 결제 ${rep.payer.price_won.toLocaleString()}원</span> ${esc(rep.payer.note)} · 요약(A·B)은 무료, 전체는 결제 뒤 열람`;
-  const chunks = rep.proof.chunks;
+  const ff = factSheet(rows, T, rep.location.address);
+  const app = rep.fault_factors && rep.fault_factors.rows;
+  const sameAsApp = app ? app.length === ff.length && app.every((a, i) => a.key === ff[i].key && a.level === ff[i].level && a.lean === ff[i].lean) : null;
+  const forR = ff.filter(r => r.lean === 'FOR_DRIVER'), agR = ff.filter(r => r.lean === 'AGAINST_DRIVER'), unR = ff.filter(r => r.level === 'UNKNOWN' || r.level === 'PARTIAL');
+  const marks = []; const fm = k => ff.find(r => r.key === k);
+  if (fm('signal').markT && fm('signal').level !== 'NA') marks.push({t: fm('signal').markT, c:'#C27C00', label:'점등'});
+  if (fm('abrupt_lane').markT) marks.push({t: fm('abrupt_lane').markT, c:'#0B1F3A', label:'조향 시작'});
+  if (fm('hard_brake').markT) marks.push({t: fm('hard_brake').markT, c:'#FF5A36', label:'제동'});
+  const pay = rep.payer.type === 'INSURER' ? `<span class="badge ok">보험사 부담</span> ${esc(rep.payer.name)} · ${esc(rep.payer.note)}` : `<span class="badge wait">개인 결제 ${rep.payer.price_won.toLocaleString()}원</span> ${esc(rep.payer.note)} · 요약·사실표(A·B)는 무료, 전체는 결제 뒤 열람`;
+  const chunks = rep.proof.chunks; const ev = events(rows);
+  const cls = r => r.lean === 'FOR_DRIVER' ? 'for' : r.lean === 'AGAINST_DRIVER' ? 'against' : r.level === 'NA' ? 'na' : r.level === 'UNKNOWN' ? 'unknown' : '';
   $('#app').innerHTML = `
   <div class="page">
     <div class="head">
@@ -174,52 +317,64 @@ async function render(rep, raw) {
       <div id="qr" title="이 리포트 웹 주소"></div>
     </div>
 
+    <div class="sum">
+      <div class="stat ok"><b>${forR.length}</b><span>운전자 주장을 뒷받침하는 기록</span></div>
+      <div class="stat bad"><b>${agR.length}</b><span>불리할 수 있는 기록 (그대로 표기)</span></div>
+      <div class="stat mute"><b>${unR.length}</b><span>부분 확인·확인 불가 (다른 자료로 보완)</span></div>
+    </div>
+    ${forR.length ? `<div class="lead"><h3>담당자가 먼저 볼 근거 — 차량이 기록한 수치</h3><ul>${forR.map(r => `<li><b>${esc(r.factor)}</b> · ${esc(r.text)} <em>(${LV[r.level]})</em></li>`).join('')}</ul></div>` : ''}
+
     <h2><span class="n">A</span> 사고 기본 정보</h2>
     <table>
-      <tr><th>기준 시각</th><td><b>${fmt(T)}</b> · ${esc(kindName(rep.event.anchor))}${rep.event.user_time !== T ? ` (운전자가 고른 시각 ${fmt(rep.event.user_time)}에서 보정)` : ''}</td></tr>
+      <tr><th>기준 시각</th><td><b>${fmt(T)}</b> · ${esc(kindName(rep.event.anchor))}${rep.event.user_time !== T ? ` (운전자가 고른 시각 ${fmt(rep.event.user_time)}에서 보정)` : ''}<div class="note" style="margin-top:2px">충돌 순간 센서는 없습니다. 아래 ‘n초 전’은 모두 이 기준 시각에서 잰 값입니다.</div></td></tr>
       <tr><th>장소</th><td>${esc(rep.location.address || '주소 미확인')}${rep.location.lat ? ` · 좌표 ${(+rep.location.lat).toFixed(5)}, ${(+rep.location.lon).toFixed(5)}` : ''}</td></tr>
       <tr><th>차량</th><td>${esc(rep.vehicle.color)} ${esc(rep.vehicle.model)} · ${esc(rep.vehicle.plate)}</td></tr>
       <tr><th>기록 범위</th><td>${fmt(rep.window.from)} ~ ${fmt(rep.window.to)} · 기록률 ${Math.round(rep.window.coverage * 100)}%</td></tr>
       <tr><th>비용</th><td>${pay}</td></tr>
     </table>
 
-    <h2><span class="n">B</span> 핵심 사실 — 차량이 기록한 그대로</h2>
-    <div class="facts">${factRows.map(([c, t]) => `<div class="fact ${c}"><span class="i">${c === 'y' ? '✔' : '△'}</span><span>${t}</span></div>`).join('')}</div>
-    <div class="note">※ 이 리포트는 과실 비율을 판단하지 않습니다. 차량 조작 기록을 사실 그대로 보여 줍니다.</div>
+    <h2><span class="n">B</span> 수정요소 사실표 <small>과실비율 인정기준의 기본과실 + 수정요소 순서</small></h2>
+    <table class="ff">
+      <thead><tr><th>인정기준 수정요소</th><th>차량 기록 (근거)</th><th>확인 수준</th><th>운전자 관점</th></tr></thead>
+      <tbody>${ff.map(r => `<tr class="${cls(r)}"><td class="k">${esc(r.factor)}<small>${esc(r.signal)}</small></td><td class="v">${esc(r.text)}</td><td class="lv"><span class="tag ${r.level}">${LV[r.level]}</span></td><td class="ln"><span class="tag ${r.lean}">${LN[r.lean]}</span></td></tr>`).join('')}</tbody>
+    </table>
+    <div class="note">원칙 — 비율은 계산하지 않습니다(판정은 보험사 협의·분쟁심의). 불리한 사실도 그대로 적고, 신호가 없으면 ‘확인 불가’로 둡니다. 신호 시기: 도로교통법 시행령 별표 2(진로를 바꾸려는 지점 30m 전, 고속도로 100m 전). 이 표는 서명된 원본 신호에서 브라우저가 다시 계산했습니다${sameAsApp === null ? '' : sameAsApp ? ' · 차량 앱 계산과 일치 ✓' : ' · <b style="color:#FF5A36">차량 앱 계산과 다름</b>'}.</div>
 
-    <div class="lock noprint" id="lock"><h3>요약은 무료로 보실 수 있어요</h3><p>그래프·조작 변화 기록·진술·원본 확인(C~G)은 건당 결제 뒤 열립니다 · 개인 <b>${rep.payer.price_won ? rep.payer.price_won.toLocaleString() : '-'}원</b><br>결제 연동은 출시 단계 범위라, 시연판에서는 아래 버튼으로 바로 엽니다.</p><button class="btn pri" id="bPay">결제하고 전체 보기 (시연: 바로 열기)</button></div>
-    <div class="paid">
-    <h2><span class="n">C</span> 사고 직전·직후 (−30초 ~ +10초)</h2>
-    ${chart(rows, T, T - 30000, T + 10000, 920, 330, {tracks:true, ticks:[[T-30000,'−30초'],[T-20000,'−20초'],[T-10000,'−10초'],[T,'0'],[T+10000,'+10초']]})}
-    <div class="legend"><span><i style="background:#1463F3"></i>속도(km/h)</span><span><i style="background:#F5A524"></i>방향지시등</span><span><i style="background:#FF5A36"></i>브레이크</span><span><i style="background:#12B5A6"></i>P단</span><span><i style="background:#5B6B80"></i>운전석 문</span></div>
-    <h2 style="margin-top:14px"><span class="n">C-2</span> 앞뒤 5분 전체 속도</h2>
-    ${chart(rows, T, rep.window.from, rep.window.to, 920, 170, {ticks:[[rep.window.from,'−5분'],[T-150000,'−2.5분'],[T,'0'],[T+150000,'+2.5분'],[rep.window.to,'+5분']]})}
+    <div class="lock noprint" id="lock"><h3>요약과 사실표는 무료로 보실 수 있어요</h3><p>근거 그래프·조작 변화 기록·진술·원본 확인(C~G)은 건당 결제 뒤 열립니다 · 개인 <b>${rep.payer.price_won ? rep.payer.price_won.toLocaleString() : '-'}원</b><br>결제 연동은 출시 단계 범위라, 시연판에서는 아래 버튼으로 바로 엽니다.</p><button class="btn pri" id="bPay">결제하고 전체 보기 (시연: 바로 열기)</button></div>
   </div>
 
-  </div>
   <div class="page pb paid">
-    <h2><span class="n">D</span> 조작 변화 기록 (기준 시각 ±60초)</h2>
+    <h2><span class="n">C</span> 사실표 근거 그래프 <small>−30초 ~ +10초 · 점선 = 사실표에 쓴 시각</small></h2>
+    ${chart(rows, T, T - 30000, T + 10000, 920, 380, {tracks:true, marks, ticks:[[T-30000,'−30초'],[T-20000,'−20초'],[T-10000,'−10초'],[T,'0'],[T+10000,'+10초']]})}
+    <div class="legend"><span><i style="background:#1463F3"></i>속도(km/h)</span><span><i style="background:#F5A524"></i>방향지시등</span><span><i style="background:#0B1F3A"></i>조향 ${FF.STEER_DEG}° 이상</span><span><i style="background:#FF5A36"></i>브레이크</span><span><i style="background:#12B5A6"></i>P단</span><span><i style="background:#5B6B80"></i>운전석 문</span></div>
+    <h2 style="margin-top:14px"><span class="n">C-2</span> 앞뒤 5분 전체 속도</h2>
+    ${chart(rows, T, rep.window.from, rep.window.to, 920, 160, {ticks:[[rep.window.from,'−5분'],[T-150000,'−2.5분'],[T,'0'],[T+150000,'+2.5분'],[rep.window.to,'+5분']]})}
+    <h2><span class="n">D</span> 조작 변화 기록 <small>기준 시각 ±60초</small></h2>
     <table><tr><th style="width:90px">시점</th><th style="width:120px">신호</th><th>변화</th><th style="width:90px">속도</th></tr>
     ${ev.filter(e => Math.abs(e[0] - T) <= 60000).map(e => `<tr><td>${off(e[0], T)}</td><td>${e[1]}</td><td>${e[2]} → <b>${e[3]}</b></td><td>${e[4] === null ? '-' : Math.round(e[4]) + 'km/h'}</td></tr>`).join('') || '<tr><td colspan="4">변화 없음</td></tr>'}
     </table>
     <div class="note">앞뒤 5분 전체 변화 ${ev.length}건은 원본 데이터(CSV)에 모두 들어 있습니다.</div>
+  </div>
 
-    <h2><span class="n">E</span> 운전자 진술 (사고 직후 녹음)</h2>
+  <div class="page pb paid">
+    <h2><span class="n">E</span> 운전자 진술 <small>사고 직후 녹음</small></h2>
     ${rep.statements.length ? rep.statements.map(s => `<div class="stmt"><div class="meta" style="margin:0 0 4px">${fmt(s.t)} 녹음 · ${s.duration_s}초 · 음성 SHA-256 <span class="mono">${s.audio_sha256.slice(0,16)}…</span></div>“${esc(s.opening)} … ”<br><b>${esc(s.transcript || '(받아쓰기 없음 — 음성 원본 보관)')}</b></div>`).join('') : '<div class="stmt">진술 녹음 없음</div>'}
 
-    <h2><span class="n">F</span> 원본 확인 (무결성 검증)</h2>
+    <h2><span class="n">F</span> 원본 확인 <small>무결성 검증</small></h2>
     <table>
       <tr><th>방식</th><td>${esc(rep.proof.alg)}</td></tr>
       <tr><th>해시 사슬</th><td>${v.res.every(r => r.hashOk && r.linkOk) ? '✓' : '✗'} ${chunks.length}개 묶음 모두 다시 계산해 일치 여부 확인 (${v.res.filter(r => !(r.hashOk && r.linkOk)).length}개 불일치)</td></tr>
       <tr><th>차량 서명</th><td>${v.sigChecked ? (v.res.every(r => r.sigOk) ? '✓ 모든 묶음의 서명이 차량 키와 일치' : '✗ 서명 불일치 묶음 있음') : '이 브라우저에서 서명 확인 불가'} · 공개키 지문 <span class="mono">${(await sha(rep.proof.pubkey)).slice(0, 24)}</span></td></tr>
       <tr><th>표본 일치</th><td>${v.samplesMatch ? '✓ 리포트의 신호 값이 서명된 묶음에서 그대로 나온 것과 같음' : '✗ 리포트 값과 묶음 값이 다름'}</td></tr>
+      <tr><th>사실표 재계산</th><td>${sameAsApp === null ? '브라우저가 서명된 신호로 사실표를 만듦 (이 리포트에는 앱 계산값 없음)' : sameAsApp ? '✓ 브라우저 재계산 결과가 차량 앱 계산과 같음' : '✗ 브라우저 재계산 결과가 앱 계산과 다름'}</td></tr>
       <tr><th>리포트 확인값</th><td><span class="mono">${repSha}</span> ${hParam ? (shaOk ? '· QR 값과 일치' : '· <b style="color:#FF5A36">QR 값과 다름</b>') : ''}</td></tr>
     </table>
 
     <h2><span class="n">G</span> 데이터 출처와 한계</h2>
     <table>
-      <tr><th>수집 경로</th><td>Pleos Connect Vehicle SDK(브레이크·기어·방향지시등·조향·전조등·와이퍼·도어), AAOS Car API(속도), FusedLocation(위치), NaviHelper(주소)</td></tr>
+      <tr><th>수집 경로</th><td>Pleos Connect Vehicle SDK(브레이크·기어·방향지시등·조향·전조등·와이퍼·운전석 문), AAOS Car API(속도), FusedLocation(위치), NaviHelper(주소·도로 제한속도)</td></tr>
       <tr><th>기록 방식</th><td>10Hz로 상시 기록 → 1분마다 묶어 앞 묶음 확인값과 이어 붙이고 차량 안 키로 서명 → 7일 보관, 사고 확인·리포트 발급 시 1년 보존</td></tr>
+      <tr><th>판단 기준값</th><td>조향 시작 ${FF.STEER_DEG}° · 완만 ${FF.CALM_S}초 이상 / 급조향 ${FF.ABRUPT_S}초 미만 · 정지 ${FF.STOP}km/h 이하 · 일몰 = 태양 고도 −0.833° (조향·시간 기준은 제안값, 실차 보정 예정)</td></tr>
       <tr><th>기록하지 않는 것</th><td>${rep.unsupported.join(', ')}, 영상</td></tr>
     </table>
     <div class="disc">${esc(rep.notice)} 블랙박스 영상·현장 사진과 함께 제출하면 가장 정확합니다.</div>
@@ -229,6 +384,7 @@ async function render(rep, raw) {
   $('#bCsv').onclick = () => dl(`${rep.rid}.csv`, rep.samples_csv, 'text/csv');
   $('#bJson').onclick = () => dl(`${rep.rid}.json`, raw, 'application/json');
   document.body.dataset.verified = ok ? 'ok' : 'fail';
+  window.__factSheet = ff;
   const personal = rep.payer.type === 'PERSONAL';
   let paid = !personal || qs.get('paid') === '1';
   try { paid = paid || sessionStorage.getItem('paid:' + rep.rid) === '1'; } catch (e) {}

@@ -9,6 +9,9 @@ import com.google.zxing.qrcode.QRCodeWriter
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import com.withu.core.Billing
 import com.withu.core.FactExtractor
+import com.withu.core.FaultFactSheet
+import com.withu.core.FactorRow
+import com.withu.core.Lean
 import com.withu.core.Hash
 import com.withu.core.HashChain
 import com.withu.core.Issue
@@ -52,6 +55,7 @@ object ReportService {
         checks.filter { !it.ok }.forEach { L("REPORT chunk m0=${it.chunk.m0} hash_ok=${it.hashOk} link_ok=${it.linkOk} sig_ok=${it.sigOk}  <-- MISMATCH") }
         val rows = chunks.flatMap { Sample.parseAll(it.data) }.filter { it.t in ReportWindow.range(anchor) }.sortedBy { it.t }
         val facts = FactExtractor.extract(rows, anchor)
+        val factors = FaultFactSheet.build(rows, anchor, address)
         val at = rows.lastOrNull { it.t <= anchor }
         val rid = ReportId.make(anchor, "$now")
         val stmts = JSONArray().apply {
@@ -71,14 +75,15 @@ object ReportService {
             .put("low_beam_at_event", facts.lowBeam ?: JSONObject.NULL).put("wiper_at_event", facts.wiper ?: JSONObject.NULL)
             .put("gear_P_after_s", facts.parkAfterS ?: JSONObject.NULL).put("driver_door_open_after_s", facts.doorOpenAfterS ?: JSONObject.NULL)
         val o = JSONObject()
-            .put("schema", "withu.report/1").put("rid", rid).put("issued_at", now)
+            .put("schema", "withu.report/2").put("rid", rid).put("issued_at", now)
             .put("app", JSONObject().put("name", "WiTH U").put("version", BuildConfig.VERSION_NAME).put("platform", "Pleos Connect (Android Automotive 14)"))
             .put("vehicle", JSONObject().put("model", settings.carModel).put("color", settings.carColor).put("plate", settings.plate))
             .put("event", JSONObject().put("t", anchor).put("user_time", userT).put("anchor", p.anchorKind ?: "user_time"))
             .put("window", JSONObject().put("from", anchor - ReportWindow.HALF_MS).put("to", anchor + ReportWindow.HALF_MS).put("hz", 10).put("samples", rows.size).put("coverage", p.coverage))
             .put("location", JSONObject().put("lat", at?.lat ?: JSONObject.NULL).put("lon", at?.lon ?: JSONObject.NULL).put("address", address ?: JSONObject.NULL))
             .put("facts", f)
-            .put("unsupported", JSONArray(listOf("가속 페달", "비상등", "브레이크 압력", "충격 세기", "차선 종류", "상대 차량")))
+            .put("fault_factors", factorsJson(factors))
+            .put("unsupported", JSONArray(listOf("가속 페달", "비상등", "브레이크 압력", "충격 세기·충돌 순간", "차선 위치·차선 종류", "신호등", "상대 차량")))
             .put("statements", stmts)
             .put("payer", payerJson)
             .put("samples_csv", Sample.HEADER + "\n" + rows.joinToString("\n") { it.csv() })
@@ -86,7 +91,7 @@ object ReportService {
                 .put("chain_ok", chainOk).put("chunks", JSONArray().apply { checks.forEach { k -> put(JSONObject().put("trip", k.chunk.trip).put("m0", k.chunk.m0).put("m1", k.chunk.m1).put("n", k.chunk.n)
                     .put("prev", k.chunk.prev).put("hash", k.chunk.hash).put("sig", k.chunk.sig).put("data", k.chunk.data).put("ok", k.ok)) } }))
             .put("retention", JSONObject().put("pinned_days", 365).put("reason", "report_issued"))
-            .put("notice", "이 리포트는 차량이 기록한 조작 신호를 그대로 보여 줄 뿐, 과실 비율을 판단하지 않습니다.")
+            .put("notice", "이 리포트는 과실비율 인정기준의 수정요소 순서로 차량 기록을 정리할 뿐, 과실 비율을 판단하지 않습니다. 불리한 사실도 그대로 적습니다.")
         val json = o.toString()
         val sha = Hash.sha256(json)
         val url = ReportId.viewerUrl(Settings.VIEWER, rid, sha)
@@ -95,9 +100,10 @@ object ReportService {
         val qr = qr(url); File(dir, "${rid}_qr.png").outputStream().use { qr.compress(Bitmap.CompressFormat.PNG, 100, it) }
         store.insertReport(ReportRow(rid, anchor, sha, now, chainOk, url, payerJson.getString("type")), jf.absolutePath)
         store.pinTripsBetween(anchor - ReportWindow.HALF_MS, anchor + ReportWindow.HALF_MS, now, "report_issued").also { L("RETENTION report window pinned trips=$it") }
-        AppState.issued.value = IssuedReport(rid, anchor, url, sha, chainOk, chunks.size, rows.size, facts, p.payer, address, qr)
+        AppState.issued.value = IssuedReport(rid, anchor, url, sha, chainOk, chunks.size, rows.size, facts, p.payer, address, qr, factors)
         L("REPORT issued rid=$rid anchor=$anchor(${p.anchorKind ?: "user_time"}) samples=${rows.size} chunks=${chunks.size} chain_ok=$chainOk bytes=${json.length} sha256=$sha")
         L("REPORT facts speed=${facts.speedAtEventKph} turn=${facts.turn} brake=${facts.brakeOnBeforeS} steer=${facts.maxAbsSteer10sDeg} park=${facts.parkAfterS} door=${facts.doorOpenAfterS}")
+        factors.forEach { L("REPORT factor ${it.key} ${it.level} ${it.lean} ${it.text}") }
         L("QR url=$url")
         android.os.Handler(android.os.Looper.getMainLooper()).post { AppState.go(Route.REPORT_ISSUED) }
         return "ISSUED $rid chain_ok=$chainOk"
@@ -112,10 +118,19 @@ object ReportService {
         val rows = Sample.parseAll(o.getString("samples_csv"))
         val payer = o.getJSONObject("payer").let { if (it.getString("type") == "INSURER") Payer.Insurer(it.getString("name")) else Payer.Personal(it.getInt("price_won")) }
         AppState.issued.value = IssuedReport(rid, r.anchor, r.url, r.sha, r.chainOk, o.getJSONObject("proof").getJSONArray("chunks").length(), rows.size,
-            FactExtractor.extract(rows, r.anchor), payer, o.getJSONObject("location").optString("address").takeIf { it.isNotBlank() && it != "null" }, qr(r.url))
+            FactExtractor.extract(rows, r.anchor), payer, o.getJSONObject("location").optString("address").takeIf { it.isNotBlank() && it != "null" }, qr(r.url),
+            FaultFactSheet.build(rows, r.anchor, o.getJSONObject("location").optString("address").takeIf { it.isNotBlank() && it != "null" }))
         android.os.Handler(android.os.Looper.getMainLooper()).post { AppState.go(Route.REPORT_ISSUED) }
         L("REPORT reopened $rid")
     }
+
+    /** 수정요소 사실표: 인정기준 항목 순서. 담당자가 먼저 볼 '뒷받침 근거' 수도 함께 */
+    fun factorsJson(rows: List<FactorRow>) = JSONObject()
+        .put("basis", "과실비율 인정기준(손해보험협회)의 기본과실 + 수정요소 항목 순서")
+        .put("principle", "비율은 계산하지 않음 · 불리한 사실도 그대로 · 신호가 없으면 확인 불가")
+        .put("for_driver", rows.count { it.lean == Lean.FOR_DRIVER }).put("against_driver", rows.count { it.lean == Lean.AGAINST_DRIVER })
+        .put("rows", JSONArray().apply { rows.forEach { r -> put(JSONObject().put("key", r.key).put("factor", r.factor).put("signal", r.signal)
+            .put("level", r.level.name).put("lean", r.lean.name).put("text", r.text).put("mark_t", r.markT ?: JSONObject.NULL)) } })
 
     fun qr(text: String): Bitmap {
         val m = QRCodeWriter().encode(text, BarcodeFormat.QR_CODE, 640, 640, mapOf(EncodeHintType.ERROR_CORRECTION to ErrorCorrectionLevel.M, EncodeHintType.MARGIN to 2))

@@ -55,6 +55,9 @@ import com.withu.app.Sig
 import com.withu.core.GuideStep
 import com.withu.core.IssueCheck
 import com.withu.core.Payer
+import com.withu.core.Level
+import com.withu.core.Lean
+import com.withu.core.FactorRow
 import com.withu.core.Retention
 import com.withu.core.Sample
 import com.withu.core.StatementPrompt
@@ -154,9 +157,9 @@ private fun Onboard(act: MainActivity, wide: Boolean) {
         Triple(Ico.SHIELD, "언제 밖으로 나가나요", "차 안에만 암호화해 두고, 리포트를 발급할 때만 그 시각 앞뒤 5분(모두 10분) 기록을 휴대폰으로 넘겨요"),
     )
     Row(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = if (wide) 80.dp else 34.dp, vertical = 40.dp), horizontalArrangement = Arrangement.spacedBy(60.dp), verticalAlignment = Alignment.CenterVertically) {
-        if (wide) Yudi(Mood.HAPPY, 300.dp)
+        if (wide) Wedi(Mood.HAPPY, 300.dp)
         Column(Modifier.weight(1f)) {
-            H1("안녕하세요, 유디예요.\n운전하는 동안 곁에서 기록할게요", if (wide) 58.sp else 44.sp)
+            H1("안녕하세요, 위디예요.\n운전하는 동안 곁에서 기록할게요", if (wide) 58.sp else 44.sp)
             rows.forEach { (ic, t, d) -> Row(Modifier.padding(top = 30.dp), horizontalArrangement = Arrangement.spacedBy(18.dp)) { IconBox(ic, C.soft, C.brand); Column { T(t, 31.sp, weight = FontWeight.ExtraBold); D(d, size = 25.sp) } } }
             Btn("동의하고 시작하기", BtnKind.PRI, Modifier.padding(top = 44.dp).width(520.dp)) {
                 act.settings.onboarded = true; act.requestRuntimePermissions(); AppState.home()
@@ -177,9 +180,9 @@ private fun Home(wide: Boolean) {
     TwoCol(wide, left = {
         WCard(bg = C.navy) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(30.dp)) {
-                Yudi(Mood.HAPPY, 150.dp)
+                Wedi(Mood.HAPPY, 150.dp)
                 Column {
-                    T("유디", 26.sp, Color.White.copy(alpha = .7f), FontWeight.SemiBold)
+                    T("위디", 26.sp, Color.White.copy(alpha = .7f), FontWeight.SemiBold)
                     H1("오늘도 곁에서\n조용히 기록할게요", 50.sp, Color.White)
                     D("주행 기록은 7일 뒤 자동으로 지워요. 사고로 확인한 기록만 1년간 보존해요.", C.navySub, modifier = Modifier.padding(top = 12.dp))
                 }
@@ -191,7 +194,7 @@ private fun Home(wide: Boolean) {
                 IconBox(Ico.SIREN, Color.White, C.warn, 110.dp, round = true)
                 Column {
                     H1("사고가 났어요", 56.sp, Color.White)
-                    D("누르면 사고인지 한 번 묻고, 지금 위치에 맞춰 대응과 신고를 안내해요 · 주행 중에는 유디 버블을 길게 누르세요", Color.White.copy(alpha = .9f))
+                    D("누르면 사고인지 한 번 묻고, 지금 위치에 맞춰 대응과 신고를 안내해요 · 주행 중에는 위디 버블을 길게 누르세요", Color.White.copy(alpha = .9f))
                 }
             }
         }
@@ -275,7 +278,7 @@ private fun Confirm(wide: Boolean) {
         }
     }, right = {
         WCard { Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(14.dp)) {
-            Yudi(Mood.WORRY, 190.dp); H2("많이 놀라셨죠?"); D("천천히 하셔도 돼요.\n유디가 순서대로 도와드릴게요.") } }
+            Wedi(Mood.WORRY, 190.dp); H2("많이 놀라셨죠?"); D("천천히 하셔도 돼요.\n위디가 순서대로 도와드릴게요.") } }
         WCard { K("‘아니요’를 누르면"); T("기록은 그대로 7일간 보관돼요. 나중에 ‘사고 리포트 제작’에서 이 시각을 골라 꺼낼 수 있어요.", 27.sp, weight = FontWeight.SemiBold, modifier = Modifier.padding(top = 12.dp)) }
     })
 }
@@ -317,7 +320,7 @@ private fun Guide(wide: Boolean) {
                 Row(Modifier.clickable { svc()?.listenForNext() }, verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                     Wave(16, 5, C.navyAccent); T("“다음 단계”라고 말해도 돼요", 26.sp, C.navyAccent, FontWeight.Bold)
                 }
-                Spacer1(); if (wide) Yudi(Mood.GUIDE, 120.dp)
+                Spacer1(); if (wide) Wedi(Mood.GUIDE, 120.dp)
             }
             if (cur == GuideStep.REPORT || g.done) Btn("신고 가이드 열기", BtnKind.PRI, Modifier.fillMaxWidth().padding(top = 10.dp)) { AppState.go(Route.REPORT112) }
             if (!g.done) Btn(if (cur == GuideStep.REPORT) "안내 마치기" else "다음 단계", if (cur == GuideStep.REPORT) BtnKind.GHOST else BtnKind.PRI, Modifier.fillMaxWidth().padding(top = 10.dp), enabled = !g.paused) { svc()?.guideNext("button") }
@@ -374,7 +377,7 @@ private fun Report112(act: MainActivity, wide: Boolean) {
                 IconBox(Ico.PHONE, if (main) C.brand else C.sec, if (main) Color.White else C.navy); Column { T(n, 48.sp, weight = FontWeight.ExtraBold); K(d) } } }
         }
         WCard { Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(20.dp)) {
-            Yudi(Mood.GUIDE, 110.dp); D("번호는 차량 전화나 휴대폰으로 걸어 주세요. 통화하는 동안 이 화면을 보면서 차분히 말씀하시면 돼요.", size = 25.sp) } }
+            Wedi(Mood.GUIDE, 110.dp); D("번호는 차량 전화나 휴대폰으로 걸어 주세요. 통화하는 동안 이 화면을 보면서 차분히 말씀하시면 돼요.", size = 25.sp) } }
     })
 }
 
@@ -387,7 +390,7 @@ private fun Statement(wide: Boolean) {
     val opening = remember(acc) { svc()?.statementOpening() ?: StatementPrompt.opening(System.currentTimeMillis(), null) }
     TwoCol(wide, 1.4f, 1f, left = {
         WCard(bg = C.navy, pad = 50.dp) {
-            K("유디가 묻습니다", C.navyAccent); H1("이렇게 시작해 보세요", if (wide) 52.sp else 42.sp, Color.White, Modifier.padding(top = 10.dp))
+            K("위디가 묻습니다", C.navyAccent); H1("이렇게 시작해 보세요", if (wide) 52.sp else 42.sp, Color.White, Modifier.padding(top = 10.dp))
             T("“$opening …”", 34.sp, Color.White, FontWeight.Bold, Modifier.padding(top = 18.dp))
             Column(Modifier.padding(top = 22.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 StatementPrompt.QUESTIONS.forEachIndexed { i, q -> T("${i + 1}. $q", 26.sp, C.navySub) }
@@ -412,7 +415,7 @@ private fun Statement(wide: Boolean) {
             }
         }
         WCard { Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(18.dp)) {
-            Yudi(Mood.CALM, 100.dp); D("기억은 시간이 지나면 흐려져요. 생각나는 대로 천천히 말씀해 주세요. 상대방과의 대화는 녹음하지 않아요.", size = 25.sp) } }
+            Wedi(Mood.CALM, 100.dp); D("기억은 시간이 지나면 흐려져요. 생각나는 대로 천천히 말씀해 주세요. 상대방과의 대화는 녹음하지 않아요.", size = 25.sp) } }
     })
 }
 
@@ -532,7 +535,6 @@ private fun SpeedChart(rows: List<Sample>, anchor: Long, modifier: Modifier) {
 private fun ReportIssued(wide: Boolean) {
     val r by AppState.issued.collectAsState()
     val rep = r ?: return Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { D("발급한 리포트가 없어요") }
-    val f = rep.facts
     Row(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = if (wide) 64.dp else 34.dp, vertical = 40.dp), horizontalArrangement = Arrangement.spacedBy(60.dp), verticalAlignment = Alignment.CenterVertically) {
         if (wide) WCard(pad = 36.dp, fill = false) { rep.qr?.let { Image(it.asImageBitmap(), "리포트 QR", Modifier.size(500.dp)) } }
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(18.dp)) {
@@ -546,16 +548,35 @@ private fun ReportIssued(wide: Boolean) {
             WCard(pad = 28.dp) {
                 KV("리포트 번호", rep.rid)
                 KV("기준 시각", ymdhms.format(Date(rep.anchor)))
-                KV("기준 시각 속도", "${fmtKph(f.speedAtEventKph)} km/h")
-                KV("방향지시등", f.turn?.let { "${if (it.side == 'R') "오른쪽" else "왼쪽"} · ${"%.1f".format(it.onBeforeS)}초 전(약 ${it.distanceM}m 전) 켬" } ?: "켜지 않음")
-                KV("브레이크", f.brakeOnBeforeS?.let { if (it >= 0) "${"%.1f".format(it)}초 전 밟음" else "${"%.1f".format(-it)}초 뒤 밟음" } ?: "기록 없음")
                 KV("기록 범위", "앞뒤 5분 · ${rep.samples}개 신호 · ${rep.chunks}개 묶음 검증")
                 KV("비용", when (val p = rep.payer) { is Payer.Insurer -> "보험사 부담 (${p.name})"; is Payer.Personal -> "개인 %,d원".format(p.priceWon) }, C.brand)
             }
+            if (rep.factors.isNotEmpty()) FactorSheet(rep.factors)
             Row(horizontalArrangement = Arrangement.spacedBy(18.dp)) {
                 Btn("보관함", BtnKind.SEC, Modifier.weight(1f), 96.dp, 28.sp) { AppState.go(Route.VAULT) }
                 Btn("홈으로", BtnKind.PRI, Modifier.weight(1f), 96.dp, 28.sp) { AppState.home() }
             }
+        }
+    }
+}
+
+/** 수정요소 사실표: 과실비율 인정기준 항목 순서로 차량 기록 근거를 보여 준다 (비율은 계산하지 않음) */
+@Composable
+private fun FactorSheet(rows: List<FactorRow>) {
+    val forN = rows.count { it.lean == Lean.FOR_DRIVER }; val againstN = rows.count { it.lean == Lean.AGAINST_DRIVER }
+    WCard(pad = 28.dp) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            H2("수정요소 사실표", size = 30.sp); Spacer1()
+            Tag("뒷받침 $forN", C.okBg, C.okFg); Tag("불리할 수 있음 $againstN", C.recBg, C.warn)
+        }
+        K("과실비율 인정기준 항목 순서 · 비율은 계산하지 않아요", size = 22.sp, modifier = Modifier.padding(top = 4.dp, bottom = 6.dp))
+        rows.forEach { r ->
+            val (bg, fg) = when (r.lean) { Lean.FOR_DRIVER -> C.okBg to C.okFg; Lean.AGAINST_DRIVER -> C.recBg to C.warn; else -> C.bg to C.sub }
+            Row(Modifier.fillMaxWidth().padding(vertical = 10.dp), verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+                Column(Modifier.width(300.dp)) { T(r.factor, 24.sp, weight = FontWeight.Bold); Tag(r.level.ko, bg, fg, 20.sp) }
+                T(r.text, 24.sp, if (r.level == Level.UNKNOWN || r.level == Level.NA) C.sub else C.navy, modifier = Modifier.weight(1f))
+            }
+            Divider()
         }
     }
 }

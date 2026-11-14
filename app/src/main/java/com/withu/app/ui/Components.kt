@@ -98,9 +98,9 @@ enum class BtnKind { PRI, SEC, WARN, NAVY, GHOST }
 }
 
 enum class Mood { HAPPY, WORRY, GUIDE, CALM }
-@Composable fun Yudi(mood: Mood, size: Dp, modifier: Modifier = Modifier) {
-    val res = when (mood) { Mood.HAPPY -> R.drawable.yudi_happy; Mood.WORRY -> R.drawable.yudi_worry; Mood.GUIDE -> R.drawable.yudi_guide; Mood.CALM -> R.drawable.yudi_calm }
-    Image(painterResource(res), contentDescription = "유디", modifier = modifier.width(size).height(size * 1.1f))
+@Composable fun Wedi(mood: Mood, size: Dp, modifier: Modifier = Modifier) {
+    val res = when (mood) { Mood.HAPPY -> R.drawable.wedi_happy; Mood.WORRY -> R.drawable.wedi_worry; Mood.GUIDE -> R.drawable.wedi_guide; Mood.CALM -> R.drawable.wedi_calm }
+    Image(painterResource(res), contentDescription = "위디", modifier = modifier.width(size).height(size * 1.15f))
 }
 
 /** 단순 기하 아이콘 (시안 screens.js의 SVG와 같은 모양) */

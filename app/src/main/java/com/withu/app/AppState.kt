@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
 import com.withu.core.Facts
+import com.withu.core.FactorRow
 import com.withu.core.GuideStep
 import com.withu.core.Payer
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,6 +27,8 @@ object Sig {
     @Volatile var airbag: Boolean? = null
     @Volatile var lat: Double? = null
     @Volatile var lon: Double? = null
+    /** 내비가 알려 준 현재 도로 제한속도(km/h) */
+    @Volatile var speedLimit: Int? = null
 }
 
 data class Pending(val t: Long, val fromKph: Float, val why: String)          // why: hard_brake+stop+P / siren / airbag
@@ -36,7 +39,7 @@ data class TripRow(val id: Long, val started: Long, val ended: Long?, val keepUn
 data class EventRow(val t: Long, val kind: String, val confirmed: Boolean, val fromKph: Float)
 data class ReportRow(val rid: String, val anchor: Long, val sha: String, val created: Long, val chainOk: Boolean, val url: String, val payer: String)
 data class IssuedReport(val rid: String, val anchor: Long, val url: String, val sha: String, val chainOk: Boolean, val chunks: Int, val samples: Int,
-                        val facts: Facts, val payer: Payer, val address: String?, val qr: Bitmap?)
+                        val facts: Facts, val payer: Payer, val address: String?, val qr: Bitmap?, val factors: List<FactorRow> = emptyList())
 data class RecState(val recording: Boolean = false, val seconds: Int = 0, val level: Float = 0f, val transcribing: Boolean = false)
 
 /** 화면과 서비스가 함께 보는 상태 */
