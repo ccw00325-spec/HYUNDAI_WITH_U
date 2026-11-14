@@ -84,7 +84,8 @@ body.locked .paid{display:none!important}
   .sum{margin-top:10px;gap:8px}.stat{padding:8px 10px}.stat b{font-size:22px}.stat span{font-size:11px}
   .lead{padding:8px 12px;margin-top:8px}.lead h3{font-size:12px;margin-bottom:3px}.lead li{font-size:12px;line-height:1.45}.lead li em{font-size:11px}
   h2{font-size:14px;margin:12px 0 6px}th,td{padding:5px 8px;font-size:11.5px}th{width:110px}
-  table.ff td{font-size:11.5px}table.ff td.k{width:150px}table.ff td.k small{font-size:9.5px}.tag{font-size:10.5px}.note{font-size:10.5px}
+  table.ff td{font-size:10.5px;padding:4px 7px}table.ff td.k{width:150px}table.ff td.k small{display:none}.tag{font-size:10px;padding:1px 6px}.note{font-size:10px}
+  .lead li{font-size:11px;line-height:1.35}.stat b{font-size:20px}th,td{padding:4px 7px;font-size:11px}
 }
 </style>
 </head>
@@ -298,7 +299,8 @@ function chart(rows, T, from, to, w, h, opt = {}) {
 
 function events(rows) {
   const out = []; const keys = [['gear','기어',v=>v||'-'],['brk','브레이크',v=>v===null?'-':v?'밟음':'뗌'],['turn','방향지시등',v=>({L:'왼쪽',R:'오른쪽','0':'꺼짐'}[v]||'-')],['low','전조등',v=>v===null?'-':v?'켬':'끔'],['wiper','와이퍼',v=>v===null?'-':v?'작동':'멈춤'],['door','운전석 문',v=>v===null?'-':v?'열림':'닫힘'],['lim','제한속도',v=>v===null?'-':v+'km/h']];
-  for (let i = 1; i < rows.length; i++) for (const [k, n, f] of keys) if (rows[i][k] !== rows[i-1][k]) out.push([rows[i].t, n, f(rows[i-1][k]), f(rows[i][k]), rows[i].spd]);
+  // 신호가 끊겼다 다시 들어온 전환(값 ↔ 없음)은 조작이 아니므로 빼고, 값이 바뀐 것만 적는다
+  for (let i = 1; i < rows.length; i++) for (const [k, n, f] of keys) if (rows[i][k] !== rows[i-1][k] && rows[i][k] !== null && rows[i-1][k] !== null) out.push([rows[i].t, n, f(rows[i-1][k]), f(rows[i][k]), rows[i].spd]);
   // 조향: 5° 경계를 넘을 때만
   for (let i = 1; i < rows.length; i++) { const a = Math.abs(rows[i-1].steer ?? 0) >= FF.STEER_DEG, b = Math.abs(rows[i].steer ?? 0) >= FF.STEER_DEG; if (a !== b) out.push([rows[i].t, '조향', a ? Math.round(Math.abs(rows[i-1].steer)) + '°' : '직진', b ? Math.round(Math.abs(rows[i].steer)) + '°' : '직진', rows[i].spd]); }
   return out.sort((x, y) => x[0] - y[0]);
