@@ -117,7 +117,7 @@ class EvidenceTest {
     @Test fun csvRoundTrip_keepsNullsAndValues() {
         val s = Sample(123, 64.25f, 'D', true, 'R', -12.5f, true, null, false, 37.4127, 127.0947)
         val line = s.csv()
-        assertEquals("123,64.3,D,1,R,-12.5,1,,0,37.412700,127.094700,", line)   // 반올림 확인 (64.25 → 64.3, HALF_UP 아님 대비 값 선택)
+        assertEquals("123,64.3,D,1,R,-12.5,1,,0,37.412700,127.094700,,,", line)   // 반올림 확인 (64.25 → 64.3, HALF_UP 아님 대비 값 선택)
         val back = Sample.parse(line)!!
         assertEquals(s.copy(spd = 64.3f), back)
         assertNull(Sample.parse("1,2,3"))
@@ -126,9 +126,17 @@ class EvidenceTest {
         assertEquals(Sample(5), Sample.parse("5,,,,,,,,,,"))
         // 제한속도 칸: 있으면 읽고, 옛 11칸 기록은 null
         val withLim = Sample(7, 50f, lim = 60)
-        assertEquals("7,50.0,,,,,,,,,,60", withLim.csv())
+        assertEquals("7,50.0,,,,,,,,,,60,,", withLim.csv())
         assertEquals(withLim, Sample.parse(withLim.csv()))
         assertNull(Sample.parse("7,50.0,,,,,,,,,")!!.lim)
+        // 크루즈·경고등 칸: 빈 경고등 목록은 "-"로 적어 '미수신'과 구분
+        val cc = Sample(8, cc = 'A', tt = "FA"); assertEquals("8,,,,,,,,,,,,A,FA", cc.csv()); assertEquals(cc, Sample.parse(cc.csv()))
+        val none = Sample(9, cc = '0', tt = ""); assertEquals("9,,,,,,,,,,,,0,-", none.csv()); assertEquals(none, Sample.parse(none.csv()))
+        assertNull(Sample.parse("9,,,,,,,,,,,,,")!!.tt)
+        assertEquals('A', Cruise.fromSdk("ACTIVATED")); assertEquals('E', Cruise.fromSdk("ENABLED")); assertEquals('O', Cruise.fromSdk("USER_OVERRIDE"))
+        assertEquals('S', Cruise.fromSdk("SUSPENDED")); assertEquals('0', Cruise.fromSdk("OTHER")); assertNull(Cruise.fromSdk(null))
+        assertEquals("FEA", Telltale.flags(listOf("ABS", "ESC", "FCA", "SEAT_BELT"))); assertEquals("", Telltale.flags(emptyList()))
+        assertEquals("H", Telltale.flags(listOf("AUTO_HOLD"))); assertEquals("ABS", Telltale.ko('A'))
     }
 
     @Test fun sdkNameMapping() {

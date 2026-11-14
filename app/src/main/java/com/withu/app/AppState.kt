@@ -29,11 +29,15 @@ object Sig {
     @Volatile var lon: Double? = null
     /** 내비가 알려 준 현재 도로 제한속도(km/h) */
     @Volatile var speedLimit: Int? = null
+    /** 크루즈 컨트롤 상태 한 글자 (core Cruise) */
+    @Volatile var cruise: Char? = null
+    /** 켜진 경고등 글자 F·E·A·H (core Telltale) */
+    @Volatile var telltales: String? = null
 }
 
 data class Pending(val t: Long, val fromKph: Float, val why: String)          // why: hard_brake+stop+P / siren / airbag
 data class Accident(val t: Long, val fromKph: Float, val why: String, val address: String?, val highway: Boolean)
-data class GuideUi(val steps: List<GuideStep> = emptyList(), val index: Int = -1, val paused: Boolean = false, val highway: Boolean = false, val done: Boolean = false)
+data class GuideUi(val steps: List<GuideStep> = emptyList(), val index: Int = -1, val paused: Boolean = false, val highway: Boolean = false, val done: Boolean = false, val road: String = "일반 도로")
 data class StatementRow(val id: Long, val eventT: Long, val t: Long, val opening: String, val transcript: String, val audio: String, val sha: String, val durationS: Int)
 data class TripRow(val id: Long, val started: Long, val ended: Long?, val keepUntil: Long, val pin: String?, val chunks: Int)
 data class EventRow(val t: Long, val kind: String, val confirmed: Boolean, val fromKph: Float)

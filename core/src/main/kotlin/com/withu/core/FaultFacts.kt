@@ -39,7 +39,11 @@ object FaultFactSheet {
     const val BRAKE_BEFORE_MS = 10_000L
     const val BRAKE_AFTER_MS = 2_000L
 
-    val KEYS = listOf("signal", "abrupt_lane", "speed", "hard_brake", "stopped_hit", "door_open", "night_light")
+    const val PEDAL_RISE_KPH = 3f           // 브레이크를 밟은 채 이만큼 이상 빨라지면 페달 오조작·급발진 정황 (제안값)
+    const val PEDAL_MIN_MS = 1_000L
+    const val ACCEL_NO_BRAKE_KPH = 10f      // 브레이크 없이 10초 안에 이만큼 이상 빨라진 구간
+
+    val KEYS = listOf("signal", "abrupt_lane", "speed", "hard_brake", "stopped_hit", "door_open", "night_light", "pedal")
 
     fun build(rows: List<Sample>, t: Long, address: String? = null): List<FactorRow> {
         val s = rows.sortedBy { it.t }
@@ -47,7 +51,7 @@ object FaultFactSheet {
         val maxSpd30 = s.filter { it.t in (t - 30_000)..t }.mapNotNull { it.spd }.maxOrNull()
         val highway = RoadContext.isHighway(maxSpd30, address)
         val man = maneuver(s, t)
-        return listOf(signal(s, t, man, highway), abrupt(s, t, man), speed(s, t), brake(s, t), stopped(s, t, at), door(s, t, at), night(s, t, at))
+        return listOf(signal(s, t, man, highway), abrupt(s, t, man), speed(s, t), brake(s, t), stopped(s, t, at), door(s, t, at), night(s, t, at), pedal(s, t))
     }
 
     /** 기준 시각 전 30초(~ +1초) 안의 마지막 조향 구간 */
@@ -187,6 +191,56 @@ object FaultFactSheet {
         if (el > Sun.HORIZON_DEG) return base.copy(level = Level.NA, text = "주간(태양 고도 ${Math.round(el)}°) · $st")
         return if (low) base.copy(level = Level.CONFIRMED, lean = Lean.FOR_DRIVER, text = "일몰 후(태양 고도 ${Math.round(el)}°) · 전조등 켬")
         else base.copy(level = Level.CONFIRMED, lean = Lean.AGAINST_DRIVER, text = "일몰 후(태양 고도 ${Math.round(el)}°) · 전조등 꺼짐")
+    }
+    /** 브레이크를 밟은 채 빨라진 가장 큰 구간: (시작 샘플, 끝 샘플, 상승 km/h) */
+    fun brakeRise(s: List<Sample>, from: Long, to: Long): Triple<Sample, Sample, Float>? {
+        var best: Triple<Sample, Sample, Float>? = null
+        var i = 0
+        val w = s.filter { it.t in from..to }
+        while (i < w.size) {
+            if (w[i].brk != true) { i++; continue }
+            var j = i
+            while (j + 1 < w.size && w[j + 1].brk == true) j++
+            var lo = w[i]                                    // 구간 안에서 가장 느렸던 순간부터 잰다
+            for (k in i..j) {
+                val c = w[k]; val cs = c.spd ?: continue
+                if (lo.spd == null || cs <= lo.spd!!) lo = c
+                val rise = cs - (lo.spd ?: cs)
+                if (c.t - lo.t >= PEDAL_MIN_MS && rise > 0f && (best == null || rise > best!!.third)) best = Triple(lo, c, rise)
+            }
+            i = j + 1
+        }
+        return best
+    }
+
+    private fun context(s: List<Sample>, from: Long, to: Long): String {
+        val w = s.filter { it.t in from..to }
+        val out = ArrayList<String>()
+        if (w.any { it.cc != null }) out += if (w.any { it.cc == 'A' }) "크루즈 작동" else "크루즈 꺼짐"
+        if (w.any { it.tt != null }) {
+            val on = w.mapNotNull { it.tt }.joinToString("").toSet()
+            out += if (on.isEmpty()) "경고등 없음" else "경고등 " + "FEAH".filter { it in on }.map { Telltale.ko(it) }.joinToString("·")
+        }
+        return if (out.isEmpty()) "" else " · " + out.joinToString(" · ")
+    }
+
+    fun pedal(s: List<Sample>, t: Long): FactorRow {
+        val base = FactorRow("pedal", "급발진·페달 오조작 소명 (특수 상황)", "Brake 밟음 중 속도 변화 · 크루즈 · FCA/ESC/ABS 경고등 (가속 페달 개도는 SDK 미제공)", Level.UNKNOWN, Lean.NEUTRAL, "브레이크 신호 미수신")
+        if (s.none { it.brk != null }) return base
+        val r = brakeRise(s, t - LOOKBACK_MS, t)
+        if (r != null && r.third >= PEDAL_RISE_KPH) {
+            val (a, b, rise) = r
+            return base.copy(level = Level.CONFIRMED, lean = Lean.FOR_DRIVER,
+                text = "브레이크를 밟은 채 ${f1((b.t - a.t) / 1000.0)}초 동안 속도 +${Math.round(rise)}km/h(${Math.round(a.spd!!)}→${Math.round(b.spd!!)}) — 운전자 의도와 다른 가속 정황" + context(s, a.t, b.t), markT = a.t)
+        }
+        val v = s.filter { it.t in (t - 10_000)..t && it.spd != null }
+        val minV = v.minByOrNull { it.spd!! }
+        val after = if (minV == null) emptyList() else v.filter { it.t >= minV.t }
+        val gain = if (minV == null || after.isEmpty()) 0f else after.maxOf { it.spd!! } - minV.spd!!
+        if (minV != null && gain >= ACCEL_NO_BRAKE_KPH && after.none { it.brk == true && it.t < t - 1_000 }) {
+            return base.copy(level = Level.PARTIAL, text = "기준 시각 전 10초 가속(+${Math.round(gain)}km/h) 중 브레이크 기록 없음 · 가속 페달 개도는 SDK 미제공(기술 지원 검토 요청)" + context(s, t - 10_000, t), markT = minV.t)
+        }
+        return base.copy(level = Level.NA, text = "브레이크를 밟은 채 빨라진 구간 없음" + context(s, t - LOOKBACK_MS, t))
     }
 }
 

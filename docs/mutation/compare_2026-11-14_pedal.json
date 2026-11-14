@@ -1,0 +1,296 @@
+{
+  "tool": "pit",
+  "before": {
+    "Killed": 394,
+    "Survived": 58,
+    "Timeout": 2
+  },
+  "after": {
+    "Killed": 404,
+    "Survived": 48,
+    "Timeout": 2
+  },
+  "transitions": [
+    {
+      "identity": [
+        "com.withu.core.FaultFactSheet",
+        "brakeRise",
+        "(Ljava/util/List;JJ)Lkotlin/Triple;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "61"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.PedalFactTest.brakeRise_windowEdgesZeroRiseAndTies(com.withu.core.PedalFactTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FaultFactSheet",
+        "brakeRise",
+        "(Ljava/util/List;JJ)Lkotlin/Triple;",
+        "org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator",
+        [
+          "115"
+        ]
+      ],
+      "before": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.PedalFactTest.noBrakeSignal_isUnknown(com.withu.core.PedalFactTest)"
+        ]
+      },
+      "after": {
+        "status": "Timeout",
+        "rawStatus": "TIMED_OUT",
+        "killingTests": []
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FaultFactSheet",
+        "brakeRise",
+        "(Ljava/util/List;JJ)Lkotlin/Triple;",
+        "org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator",
+        [
+          "142"
+        ]
+      ],
+      "before": {
+        "status": "Timeout",
+        "rawStatus": "TIMED_OUT",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.PedalFactTest.brakeRise_windowEdgesZeroRiseAndTies(com.withu.core.PedalFactTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FaultFactSheet",
+        "context",
+        "(Ljava/util/List;JJ)Ljava/lang/String;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "49"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.PedalFactTest.contextIncludesSegmentEdges_andPartialHandlesMissingSpeeds(com.withu.core.PedalFactTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FaultFactSheet",
+        "context",
+        "(Ljava/util/List;JJ)Ljava/lang/String;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "53"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.PedalFactTest.contextIncludesSegmentEdges_andPartialHandlesMissingSpeeds(com.withu.core.PedalFactTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FaultFactSheet",
+        "context",
+        "(Ljava/util/List;JJ)Ljava/lang/String;",
+        "org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator",
+        [
+          "53"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.PedalFactTest.contextIncludesSegmentEdges_andPartialHandlesMissingSpeeds(com.withu.core.PedalFactTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FaultFactSheet",
+        "context",
+        "(Ljava/util/List;JJ)Ljava/lang/String;",
+        "org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator",
+        [
+          "66"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.PedalFactTest.contextIncludesSegmentEdges_andPartialHandlesMissingSpeeds(com.withu.core.PedalFactTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FaultFactSheet",
+        "pedal",
+        "(Ljava/util/List;J)Lcom/withu/core/FactorRow;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "230"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.PedalFactTest.partial_gainAndLateBrakeBoundaries(com.withu.core.PedalFactTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FaultFactSheet",
+        "pedal",
+        "(Ljava/util/List;J)Lcom/withu/core/FactorRow;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "234"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.PedalFactTest.contextIncludesSegmentEdges_andPartialHandlesMissingSpeeds(com.withu.core.PedalFactTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FaultFactSheet",
+        "pedal",
+        "(Ljava/util/List;J)Lcom/withu/core/FactorRow;",
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator",
+        [
+          "556"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.PedalFactTest.partial_gainAndLateBrakeBoundaries(com.withu.core.PedalFactTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FaultFactSheet",
+        "pedal",
+        "(Ljava/util/List;J)Lcom/withu/core/FactorRow;",
+        "org.pitest.mutationtest.engine.gregor.mutators.MathMutator",
+        [
+          "645"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.PedalFactTest.partialAndNa_includeContextFromTheirWindows(com.withu.core.PedalFactTest)"
+        ]
+      }
+    },
+    {
+      "identity": [
+        "com.withu.core.FaultFactSheet",
+        "pedal",
+        "(Ljava/util/List;J)Lcom/withu/core/FactorRow;",
+        "org.pitest.mutationtest.engine.gregor.mutators.MathMutator",
+        [
+          "669"
+        ]
+      ],
+      "before": {
+        "status": "Survived",
+        "rawStatus": "SURVIVED",
+        "killingTests": []
+      },
+      "after": {
+        "status": "Killed",
+        "rawStatus": "KILLED",
+        "killingTests": [
+          "com.withu.core.PedalFactTest.partialAndNa_includeContextFromTheirWindows(com.withu.core.PedalFactTest)"
+        ]
+      }
+    }
+  ],
+  "missingBefore": [],
+  "missingAfter": [],
+  "onlyBefore": [],
+  "onlyAfter": [],
+  "completeMatch": true
+}

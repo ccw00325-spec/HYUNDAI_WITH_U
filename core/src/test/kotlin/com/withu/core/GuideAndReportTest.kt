@@ -10,7 +10,7 @@ import java.util.TimeZone
 class GuideAndReportTest {
     // ---------- 대응 안내 ----------
     @Test fun highwayPutsEvacuationFirst_generalRoadChecksFirst() {
-        assertEquals(listOf(GuideStep.EVACUATE, GuideStep.HAZARD, GuideStep.TRUNK, GuideStep.REPORT), RoadContext.steps(true))
+        assertEquals(listOf(GuideStep.HAZARD, GuideStep.SHOULDER, GuideStep.TRUNK, GuideStep.EVACUATE, GuideStep.REPORT), RoadContext.steps(true))
         assertEquals(listOf(GuideStep.HAZARD, GuideStep.CHECK, GuideStep.EVACUATE, GuideStep.REPORT), RoadContext.steps(false))
     }
 
@@ -35,12 +35,18 @@ class GuideAndReportTest {
         assertFalse(g.next())
     }
 
-    @Test fun doorOpenPauses_closeOnEvacuateMovesOn() {
-        val g = GuideFlow(); g.start(true)               // EVACUATE 먼저
+    @Test fun doorOpenPauses_closeOnOutsideStepsMovesOn() {
+        val g = GuideFlow(); assertEquals(GuideStep.HAZARD, g.start(true))   // 고속도로: 비상등 먼저(비트밖스)
+        assertTrue(g.next()); assertEquals(GuideStep.SHOULDER, g.current)
+        assertTrue(g.next()); assertEquals(GuideStep.TRUNK, g.current)
         assertFalse(g.onDoor(true)); assertTrue(g.paused)
         assertFalse(g.next())                            // 멈춤 중엔 진행 안 됨
         assertTrue(g.onDoor(false)); assertFalse(g.paused)
-        assertEquals(GuideStep.HAZARD, g.current)        // 대피 단계는 문이 닫히면 다음으로
+        assertEquals(GuideStep.EVACUATE, g.current)      // 트렁크를 열고 문을 닫으면 대피로
+        g.onDoor(true); assertTrue(g.onDoor(false))
+        assertEquals(GuideStep.REPORT, g.current)        // 대피 단계도 문이 닫히면 다음으로
+        // 갓길 단계에서 문을 여닫으면 같은 단계를 다시 말한다
+        val h = GuideFlow(); h.start(true); h.next(); h.onDoor(true); assertTrue(h.onDoor(false)); assertEquals(GuideStep.SHOULDER, h.current)
     }
 
     @Test fun doorCycleOnOtherStep_resumesSameStep() {
@@ -195,15 +201,32 @@ class GuideAndReportTest {
         val g = GuideFlow()
         assertEquals(-1, g.index); assertTrue(g.steps.isEmpty())
         g.start(true)
-        assertTrue(g.highway); assertEquals(0, g.index); assertEquals(4, g.steps.size)
+        assertTrue(g.highway); assertEquals(RoadType.HIGHWAY, g.road); assertEquals(0, g.index); assertEquals(5, g.steps.size)
         g.next(); assertEquals(1, g.index)
         GuideFlow().apply { start(false); assertFalse(highway) }
+    }
+
+    @Test fun roadClassification_tunnelFirstThenHighway() {
+        assertEquals(RoadType.TUNNEL, RoadContext.classify(100f, "경부고속도로 서울방향 ○○터널"))
+        assertEquals(RoadType.TUNNEL, RoadContext.classify(30f, "남산1호터널"))
+        assertEquals(RoadType.HIGHWAY, RoadContext.classify(95f, null))
+        assertEquals(RoadType.HIGHWAY, RoadContext.classify(null, "올림픽대로(자동차전용도로)"))
+        assertEquals(RoadType.GENERAL, RoadContext.classify(50f, "성남시 수정구 시흥동"))
+        assertEquals(RoadType.GENERAL, RoadContext.classify(null, null))
+        assertEquals(listOf(GuideStep.HAZARD, GuideStep.TUNNEL_STOP, GuideStep.TUNNEL_EXIT, GuideStep.REPORT), RoadContext.steps(RoadType.TUNNEL))
+        assertEquals(RoadContext.steps(true), RoadContext.steps(RoadType.HIGHWAY)); assertEquals(RoadContext.steps(false), RoadContext.steps(RoadType.GENERAL))
+        val g = GuideFlow(); g.start(RoadType.TUNNEL); assertTrue(g.highway); assertEquals("터널", g.road.ko)
+        g.next(); g.next(); assertEquals(GuideStep.TUNNEL_EXIT, g.current)
+        g.onDoor(true); assertTrue(g.onDoor(false)); assertEquals(GuideStep.REPORT, g.current)   // 비상구로 나가며 문을 닫으면 신고로
+        val n = GuideFlow(); n.start(false); assertFalse(n.highway); assertEquals(RoadType.GENERAL, n.road)
+        assertTrue(GuideStep.TUNNEL_STOP.speech.contains("열쇠는 꽂아")); assertTrue(GuideStep.TUNNEL_EXIT.speech.contains("유도등"))
     }
 
     @Test fun guideStepTexts() {
         assertEquals("비상등 켜기", GuideStep.HAZARD.title)
         assertEquals("비상등을 켜 주세요.", GuideStep.HAZARD.speech)
         assertTrue(GuideStep.EVACUATE.hint.contains("문이 열리면"))
+        assertTrue(GuideStep.SHOULDER.speech.contains("오른쪽 갓길")); assertTrue(GuideStep.EVACUATE.speech.contains("차로를 건너거나"))
         assertTrue(GuideStep.values().all { it.title.isNotBlank() && it.speech.isNotBlank() && it.hint.isNotBlank() })
     }
 

@@ -152,7 +152,7 @@ private fun TwoCol(wide: Boolean, leftWeight: Float = 1.25f, rightWeight: Float 
 @Composable
 private fun Onboard(act: MainActivity, wide: Boolean) {
     val rows = listOf(
-        Triple(Ico.BRAKE, "무엇을 기록하나요", "속도, 브레이크, 방향지시등, 기어, 조향각, 전조등, 와이퍼, 운전석 문, 위치. 영상은 남기지 않아요"),
+        Triple(Ico.BRAKE, "무엇을 기록하나요", "속도, 브레이크, 방향지시등, 기어, 조향각, 전조등, 와이퍼, 운전석 문, 위치, 크루즈·경고등, 도로 제한속도. 영상은 남기지 않아요"),
         Triple(Ico.ARCHIVE, "얼마나 보관하나요", "모든 운행은 7일 뒤 자동으로 지워요. 사고로 확인했거나 리포트를 발급한 운행만 1년간 보존해요"),
         Triple(Ico.SHIELD, "언제 밖으로 나가나요", "차 안에만 암호화해 두고, 리포트를 발급할 때만 그 시각 앞뒤 5분(모두 10분) 기록을 휴대폰으로 넘겨요"),
     )
@@ -294,7 +294,7 @@ private fun Guide(wide: Boolean) {
         WCard {
             Row(verticalAlignment = Alignment.CenterVertically) { H2("지금 안전부터 확보하세요"); Spacer1() }
             Row(Modifier.padding(top = 16.dp), horizontalArrangement = Arrangement.spacedBy(14.dp), verticalAlignment = Alignment.CenterVertically) {
-                Tag(if (g.highway) "고속도로" else "일반 도로", if (g.highway) C.recBg else C.soft, if (g.highway) C.warn else C.brand)
+                Tag(g.road, if (g.highway) C.recBg else C.soft, if (g.highway) C.warn else C.brand)
                 K(addr ?: acc?.address ?: Sig.lat?.let { "%.4f, %.4f".format(it, Sig.lon) } ?: "위치 확인 중", size = 23.sp)
             }
             g.steps.forEachIndexed { i, s ->

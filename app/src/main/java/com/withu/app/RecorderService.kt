@@ -19,6 +19,9 @@ import ai.pleos.playground.vehicle.constant.control.LightState
 import ai.pleos.playground.vehicle.constant.control.VehicleGear
 import ai.pleos.playground.vehicle.constant.control.WiperState
 import ai.pleos.playground.vehicle.listener.BrakePedalStatusListener
+import ai.pleos.playground.vehicle.listener.CruiseControlStateListener
+import ai.pleos.playground.vehicle.constant.control.CruiseControl
+import ai.pleos.playground.vehicle.constant.telltale.TelltaleState
 import ai.pleos.playground.vehicle.listener.DoorPositionListener
 import ai.pleos.playground.vehicle.listener.GearSelectionListener
 import ai.pleos.playground.vehicle.listener.LightStateListener
@@ -53,6 +56,9 @@ import com.withu.core.DetectorConfig
 import com.withu.core.GuideFlow
 import com.withu.core.Hash
 import com.withu.core.LogPrivacy
+import com.withu.core.RoadType
+import com.withu.core.Telltale
+import com.withu.core.Cruise
 import com.withu.core.SirenAnchor
 import com.withu.core.SweepSchedule
 import com.withu.core.RoadContext
@@ -135,7 +141,7 @@ class RecorderService : Service() {
             }
             fun step() {
                 val now = System.currentTimeMillis()
-                val s = Sample(now, Sig.speedKph, Sig.gear, Sig.brake, Sig.turn, Sig.steer, Sig.lowBeam, Sig.wiper, Sig.driverDoor, Sig.lat, Sig.lon, Sig.speedLimit)
+                val s = Sample(now, Sig.speedKph, Sig.gear, Sig.brake, Sig.turn, Sig.steer, Sig.lowBeam, Sig.wiper, Sig.driverDoor, Sig.lat, Sig.lon, Sig.speedLimit, Sig.cruise, Sig.telltales)
                 sealer?.add(s)
                 Sig.speedKph?.let { if (it > 1f) lastSpeedForGuide = it; if (it > 5f) lastMovingAt = now }
                 for (d in detector.tick(s, Sig.airbag)) onDecision(d)
@@ -231,19 +237,23 @@ class RecorderService : Service() {
         store.pinTripsBetween(p.t - 300_000, now, now, "accident_confirmed")
         h.postDelayed({ safe("guide start") {
             val addr = AppState.address.value
-            val hw = RoadContext.isHighway(p.fromKph, addr)
+            val road = RoadContext.classify(p.fromKph, addr); val hw = road != RoadType.GENERAL
             AppState.accident.value = Accident(p.t, p.fromKph, p.why, addr, hw)
-            val first = guide.start(hw); pushGuide()
-            say(if (hw) "고속도로 사고로 보여요. 먼저 안전한 곳으로 대피하세요." else "일반 도로 사고로 보여요. 순서대로 안내할게요.")
+            val first = guide.start(road); pushGuide()
+            say(when (road) {
+                RoadType.HIGHWAY -> "고속도로 사고로 보여요. 2차 사고를 막는 순서로 안내할게요. 비상등, 트렁크, 가드레일 밖, 신고 순서예요."
+                RoadType.TUNNEL -> "터널 안 사고로 보여요. 차를 세우고 유도등을 따라 비상구로 나가는 순서로 안내할게요."
+                else -> "일반 도로 사고로 보여요. 순서대로 안내할게요."
+            })
             say(first.speech)
-            L("ACCIDENT confirmed why=${p.why} from=${p.fromKph}kph highway=$hw address=${LogPrivacy.text(addr)} -> trip pinned 365d, guide=${guide.steps}")
+            L("ACCIDENT confirmed why=${p.why} from=${p.fromKph}kph road=$road address=${LogPrivacy.text(addr)} -> trip pinned 365d, guide=${guide.steps}")
             ui.post { AppState.back.clear(); AppState.route.value = Route.GUIDE }
             refresh()
         } }, 700)
     }
 
     // ---------------- 대응 안내 ----------------
-    private fun pushGuide() { AppState.guide.value = GuideUi(guide.steps, guide.index, guide.paused, guide.highway, guide.done) }
+    private fun pushGuide() { AppState.guide.value = GuideUi(guide.steps, guide.index, guide.paused, guide.highway, guide.done, guide.road.ko) }
     fun guideNext(src: String) = h.post {
         if (guide.next()) { L("GUIDE next by $src -> ${guide.current}"); guide.current?.let { say(it.speech) } ?: L("GUIDE done") }
         else L("GUIDE next ignored (paused=${guide.paused} active=${guide.active})")
@@ -412,6 +422,21 @@ class RecorderService : Service() {
         try { vehicle.initialize() } catch (e: Exception) { L("VEH initialize FAILED $e") }
         h.postDelayed({ registerVehicle() }, 3000)
     }
+    /** 크루즈·경고등 1초 조회. 리스너가 첫 값만 주는 경우(에뮬레이터 확인)와 실시간 등록 권한이 없는 경고등을 함께 덮는다 */
+    private var telltaleDenied = false
+    private fun pollAux() {
+        try {
+            vehicle.getDrivingMode().getCruiseControlState({ c -> val v = Cruise.fromSdk(c?.name); if (v != Sig.cruise) L("SIG cruise=$v"); Sig.cruise = v }, { _ -> })
+        } catch (_: Exception) {}
+        if (!telltaleDenied) try {
+            vehicle.getSafety().getTelltalesInfo({ p0 ->
+                val on = p0?.telltales?.filter { it.state == TelltaleState.ON || it.state == TelltaleState.BLINK }?.map { it.type.name }
+                if (on != null) { val f = Telltale.flags(on); if (f != Sig.telltales) L("SIG telltales=$f"); Sig.telltales = f }
+            }, { e -> telltaleDenied = true; L("VEH telltale unavailable: ${e.message}") })
+        } catch (e: Exception) { telltaleDenied = true; L("VEH telltale EXC ${e.javaClass.simpleName}: ${e.message}") }
+        h.postDelayed({ pollAux() }, 1_000)
+    }
+
     private fun registerVehicle() {
         fun cap(name: String, call: () -> Unit) = try { call() } catch (e: Exception) { L("VEH $name EXC ${e.javaClass.simpleName}: ${e.message}") }
         cap("brake") { vehicle.getBrake().registerBrakePedalStatus(object : BrakePedalStatusListener {
@@ -441,6 +466,12 @@ class RecorderService : Service() {
                 override fun onSeatAirbagDeployUpdated(p0: Boolean?) { Sig.airbag = p0 }
                 override fun onFailed(p0: Exception) { fail("airbag")(p0) } })
         }
+        // 급발진·페달 오조작 소명의 보조 지표: 크루즈 상태, FCA·ESC·ABS·오토홀드 경고등 (가속 페달 개도는 SDK 미제공)
+        cap("cruise") { vehicle.getDrivingMode().registerCruiseControlState(object : CruiseControlStateListener {
+            override fun onCruiseControlStateUpdated(p0: CruiseControl?) { val c = Cruise.fromSdk(p0?.name); if (c != Sig.cruise) L("SIG cruise=$c"); Sig.cruise = c }
+            override fun onFailed(p0: Exception) { fail("cruise")(p0) } }) }
+        // 경고등 실시간 등록(registerTelltales)은 PRIVATE_CAR_SAFETY가 필요하다 → 조회로 시도하고, 거절되면 그 뒤로는 묻지 않는다
+        pollAux()
         L("VEH register done")
     }
     private fun setupCar() {

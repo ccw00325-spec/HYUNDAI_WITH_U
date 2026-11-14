@@ -111,11 +111,12 @@ const kindName = k => ({ACCIDENT_CONFIRMED:'운전자 사고 확인(직전 급�
 function parseCsv(csv) {
   return csv.split('\n').slice(1).filter(Boolean).map(l => { const p = l.split(',');
     const b = v => v === '1' ? true : v === '0' ? false : null; const n = v => (v === '' || v === undefined) ? null : +v;
-    return { t:+p[0], spd:n(p[1]), gear:p[2]||null, brk:b(p[3]), turn:p[4]||null, steer:n(p[5]), low:b(p[6]), wiper:b(p[7]), door:b(p[8]), lat:n(p[9]), lon:n(p[10]), lim:n(p[11]) }; });
+    return { t:+p[0], spd:n(p[1]), gear:p[2]||null, brk:b(p[3]), turn:p[4]||null, steer:n(p[5]), low:b(p[6]), wiper:b(p[7]), door:b(p[8]), lat:n(p[9]), lon:n(p[10]), lim:n(p[11]), cc:p[12]||null, tt: p[13] === undefined || p[13] === '' ? null : p[13] === '-' ? '' : p[13] }; });
 }
 
 /* ---------- 수정요소 사실표 (core FaultFactSheet.kt와 같은 계산 · 서명된 원본 신호에서 브라우저가 다시 만든다) ---------- */
-const FF = { LOOKBACK:30000, STEER_DEG:5, MIN_ROAD:30, MIN_HWY:100, CALM_S:2.0, ABRUPT_S:1.0, AVG_MS:5000, OVER:10, STOP:0.5 };
+const FF = { LOOKBACK:30000, STEER_DEG:5, MIN_ROAD:30, MIN_HWY:100, CALM_S:2.0, ABRUPT_S:1.0, AVG_MS:5000, OVER:10, STOP:0.5, PEDAL_RISE:3, PEDAL_MIN_MS:1000, ACCEL_NB:10 };
+const TTKO = {F:'FCA(전방 충돌방지)', E:'ESC', A:'ABS', H:'오토홀드'};
 const LV = {CONFIRMED:'확인됨', PARTIAL:'부분 확인', UNKNOWN:'확인 불가', NA:'해당 없음'};
 const LN = {FOR_DRIVER:'운전자 주장 뒷받침', AGAINST_DRIVER:'불리할 수 있음', NEUTRAL:'판단 재료'};
 const r1 = v => (Math.round(v * 10 + 1e-9) / 10).toFixed(1);
@@ -219,6 +220,24 @@ function factSheet(rows, t, address) {
       else { const el = sunEl(t, la.lat, lo.lon);
         if (el > -0.833) out.push(row(...b, 'NA', 'NEUTRAL', `주간(태양 고도 ${Math.round(el)}°) · ${st}`));
         else out.push(row(...b, 'CONFIRMED', at.low ? 'FOR_DRIVER' : 'AGAINST_DRIVER', `일몰 후(태양 고도 ${Math.round(el)}°) · ${st}`)); } } }
+  // 8 급발진·페달 오조작 소명 (특수 상황)
+  { const b = ['pedal', '급발진·페달 오조작 소명 (특수 상황)', 'Brake 밟음 중 속도 변화 · 크루즈 · FCA/ESC/ABS 경고등 (가속 페달 개도는 SDK 미제공)'];
+    const ctx = (from, to) => { const w = s.filter(r => r.t >= from && r.t <= to); const o = [];
+      if (w.some(r => r.cc !== null)) o.push(w.some(r => r.cc === 'A') ? '크루즈 작동' : '크루즈 꺼짐');
+      if (w.some(r => r.tt !== null)) { const on = new Set(w.map(r => r.tt || '').join('')); o.push(on.size ? '경고등 ' + [...'FEAH'].filter(c => on.has(c)).map(c => TTKO[c]).join('·') : '경고등 없음'); }
+      return o.length ? ' · ' + o.join(' · ') : ''; };
+    if (!s.some(r => r.brk !== null)) out.push(row(...b, 'UNKNOWN', 'NEUTRAL', '브레이크 신호 미수신'));
+    else {
+      const w = s.filter(r => r.t >= t - FF.LOOKBACK && r.t <= t); let best = null;
+      for (let i = 0; i < w.length; ) { if (w[i].brk !== true) { i++; continue; } let j = i; while (j + 1 < w.length && w[j+1].brk === true) j++;
+        let lo = w[i]; for (let k = i; k <= j; k++) { const c = w[k]; if (c.spd === null) continue; if (lo.spd === null || c.spd <= lo.spd) lo = c; const rise = c.spd - (lo.spd ?? c.spd);
+          if (c.t - lo.t >= FF.PEDAL_MIN_MS && rise > 0 && (!best || rise > best[2])) best = [lo, c, rise]; } i = j + 1; }
+      if (best && best[2] >= FF.PEDAL_RISE) { const [a, z, rise] = best;
+        out.push(row(...b, 'CONFIRMED', 'FOR_DRIVER', `브레이크를 밟은 채 ${r1((z.t - a.t) / 1000)}초 동안 속도 +${Math.round(rise)}km/h(${Math.round(a.spd)}→${Math.round(z.spd)}) — 운전자 의도와 다른 가속 정황` + ctx(a.t, z.t), a.t)); }
+      else { const v = s.filter(r => r.t >= t - 10000 && r.t <= t && r.spd !== null); let mn = null; for (const r of v) if (mn === null || r.spd < mn.spd) mn = r;
+        const aft = mn ? v.filter(r => r.t >= mn.t) : []; const gain = mn && aft.length ? Math.max(...aft.map(r => r.spd)) - mn.spd : 0;
+        if (mn && gain >= FF.ACCEL_NB && !aft.some(r => r.brk === true && r.t < t - 1000)) out.push(row(...b, 'PARTIAL', 'NEUTRAL', `기준 시각 전 10초 가속(+${Math.round(gain)}km/h) 중 브레이크 기록 없음 · 가속 페달 개도는 SDK 미제공(기술 지원 검토 요청)` + ctx(t - 10000, t), mn.t));
+        else out.push(row(...b, 'NA', 'NEUTRAL', '브레이크를 밟은 채 빨라진 구간 없음' + ctx(t - FF.LOOKBACK, t))); } } }
   return out;
 }
 
@@ -299,6 +318,7 @@ async function render(rep, raw) {
   if (fm('signal').markT && fm('signal').level !== 'NA') marks.push({t: fm('signal').markT, c:'#C27C00', label:'점등'});
   if (fm('abrupt_lane').markT) marks.push({t: fm('abrupt_lane').markT, c:'#0B1F3A', label:'조향 시작'});
   if (fm('hard_brake').markT) marks.push({t: fm('hard_brake').markT, c:'#FF5A36', label:'제동'});
+  if (fm('pedal').markT && fm('pedal').level === 'CONFIRMED') marks.push({t: fm('pedal').markT, c:'#7A3EF0', label:'제동 중 가속'});
   const pay = rep.payer.type === 'INSURER' ? `<span class="badge ok">보험사 부담</span> ${esc(rep.payer.name)} · ${esc(rep.payer.note)}` : `<span class="badge wait">개인 결제 ${rep.payer.price_won.toLocaleString()}원</span> ${esc(rep.payer.note)} · 요약·사실표(A·B)는 무료, 전체는 결제 뒤 열람`;
   const chunks = rep.proof.chunks; const ev = events(rows);
   const cls = r => r.lean === 'FOR_DRIVER' ? 'for' : r.lean === 'AGAINST_DRIVER' ? 'against' : r.level === 'NA' ? 'na' : r.level === 'UNKNOWN' ? 'unknown' : '';
@@ -372,7 +392,7 @@ async function render(rep, raw) {
 
     <h2><span class="n">G</span> 데이터 출처와 한계</h2>
     <table>
-      <tr><th>수집 경로</th><td>Pleos Connect Vehicle SDK(브레이크·기어·방향지시등·조향·전조등·와이퍼·운전석 문), AAOS Car API(속도), FusedLocation(위치), NaviHelper(주소·도로 제한속도)</td></tr>
+      <tr><th>수집 경로</th><td>Pleos Connect Vehicle SDK(브레이크·기어·방향지시등·조향·전조등·와이퍼·운전석 문·크루즈·경고등), AAOS Car API(속도), FusedLocation(위치), NaviHelper(주소·도로 제한속도)</td></tr>
       <tr><th>기록 방식</th><td>10Hz로 상시 기록 → 1분마다 묶어 앞 묶음 확인값과 이어 붙이고 차량 안 키로 서명 → 7일 보관, 사고 확인·리포트 발급 시 1년 보존</td></tr>
       <tr><th>판단 기준값</th><td>조향 시작 ${FF.STEER_DEG}° · 완만 ${FF.CALM_S}초 이상 / 급조향 ${FF.ABRUPT_S}초 미만 · 정지 ${FF.STOP}km/h 이하 · 일몰 = 태양 고도 −0.833° (조향·시간 기준은 제안값, 실차 보정 예정)</td></tr>
       <tr><th>기록하지 않는 것</th><td>${rep.unsupported.join(', ')}, 영상</td></tr>
