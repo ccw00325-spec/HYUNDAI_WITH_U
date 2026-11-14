@@ -85,7 +85,11 @@ class PedalFactTest {
         val na = pedal(rows { d -> Sample(0, spd = 50f, brk = false, cc = if (d == -25_000L) 'A' else '0', tt = "") })
         assertEquals("브레이크를 밟은 채 빨라진 구간 없음 · 크루즈 작동 · 경고등 없음", na.text)
         val naOut = pedal(rows { d -> Sample(0, spd = 50f, brk = false, cc = if (d == -31_000L) 'A' else null) })
-        assertEquals("브레이크를 밟은 채 빨라진 구간 없음", naOut.text)                        // 창 밖 크루즈 신호만 있으면 문맥 없음
+        assertEquals("브레이크를 밟은 채 빨라진 구간 없음", naOut.text)
+        // 크루즈 대기(E)는 작동이 아니다
+        assertEquals("브레이크를 밟은 채 빨라진 구간 없음 · 크루즈 대기(작동 안 함)", pedal(rows { Sample(0, spd = 50f, brk = false, cc = 'E') }).text)
+        assertEquals("브레이크를 밟은 채 빨라진 구간 없음 · 크루즈 대기(작동 안 함)", pedal(rows { Sample(0, spd = 50f, brk = false, cc = 'S') }).text)
+        assertEquals("브레이크를 밟은 채 빨라진 구간 없음 · 크루즈 대기(작동 안 함)", pedal(rows { Sample(0, spd = 50f, brk = false, cc = 'O') }).text)                        // 창 밖 크루즈 신호만 있으면 문맥 없음
     }
 
     @Test fun partial_gainAndLateBrakeBoundaries() {

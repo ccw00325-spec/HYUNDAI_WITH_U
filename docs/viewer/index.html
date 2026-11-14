@@ -223,7 +223,7 @@ function factSheet(rows, t, address) {
   // 8 급발진·페달 오조작 소명 (특수 상황)
   { const b = ['pedal', '급발진·페달 오조작 소명 (특수 상황)', 'Brake 밟음 중 속도 변화 · 크루즈 · FCA/ESC/ABS 경고등 (가속 페달 개도는 SDK 미제공)'];
     const ctx = (from, to) => { const w = s.filter(r => r.t >= from && r.t <= to); const o = [];
-      if (w.some(r => r.cc !== null)) o.push(w.some(r => r.cc === 'A') ? '크루즈 작동' : '크루즈 꺼짐');
+      if (w.some(r => r.cc !== null)) o.push(w.some(r => r.cc === 'A') ? '크루즈 작동' : w.some(r => 'ESO'.includes(r.cc || '-')) ? '크루즈 대기(작동 안 함)' : '크루즈 꺼짐');
       if (w.some(r => r.tt !== null)) { const on = new Set(w.map(r => r.tt || '').join('')); o.push(on.size ? '경고등 ' + [...'FEAH'].filter(c => on.has(c)).map(c => TTKO[c]).join('·') : '경고등 없음'); }
       return o.length ? ' · ' + o.join(' · ') : ''; };
     if (!s.some(r => r.brk !== null)) out.push(row(...b, 'UNKNOWN', 'NEUTRAL', '브레이크 신호 미수신'));

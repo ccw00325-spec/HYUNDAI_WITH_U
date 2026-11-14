@@ -216,7 +216,7 @@ object FaultFactSheet {
     private fun context(s: List<Sample>, from: Long, to: Long): String {
         val w = s.filter { it.t in from..to }
         val out = ArrayList<String>()
-        if (w.any { it.cc != null }) out += if (w.any { it.cc == 'A' }) "크루즈 작동" else "크루즈 꺼짐"
+        if (w.any { it.cc != null }) out += when { w.any { it.cc == 'A' } -> "크루즈 작동"; w.any { it.cc == 'E' || it.cc == 'S' || it.cc == 'O' } -> "크루즈 대기(작동 안 함)"; else -> "크루즈 꺼짐" }
         if (w.any { it.tt != null }) {
             val on = w.mapNotNull { it.tt }.joinToString("").toSet()
             out += if (on.isEmpty()) "경고등 없음" else "경고등 " + "FEAH".filter { it in on }.map { Telltale.ko(it) }.joinToString("·")
